@@ -32,11 +32,12 @@ const Home: React.FC = () => {
 		<>
 			<SafeAreaView style={{ flex: 1 }}>
 				<FocusAwareStatusBar />
+				{/* <Header /> */}
 				<Tabs.Container
 					renderHeader={Header}
 					containerStyle={CONTAINER_STYLE}
 					//@ts-ignore
-					renderTabBar={props => <MaterialTabBar {...{ ...props, ...TabBarStyles }} />}
+					// renderTabBar={props => <MaterialTabBar {...{ ...props, ...TabBarStyles }} />}
 				>
 					<Tabs.Tab name='Top Stocks'>
 						<TopTabs />
