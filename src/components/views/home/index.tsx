@@ -32,8 +32,8 @@ const Home: React.FC = () => {
 		<>
 			<SafeAreaView style={{ flex: 1 }}>
 				<FocusAwareStatusBar />
-				{/* <Header /> */}
-				<Tabs.Container
+				<Header />
+				{/* <Tabs.Container
 					renderHeader={Header}
 					containerStyle={CONTAINER_STYLE}
 					//@ts-ignore
@@ -48,7 +48,7 @@ const Home: React.FC = () => {
 					<Tabs.Tab name='Favourites'>
 						<TopTabs />
 					</Tabs.Tab>
-				</Tabs.Container>
+				</Tabs.Container> */}
 			</SafeAreaView>
 		</>
 	)
