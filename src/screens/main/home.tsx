@@ -10,5 +10,8 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
 	return <ContentView />
 }
 
+<<<<<<< HEAD
 // HomeScreen.whyDidYouRender = true
+=======
+>>>>>>> dev/setup
 export default HomeScreen

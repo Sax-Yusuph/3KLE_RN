@@ -29,10 +29,13 @@ build/
 local.properties
 *.iml
 
+<<<<<<< HEAD
 # Visual Studio Code
 #
 .vscode/
 
+=======
+>>>>>>> dev/setup
 # node.js
 #
 node_modules/
@@ -60,4 +63,8 @@ buck-out/
 *.jsbundle
 
 # CocoaPods
+<<<<<<< HEAD
 /ios/Pods/
+=======
+/ios/Pods/
+>>>>>>> dev/setup

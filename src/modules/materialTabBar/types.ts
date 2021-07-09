@@ -1,10 +1,15 @@
+<<<<<<< HEAD
 import React, { ComponentProps } from 'react'
+=======
+import React, {ComponentProps} from 'react';
+>>>>>>> dev/setup
 import {
   FlatList,
   FlatListProps as RNFlatListProps,
   ScrollView,
   StyleProp,
   ViewStyle,
+<<<<<<< HEAD
 } from 'react-native'
 import Animated from 'react-native-reanimated'
 
@@ -72,13 +77,87 @@ export type CollapsibleProps = {
    * Reveal header when scrolling down. Implements diffClamp.
    */
   revealHeaderOnScroll?: boolean
+=======
+} from 'react-native';
+import Animated from 'react-native-reanimated';
+
+import {TabProps} from './Tab';
+
+export type ContainerRef = FlatList<any>;
+
+export type RefComponent = FlatList<any> | ScrollView | Animated.ScrollView;
+
+export type Ref<T extends RefComponent> = React.RefObject<T>;
+
+export type TabName = string | number;
+
+export type RefHandler<T extends TabName = TabName> = {
+  jumpToTab: (name: T) => boolean;
+  setIndex: (index: number) => boolean;
+  getFocusedTab: () => T;
+  getCurrentIndex: () => number;
+};
+
+export type CollapsibleRef<T extends TabName = TabName> =
+  | RefHandler<T>
+  | undefined;
+
+export type TabBarProps<T extends TabName = TabName> = {
+  indexDecimal: Animated.SharedValue<number>;
+  focusedTab: Animated.SharedValue<T>;
+  tabNames: T[];
+  index: Animated.SharedValue<number>;
+  containerRef: React.RefObject<ContainerRef>;
+  onTabPress: (name: T) => void;
+  tabProps: TabsWithProps<T>;
+};
+
+export type IndexChangeEventData<T extends TabName = TabName> = {
+  prevIndex: number;
+  index: number;
+  prevTabName: T;
+  tabName: T;
+};
+
+export type OnTabChangeCallback<T extends TabName = TabName> = (
+  data: IndexChangeEventData<T>,
+) => void;
+
+export type TabReactElement<T extends TabName = TabName> = React.ReactElement<
+  TabProps<T>
+>;
+
+export type CollapsibleProps = {
+  initialTabName?: TabName;
+  /**
+   * Is optional, but will optimize the first render.
+   */
+  headerHeight?: number;
+  /**
+   * Is optional, but will optimize the first render.
+   */
+  tabBarHeight?: number;
+  /**
+   * Header minimum height when collapsed
+   */
+  minHeaderHeight?: number;
+  /**
+   * Reveal header when scrolling down. Implements diffClamp.
+   */
+  revealHeaderOnScroll?: boolean;
+>>>>>>> dev/setup
   /**
    * Percentage of header height to define as the snap point. A number between
    * 0 and 1, or `null` to disable snapping.
    * @default null
    */
+<<<<<<< HEAD
   snapThreshold?: number | null
   children: TabReactElement<TabName>[] | TabReactElement<TabName>
+=======
+  snapThreshold?: number | null;
+  children: TabReactElement<TabName>[] | TabReactElement<TabName>;
+>>>>>>> dev/setup
   /**
    * @obsolete use `renderHeader` instead. This property will be removed in 5.0.0
    */
@@ -87,7 +166,11 @@ export type CollapsibleProps = {
     | React.MemoExoticComponent<
         (props: TabBarProps<TabName>) => React.ReactElement
       >
+<<<<<<< HEAD
     | null
+=======
+    | null;
+>>>>>>> dev/setup
   /**
    * @obsolete use `renderTabBar` instead. This property will be removed in 5.0.0
    */
@@ -96,6 +179,7 @@ export type CollapsibleProps = {
     | React.MemoExoticComponent<
         (props: TabBarProps<TabName>) => React.ReactElement
       >
+<<<<<<< HEAD
     | null
 
   renderHeader?: (props: TabBarProps<TabName>) => React.ReactElement | null
@@ -105,12 +189,28 @@ export type CollapsibleProps = {
   headerContainerStyle?: StyleProp<Animated.AnimateStyle<ViewStyle>>
   containerStyle?: StyleProp<ViewStyle>
   cancelTranslation?: boolean
+=======
+    | null;
+
+  renderHeader?: (props: TabBarProps<TabName>) => React.ReactElement | null;
+
+  renderTabBar?: (props: TabBarProps<TabName>) => React.ReactElement | null;
+
+  headerContainerStyle?: StyleProp<Animated.AnimateStyle<ViewStyle>>;
+  containerStyle?: StyleProp<ViewStyle>;
+  cancelTranslation?: boolean;
+>>>>>>> dev/setup
   /**
    * If lazy, will mount the screens only when the tab is visited. There is a
    * default fade in transition.
    */
+<<<<<<< HEAD
   lazy?: boolean
   cancelLazyFadeIn?: boolean
+=======
+  lazy?: boolean;
+  cancelLazyFadeIn?: boolean;
+>>>>>>> dev/setup
   /**
    * Props passed to the horiztontal flatlist. If you want for example to
    * disable swiping, you can pass `{ scrollEnabled: false }`
@@ -125,16 +225,25 @@ export type CollapsibleProps = {
     | 'onScroll'
     | 'showsHorizontalScrollIndicator'
     | 'getItemLayout'
+<<<<<<< HEAD
   >
   /**
    * Callback fired when the index changes. It receives the current index.
    */
   onIndexChange?: (index: number) => void
+=======
+  >;
+  /**
+   * Callback fired when the index changes. It receives the current index.
+   */
+  onIndexChange?: (index: number) => void;
+>>>>>>> dev/setup
 
   /**
    * Callback fired when the tab changes. It receives the previous and current
    *  index and tabnames.
    */
+<<<<<<< HEAD
   onTabChange?: OnTabChangeCallback<TabName>
 }
 
@@ -143,10 +252,21 @@ export type ContextType<T extends TabName = TabName> = {
   tabBarHeight: Animated.SharedValue<number | undefined>
   revealHeaderOnScroll: boolean
   snapThreshold: number | null | undefined
+=======
+  onTabChange?: OnTabChangeCallback<TabName>;
+};
+
+export type ContextType<T extends TabName = TabName> = {
+  headerHeight: Animated.SharedValue<number | undefined>;
+  tabBarHeight: Animated.SharedValue<number | undefined>;
+  revealHeaderOnScroll: boolean;
+  snapThreshold: number | null | undefined;
+>>>>>>> dev/setup
   /**
    * Index value, including decimal points. Use this to interpolate tab
    * indicators.
    */
+<<<<<<< HEAD
   indexDecimal: Animated.SharedValue<number>
   /**
    * Tab names, same as the keys of `refMap`.
@@ -160,10 +280,26 @@ export type ContextType<T extends TabName = TabName> = {
    * Name of the current focused tab.
    */
   focusedTab: Animated.SharedValue<T>
+=======
+  indexDecimal: Animated.SharedValue<number>;
+  /**
+   * Tab names, same as the keys of `refMap`.
+   */
+  tabNames: Animated.SharedValue<T[]>;
+  /**
+   * Current index of the pager.
+   */
+  index: Animated.SharedValue<number>;
+  /**
+   * Name of the current focused tab.
+   */
+  focusedTab: Animated.SharedValue<T>;
+>>>>>>> dev/setup
   /**
    * DiffClamp value. It's the current visible header height if
    * `diffClampEnabled={true}`.
    */
+<<<<<<< HEAD
   accDiffClamp: Animated.SharedValue<number>
   /**
    * Scroll position of current tab.
@@ -178,11 +314,28 @@ export type ContextType<T extends TabName = TabName> = {
    * Object containing the ref of each scrollable component.
    */
   refMap: Record<TabName, Ref<RefComponent>>
+=======
+  accDiffClamp: Animated.SharedValue<number>;
+  /**
+   * Scroll position of current tab.
+   */
+  scrollYCurrent: Animated.SharedValue<number>;
+  /**
+   * Array of the scroll y position of each tab.
+   */
+  scrollY: Animated.SharedValue<number[]>;
+  containerHeight: Animated.SharedValue<number | undefined>;
+  /**
+   * Object containing the ref of each scrollable component.
+   */
+  refMap: Record<TabName, Ref<RefComponent>>;
+>>>>>>> dev/setup
   /**
    * Set the ref of the scrollable component.
    */
   setRef: <TComponent extends RefComponent>(
     key: T,
+<<<<<<< HEAD
     ref: React.RefObject<TComponent>
   ) => Ref<TComponent>
   /**
@@ -197,10 +350,27 @@ export type ContextType<T extends TabName = TabName> = {
    * Accumulated scroll Y distance. Used to calculate the accDiffClamp value.
    */
   accScrollY: Animated.SharedValue<number>
+=======
+    ref: React.RefObject<TComponent>,
+  ) => Ref<TComponent>;
+  /**
+   * Max distance allowed to collapse the header.
+   */
+  headerScrollDistance: Animated.SharedValue<number>;
+  /**
+   * Previous addScrollY value.
+   */
+  oldAccScrollY: Animated.SharedValue<number>;
+  /**
+   * Accumulated scroll Y distance. Used to calculate the accDiffClamp value.
+   */
+  accScrollY: Animated.SharedValue<number>;
+>>>>>>> dev/setup
   /**
    * Offset to take the next scrollY as if it were at the same position of the
    * previous tab.
    */
+<<<<<<< HEAD
   offset: Animated.SharedValue<number>
   isScrolling: Animated.SharedValue<number>
   /**
@@ -213,10 +383,25 @@ export type ContextType<T extends TabName = TabName> = {
    * The next snapping value, used only with diffClamp.
    */
   snappingTo: Animated.SharedValue<number>
+=======
+  offset: Animated.SharedValue<number>;
+  isScrolling: Animated.SharedValue<number>;
+  /**
+   * Scroll x position of the tabs container.
+   */
+  scrollX: Animated.SharedValue<number>;
+  isGliding: Animated.SharedValue<boolean>;
+  isSnapping: Animated.SharedValue<boolean>;
+  /**
+   * The next snapping value, used only with diffClamp.
+   */
+  snappingTo: Animated.SharedValue<number>;
+>>>>>>> dev/setup
 
   /**
    * Height of the scrollable content of each tab. Helps to allow iOS bouncing.
    */
+<<<<<<< HEAD
   contentHeights: Animated.SharedValue<number[]>
 
   contentInset: Animated.SharedValue<number>
@@ -239,3 +424,27 @@ export type TabsWithProps<T extends TabName = TabName> = Map<
   T,
   Omit<TabProps<T>, 'children'> & { index: number }
 >
+=======
+  contentHeights: Animated.SharedValue<number[]>;
+
+  contentInset: Animated.SharedValue<number>;
+
+  headerTranslateY: Animated.SharedValue<number>;
+};
+
+export type ScrollViewProps = ComponentProps<typeof Animated.ScrollView>;
+
+export type CollapsibleStyle = {
+  style: {width: number};
+  contentContainerStyle: {
+    minHeight: number;
+    paddingTop: number;
+  };
+  progressViewOffset: number;
+};
+
+export type TabsWithProps<T extends TabName = TabName> = Map<
+  T,
+  Omit<TabProps<T>, 'children'> & {index: number}
+>;
+>>>>>>> dev/setup

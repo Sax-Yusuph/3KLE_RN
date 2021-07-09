@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import styled from 'styled-components/native';
 import { useTranslation } from 'react-i18next';
@@ -31,3 +32,7 @@ const Container = styled.TouchableOpacity`
 `;
 
 export default LanguageButton;
+=======
+//
+export {}
+>>>>>>> dev/setup

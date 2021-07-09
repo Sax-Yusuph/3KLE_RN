@@ -1,7 +1,16 @@
 import { HStack, IconButton, VStack } from '@elements'
 import { showToast } from '@utils/helpers'
 import React, { FC } from 'react'
+<<<<<<< HEAD
 import { ImageBackground, TouchableOpacity, useWindowDimensions, View } from 'react-native'
+=======
+import {
+	ImageBackground,
+	TouchableOpacity,
+	useWindowDimensions,
+	View,
+} from 'react-native'
+>>>>>>> dev/setup
 import LinearGradient from 'react-native-linear-gradient'
 import { ScrollDiv, Div, Text, Icon } from 'react-native-magnus'
 import AvatarImg from '@assets/svgs/avatar.svg'
@@ -18,6 +27,7 @@ import { Section2 } from './transactions'
 
 export const Header = () => {
 	return (
+<<<<<<< HEAD
 		<View pointerEvents='box-none'>
 			<HStack justifyContent='space-between' p='lg'>
 				<HStack>
@@ -25,19 +35,56 @@ export const Header = () => {
 						<AvatarImg width={32} height={32} />
 					</IconButton>
 					<Text ml='md' fontSize='md' fontWeight='bold'>
+=======
+		<View pointerEvents="box-none">
+			<HStack justifyContent="space-between" p="lg">
+				<HStack>
+					<IconButton onPress={showToast} rounded="circle">
+						<AvatarImg width={32} height={32} />
+					</IconButton>
+					<Text ml="md" fontSize="md" fontWeight="bold">
+>>>>>>> dev/setup
 						My Profile
 					</Text>
 				</HStack>
 
+<<<<<<< HEAD
 				<IconButton onPress={showToast} p='md' rounded='circle' mx='lg' pointerEvents='none'>
 					<BellIcon width={22} height={22} />
 					<Circle bg='#E44228' size={10} position='absolute' right={4} top={4} />
+=======
+				<IconButton
+					onPress={showToast}
+					p="md"
+					rounded="circle"
+					mx="lg"
+					pointerEvents="none"
+				>
+					<BellIcon width={22} height={22} />
+					<Circle
+						bg="#E44228"
+						size={10}
+						position="absolute"
+						right={4}
+						top={4}
+					/>
+>>>>>>> dev/setup
 				</IconButton>
 			</HStack>
 			<Banner />
 
+<<<<<<< HEAD
 			<Animatable.View animation='fadeIn' delay={400} useNativeDriver pointerEvents='box-none'>
 				<ScrollDiv horizontal mx='lg' mt='xl'>
+=======
+			<Animatable.View
+				animation="fadeIn"
+				delay={400}
+				useNativeDriver
+				pointerEvents="box-none"
+			>
+				<ScrollDiv horizontal mx="lg" mt="xl">
+>>>>>>> dev/setup
 					{CARDS_DATA?.map((cardItem, i) => (
 						<Card key={i.toString()} {...cardItem} />
 					))}
@@ -56,6 +103,7 @@ const Banner = () => {
 		<Div
 			// bg=''
 			h={200}
+<<<<<<< HEAD
 			rounded='xl'
 			m='lg'
 			justifyContent='center'
@@ -75,22 +123,63 @@ const Banner = () => {
 							</Text>
 
 							<Text color='textLight' fontSize={36} fontWeight='bold'>
+=======
+			rounded="xl"
+			m="lg"
+			justifyContent="center"
+			alignItems="center"
+			pointerEvents="none"
+			overflow="hidden"
+		>
+			<LinearGradient
+				colors={['rgba(38, 57, 116, 1)', 'rgba(36, 59, 128, 0.87)']}
+				style={{
+					width: '100%',
+					height: '100%',
+					justifyContent: 'center',
+					alignItems: 'center',
+				}}
+			>
+				<Animatable.View
+					animation="fadeIn"
+					useNativeDriver
+					delay={100}
+					pointerEvents="box-none"
+				>
+					<VStack alignItems="flex-start">
+						<HStack>
+							<Text color="textLight" mr="sm" fontSize="xl">
+								$
+							</Text>
+
+							<Text color="textLight" fontSize={36} fontWeight="bold">
+>>>>>>> dev/setup
 								1290.00
 							</Text>
 						</HStack>
 
 						<HStack mt={-6}>
+<<<<<<< HEAD
 							<Text color='rgba(255,255,255,0.9)' fontSize='lg'>
 								Portfolio Value
 							</Text>
 							<HStack ml='md'>
 								<UpIcon width={26} height={26} />
 								<Text color='secondary'>up</Text>
+=======
+							<Text color="rgba(255,255,255,0.9)" fontSize="lg">
+								Portfolio Value
+							</Text>
+							<HStack ml="md">
+								<UpIcon width={26} height={26} />
+								<Text color="secondary">up</Text>
+>>>>>>> dev/setup
 							</HStack>
 						</HStack>
 					</VStack>
 				</Animatable.View>
 
+<<<<<<< HEAD
 				<Animatable.View animation='fadeIn' delay={300} useNativeDriver pointerEvents='box-none'>
 					<HStack mt='2xl'>
 						<Depositboxes text='Deposit' />
@@ -98,6 +187,20 @@ const Banner = () => {
 					</HStack>
 				</Animatable.View>
 				<Div position='absolute' bottom={-20}>
+=======
+				<Animatable.View
+					animation="fadeIn"
+					delay={300}
+					useNativeDriver
+					pointerEvents="box-none"
+				>
+					<HStack mt="2xl">
+						<Depositboxes text="Deposit" />
+						<Depositboxes text="WithDraw" up />
+					</HStack>
+				</Animatable.View>
+				<Div position="absolute" bottom={-20}>
+>>>>>>> dev/setup
 					<Effects />
 				</Div>
 			</LinearGradient>
@@ -107,9 +210,15 @@ const Banner = () => {
 
 const Depositboxes: FC<{ up?: true; text: string }> = ({ up, text }) => {
 	return (
+<<<<<<< HEAD
 		<VStack px='lg'>
 			{up ? <DepositUpIcon /> : <DepositIcon />}
 			<Text fontSize='xs' color='textLight' mt='sm'>
+=======
+		<VStack px="lg">
+			{up ? <DepositUpIcon /> : <DepositIcon />}
+			<Text fontSize="xs" color="textLight" mt="sm">
+>>>>>>> dev/setup
 				{text}
 			</Text>
 		</VStack>
@@ -122,6 +231,7 @@ const Card: FC<{ title: string; image: number }> = ({ title, image }) => {
 	return (
 		<TouchableOpacity activeOpacity={0.89}>
 			<Div
+<<<<<<< HEAD
 				rounded='xl'
 				w={CARD_WIDTH}
 				h={CARD_WIDTH / 2}
@@ -136,6 +246,26 @@ const Card: FC<{ title: string; image: number }> = ({ title, image }) => {
 					<Div position='absolute' top={5} right={5}>
 						<IconButton activeBg='rgba(0,0,0,0.3)' rounded='circle' onPress={showToast}>
 							<Icon name='close' fontFamily='Ionicons' color='white' />
+=======
+				rounded="xl"
+				w={CARD_WIDTH}
+				h={CARD_WIDTH / 2}
+				mr="xl"
+				overflow="hidden"
+				pointerEvents="box-none"
+			>
+				<ImageBackground source={image} style={styles.image}>
+					<Text color="textLight" fontSize="md">
+						{title}
+					</Text>
+					<Div position="absolute" top={5} right={5}>
+						<IconButton
+							activeBg="rgba(0,0,0,0.3)"
+							rounded="circle"
+							onPress={showToast}
+						>
+							<Icon name="close" fontFamily="Ionicons" color="white" />
+>>>>>>> dev/setup
 						</IconButton>
 					</Div>
 				</ImageBackground>

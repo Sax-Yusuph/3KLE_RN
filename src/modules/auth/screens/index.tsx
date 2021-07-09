@@ -7,6 +7,11 @@ export type AuthStackParamList = {
 };
 
 export const authScreens = {
+<<<<<<< HEAD
   Onboarding: { component: OnboardingScreen },
   ResetPassword: { component: ResetPasswordScreen },
+=======
+  Onboarding: {component: OnboardingScreen},
+  ResetPassword: {component: ResetPasswordScreen},
+>>>>>>> dev/setup
 };

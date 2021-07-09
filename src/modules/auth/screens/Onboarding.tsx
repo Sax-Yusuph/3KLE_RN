@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+<<<<<<< HEAD
 import CustomText from 'components/CustomText'
+=======
+>>>>>>> dev/setup
 import { CustomScreen } from '@elements'
 import useKeychainBiometrics from '../hooks/useKeychainBiometrics'
 import useKeychainCredentials from '../hooks/useKeychainCredentials'
@@ -28,7 +31,11 @@ const Onboaring = () => {
 
 	return (
 		<CustomScreen justifyContent={'space-evenly'} testID={'OnboardingScreen'}>
+<<<<<<< HEAD
 			<CustomText
+=======
+			{/* <CustomText
+>>>>>>> dev/setup
 				fontWeight={'700'}
 				testID={'btnSign'}
 				onPress={() => {
@@ -48,11 +55,18 @@ const Onboaring = () => {
 				}}
 			>
 				{t('forgot')}
+<<<<<<< HEAD
 			</CustomText>
+=======
+			</CustomText> */}
+>>>>>>> dev/setup
 		</CustomScreen>
 	)
 }
 
+<<<<<<< HEAD
 Onboaring.whyDidYouRender = true
 
+=======
+>>>>>>> dev/setup
 export default Onboaring

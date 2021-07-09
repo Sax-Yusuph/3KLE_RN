@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 import React from 'react'
 import { ScrollViewProps, ScrollView as RNScrollView } from 'react-native'
 import Animated from 'react-native-reanimated'
 
 import { IS_IOS } from './helpers'
+=======
+import React from 'react';
+import {ScrollViewProps, ScrollView as RNScrollView} from 'react-native';
+import Animated from 'react-native-reanimated';
+
+import {IS_IOS} from './helpers';
+>>>>>>> dev/setup
 import {
   useAfterMountEffect,
   useChainCallback,
@@ -12,7 +20,11 @@ import {
   useTabNameContext,
   useTabsContext,
   useUpdateScrollViewContentSize,
+<<<<<<< HEAD
 } from './hooks'
+=======
+} from './hooks';
+>>>>>>> dev/setup
 
 /**
  * Used as a memo to prevent rerendering too often when the context changes.
@@ -27,10 +39,17 @@ const ScrollViewMemo = React.memo(
           ref={passRef}
           {...props}
         />
+<<<<<<< HEAD
       )
     }
   )
 )
+=======
+      );
+    },
+  ),
+);
+>>>>>>> dev/setup
 
 /**
  * Use like a regular ScrollView.
@@ -48,15 +67,24 @@ export const ScrollView = React.forwardRef<
       refreshControl,
       ...rest
     },
+<<<<<<< HEAD
     passRef
   ) => {
     const name = useTabNameContext()
     const ref = useSharedAnimatedRef<RNScrollView>(passRef)
     const { setRef, contentInset, scrollYCurrent } = useTabsContext()
+=======
+    passRef,
+  ) => {
+    const name = useTabNameContext();
+    const ref = useSharedAnimatedRef<RNScrollView>(passRef);
+    const {setRef, contentInset, scrollYCurrent} = useTabsContext();
+>>>>>>> dev/setup
     const {
       style: _style,
       contentContainerStyle: _contentContainerStyle,
       progressViewOffset,
+<<<<<<< HEAD
     } = useCollapsibleStyle()
     const { scrollHandler, enable } = useScrollHandlerY(name)
     useAfterMountEffect(() => {
@@ -79,6 +107,30 @@ export const ScrollView = React.forwardRef<
         scrollContentSizeChange,
       ])
     )
+=======
+    } = useCollapsibleStyle();
+    const {scrollHandler, enable} = useScrollHandlerY(name);
+    useAfterMountEffect(() => {
+      // we enable the scroll event after mounting
+      // otherwise we get an `onScroll` call with the initial scroll position which can break things
+      enable(true);
+    });
+
+    React.useEffect(() => {
+      setRef(name, ref);
+    }, [name, ref, setRef]);
+
+    const scrollContentSizeChange = useUpdateScrollViewContentSize({
+      name,
+    });
+
+    const scrollContentSizeChangeHandlers = useChainCallback(
+      React.useMemo(
+        () => [scrollContentSizeChange, onContentSizeChange],
+        [onContentSizeChange, scrollContentSizeChange],
+      ),
+    );
+>>>>>>> dev/setup
 
     const memoRefreshControl = React.useMemo(
       () =>
@@ -87,28 +139,48 @@ export const ScrollView = React.forwardRef<
           progressViewOffset,
           ...refreshControl.props,
         }),
+<<<<<<< HEAD
       [progressViewOffset, refreshControl]
     )
+=======
+      [progressViewOffset, refreshControl],
+    );
+>>>>>>> dev/setup
     const memoContentOffset = React.useMemo(
       () => ({
         y: IS_IOS ? -contentInset.value + scrollYCurrent.value : 0,
         x: 0,
       }),
+<<<<<<< HEAD
       [contentInset.value, scrollYCurrent.value]
     )
     const memoContentInset = React.useMemo(
       () => ({ top: contentInset.value }),
       [contentInset.value]
     )
+=======
+      [contentInset.value, scrollYCurrent.value],
+    );
+    const memoContentInset = React.useMemo(
+      () => ({top: contentInset.value}),
+      [contentInset.value],
+    );
+>>>>>>> dev/setup
     const memoContentContainerStyle = React.useMemo(
       () => [
         _contentContainerStyle,
         // TODO: investigate types
         contentContainerStyle as any,
       ],
+<<<<<<< HEAD
       [_contentContainerStyle, contentContainerStyle]
     )
     const memoStyle = React.useMemo(() => [_style, style], [_style, style])
+=======
+      [_contentContainerStyle, contentContainerStyle],
+    );
+    const memoStyle = React.useMemo(() => [_style, style], [_style, style]);
+>>>>>>> dev/setup
 
     return (
       <ScrollViewMemo
@@ -123,6 +195,7 @@ export const ScrollView = React.forwardRef<
         contentInset={memoContentInset}
         contentOffset={memoContentOffset}
         automaticallyAdjustContentInsets={false}
+<<<<<<< HEAD
         refreshControl={memoRefreshControl}
       >
         {children}
@@ -130,3 +203,11 @@ export const ScrollView = React.forwardRef<
     )
   }
 )
+=======
+        refreshControl={memoRefreshControl}>
+        {children}
+      </ScrollViewMemo>
+    );
+  },
+);
+>>>>>>> dev/setup

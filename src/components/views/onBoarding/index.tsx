@@ -49,8 +49,13 @@ export default ({ navigation }: Props) => {
 	const Indicator = () => (
 		<Div
 			row
+<<<<<<< HEAD
 			alignItems='center'
 			justifyContent='center'
+=======
+			alignItems="center"
+			justifyContent="center"
+>>>>>>> dev/setup
 			mb={Platform.select({
 				ios: 'xs',
 				android: 'lg',
@@ -70,12 +75,22 @@ export default ({ navigation }: Props) => {
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
+<<<<<<< HEAD
 			<Div flex={1} alignItems='center' bg='white' style={StyleSheet.absoluteFill}>
+=======
+			<Div
+				flex={1}
+				alignItems="center"
+				bg="white"
+				style={StyleSheet.absoluteFill}
+			>
+>>>>>>> dev/setup
 				<FocusAwareStatusBar hidden />
 				<ImageBackground
 					source={require('@assets/png/splash.png')}
 					style={[{ justifyContent: 'flex-end' }, StyleSheet.absoluteFill]}
 				>
+<<<<<<< HEAD
 					<Div position='absolute' bottom={0}>
 						<Animatable.View animation='fadeIn' delay={200}>
 							<Image source={require('@assets/png/blur.png')} h={height / 1.5} w={width} />
@@ -89,11 +104,43 @@ export default ({ navigation }: Props) => {
 									3kle
 								</Heading>
 								<Div w={10} h={10} bg='brand' ml='sm' bottom={-6} />
+=======
+					<Div position="absolute" bottom={0}>
+						<Animatable.View animation="fadeIn" delay={200}>
+							<Image
+								source={require('@assets/png/blur.png')}
+								h={height / 1.5}
+								w={width}
+							/>
+						</Animatable.View>
+					</Div>
+
+					<Animatable.View animation="fadeIn" delay={500}>
+						<Div
+							h={BOX_HEIGHT}
+							justifyContent="center"
+							alignItems="center"
+							zIndex={200}
+						>
+							<HStack justifyContent="flex-end" mb="lg">
+								<Heading
+									color="card"
+									fontSize="6xl"
+									fontFamily="Montserrat-Bold"
+								>
+									3kle
+								</Heading>
+								<Div w={10} h={10} bg="brand" ml="sm" bottom={-6} />
+>>>>>>> dev/setup
 							</HStack>
 							<ScrollView
 								horizontal
 								snapToInterval={width}
+<<<<<<< HEAD
 								decelerationRate='fast'
+=======
+								decelerationRate="fast"
+>>>>>>> dev/setup
 								showsHorizontalScrollIndicator={false}
 								scrollEventThrottle={0}
 								onScrollAnimationEnd={() => setSlideNo(1)}
@@ -112,6 +159,7 @@ export default ({ navigation }: Props) => {
 							<VStack mb={59}>
 								<Button
 									block
+<<<<<<< HEAD
 									my='lg'
 									mx='xl'
 									py={16}
@@ -119,12 +167,25 @@ export default ({ navigation }: Props) => {
 									onPress={handleLogin}
 									color='textLight'
 									bg='brand'
+=======
+									my="lg"
+									mx="xl"
+									py={16}
+									rounded="2xl"
+									onPress={handleLogin}
+									color="textLight"
+									bg="brand"
+>>>>>>> dev/setup
 								>
 									Get Started
 								</Button>
 
 								<TouchableOpacity onPress={handleLogin}>
+<<<<<<< HEAD
 									<Text color='textLight'>Login</Text>
+=======
+									<Text color="textLight">Login</Text>
+>>>>>>> dev/setup
 								</TouchableOpacity>
 							</VStack>
 						</Div>

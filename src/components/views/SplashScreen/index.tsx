@@ -9,7 +9,11 @@ import routes from '@navigation/navigators/routes'
 
 export default function SplashScreen(props: any) {
 	const { navigation } = props
+<<<<<<< HEAD
 	const [images, setImages] = useState([
+=======
+	const [images] = useState([
+>>>>>>> dev/setup
 		require('@assets/png/Splash-WithGrad-One.png'),
 		require('@assets/png/Splash-WithGrad-Two.png'),
 		require('@assets/png/Splash-WithGrad-Three.png'),
@@ -32,9 +36,17 @@ export default function SplashScreen(props: any) {
 			<View
 				style={[
 					styles.littleDots,
+<<<<<<< HEAD
 					item.index === index ? styles.backgroundThreeKleBlue : styles.backgrndWhite,
 				]}
 			></View>
+=======
+					item.index === index
+						? styles.backgroundThreeKleBlue
+						: styles.backgrndWhite,
+				]}
+			/>
+>>>>>>> dev/setup
 		)
 	}
 
@@ -55,37 +67,82 @@ export default function SplashScreen(props: any) {
 							<AppCustomText style={styles.header}>
 								3kle<AppCustomText style={styles.threeKleBlue}>.</AppCustomText>
 							</AppCustomText>
+<<<<<<< HEAD
 							<AppCustomText style={styles.textDesc}>{slideText[index]}</AppCustomText>
+=======
+							<AppCustomText style={styles.textDesc}>
+								{slideText[index]}
+							</AppCustomText>
+>>>>>>> dev/setup
 						</View>
 					)}
 					{index === 1 && (
 						<View style={styles.splashTop}>
 							<AppCustomText style={styles.smallFont}>
+<<<<<<< HEAD
 								3KLE FAMILY<AppCustomText style={styles.threeKleBlue}> + </AppCustomText>PLAN
 							</AppCustomText>
 							<AppCustomText style={styles.textDesc}>{slideText[index]}</AppCustomText>
+=======
+								3KLE FAMILY
+								<AppCustomText style={styles.threeKleBlue}> + </AppCustomText>
+								PLAN
+							</AppCustomText>
+							<AppCustomText style={styles.textDesc}>
+								{slideText[index]}
+							</AppCustomText>
+>>>>>>> dev/setup
 						</View>
 					)}
 					{index === 2 && (
 						<View style={styles.splashTop}>
+<<<<<<< HEAD
 							<AppCustomText style={styles.smallFont}>LINK EXTERNAL ACCOUNTS</AppCustomText>
 							<AppCustomText style={styles.textDesc}>{slideText[index]}</AppCustomText>
+=======
+							<AppCustomText style={styles.smallFont}>
+								LINK EXTERNAL ACCOUNTS
+							</AppCustomText>
+							<AppCustomText style={styles.textDesc}>
+								{slideText[index]}
+							</AppCustomText>
+>>>>>>> dev/setup
 						</View>
 					)}
 					{index === 3 && (
 						<View style={styles.splashTop}>
+<<<<<<< HEAD
 							<AppCustomText style={styles.smallFont}>WHAT ARE ROUND-UPS?</AppCustomText>
 							<AppCustomText style={styles.textDesc}>{slideText[index]}</AppCustomText>
+=======
+							<AppCustomText style={styles.smallFont}>
+								WHAT ARE ROUND-UPS?
+							</AppCustomText>
+							<AppCustomText style={styles.textDesc}>
+								{slideText[index]}
+							</AppCustomText>
+>>>>>>> dev/setup
 						</View>
 					)}
 					{index === 4 && (
 						<View style={styles.splashTop}>
 							<AppCustomText style={styles.smallFont}>
 								PAY BILLS{' '}
+<<<<<<< HEAD
 								<AppCustomText style={[styles.threeKleBlue, { fontSize: 20 }]}>AND</AppCustomText>{' '}
 								MERCHANTS
 							</AppCustomText>
 							<AppCustomText style={styles.textDesc}>{slideText[index]}</AppCustomText>
+=======
+								<AppCustomText style={[styles.threeKleBlue, { fontSize: 20 }]}>
+									AND
+								</AppCustomText>{' '}
+								MERCHANTS
+							</AppCustomText>
+							<AppCustomText style={styles.textDesc}>
+								{slideText[index]}
+							</AppCustomText>
+>>>>>>> dev/setup
 						</View>
 					)}
 					{index === 5 && (
@@ -98,7 +155,13 @@ export default function SplashScreen(props: any) {
 								</AppCustomText>{' '}
 								PEER PLAN
 							</AppCustomText>
+<<<<<<< HEAD
 							<AppCustomText style={styles.textDesc}>{slideText[index]}</AppCustomText>
+=======
+							<AppCustomText style={styles.textDesc}>
+								{slideText[index]}
+							</AppCustomText>
+>>>>>>> dev/setup
 						</View>
 					)}
 				</View>

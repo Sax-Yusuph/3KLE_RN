@@ -1,16 +1,10 @@
 module.exports = {
 	presets: ['module:metro-react-native-babel-preset'],
 	plugins: [
-		'babel-plugin-styled-components',
 		[
 			'module:react-native-dotenv',
 			{
-				moduleName: '@env',
-				path: '.env',
-				blacklist: null,
-				whitelist: null,
-				safe: true,
-				allowUndefined: true,
+				moduleName: 'react-native-dotenv',
 			},
 		],
 		[
@@ -40,9 +34,4 @@ module.exports = {
 		],
 		'react-native-reanimated/plugin',
 	],
-	env: {
-		production: {
-			plugins: ['react-native-paper/babel', 'react-native-reanimated/plugin'],
-		},
-	},
 }
