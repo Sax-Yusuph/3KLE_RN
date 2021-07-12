@@ -104,9 +104,7 @@ export default () => {
 							>
 								{Data.map((slideItem, index) => (
 									<Center key={slideItem.title + index}>
-										<HStack justifyContent='flex-end' mb='lg'>
-											<AppLogo />
-										</HStack>
+										{slideItem.Heading}
 										<Slide title={slideItem.title} {...{ Indicator, index }} />
 									</Center>
 								))}
