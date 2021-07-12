@@ -1,9 +1,11 @@
-import { Center, CustomImage, Heading, HStack, Paragraph, VStack } from '@elements'
+import { Center, CustomImage, Heading, HStack, MotionBox, Paragraph, VStack } from '@elements'
+import { COLORS } from '@utils/colors'
+import { showToast } from '@utils/helpers'
 import { Summary } from 'components/views/homePage/extra/data'
 import React, { Props, FC } from 'react'
 import { TouchableOpacity, useWindowDimensions } from 'react-native'
 import FastImage from 'react-native-fast-image'
-import { Div } from 'react-native-magnus'
+import { Div, Icon } from 'react-native-magnus'
 import { HomeRoutes } from 'screens/home'
 
 interface CardProps {
@@ -30,42 +32,61 @@ export const CardItem: FC<CardProps> = ({ item, viewDetails, SPACING }) => {
 
 	return (
 		<Div p={SPACING} h={CARD_HEIGHT} w={width}>
-			<Center w='100%' h='100%' rounded='2xl' bg='brandDark' justifyContent='flex-start'>
-				<Paragraph color='textLight' mt='2xl'>
-					{title}
-				</Paragraph>
-				<HStack>
-					<Heading color='textLight' fontSize='2xl' mr='md'>
-						{currency}
-					</Heading>
-					<Heading color='textLight' fontSize='5xl'>
-						{value}
-					</Heading>
-				</HStack>
-				{extraData ? <Paragraph color='textLight'>{extraData}</Paragraph> : null}
-				{projectionSpan ? <Heading color='textLight'>{projectionSpan} years time.</Heading> : null}
+			<Center h='100%' rounded='2xl' bg='brandDark' justifyContent='flex-start'>
+				<MotionBox>
+					<Paragraph color='textLight' mt='2xl'>
+						{title}
+					</Paragraph>
+				</MotionBox>
 
+				<MotionBox delay={600}>
+					<HStack>
+						<Heading color='textLight' fontSize='2xl' mr='md'>
+							{currency}
+						</Heading>
+						<Heading color='textLight' fontSize='5xl'>
+							{value}
+						</Heading>
+					</HStack>
+				</MotionBox>
+
+				<MotionBox>
+					{extraData ? (
+						<Paragraph color='textLight' textAlign='center'>
+							{extraData}
+						</Paragraph>
+					) : null}
+					{projectionSpan ? (
+						<Heading color='textLight' textAlign='center'>
+							{projectionSpan} years time.
+						</Heading>
+					) : null}
+				</MotionBox>
 				{cardNumber ? (
 					<VStack position='absolute' bottom={3} alignItems='flex-start' w={CARD_WIDTH} px='xl'>
-						<Paragraph color='textLight'>{cardNumber}</Paragraph>
+						<MotionBox>
+							<Paragraph color='textLight'>{cardNumber}</Paragraph>
 
-						<HStack w='100%' justifyContent='space-between'>
-							<Paragraph color='rgba(255,255,255,0.8)' mt='lg'>
-								{cardName}
-							</Paragraph>
-							<CustomImage
-								source={require('@assets/png/homePage/visa.png')}
-								style={{ width: 36, height: 16 }}
-								resizeMode={FastImage.resizeMode.contain}
-							/>
-						</HStack>
+							<HStack w='100%' justifyContent='space-between'>
+								<Paragraph color='rgba(255,255,255,0.8)' mt='lg'>
+									{cardName}
+								</Paragraph>
+								<CustomImage
+									source={require('@assets/png/homePage/visa.png')}
+									style={{ width: 36, height: 16 }}
+									resizeMode={FastImage.resizeMode.contain}
+								/>
+							</HStack>
+						</MotionBox>
 					</VStack>
 				) : null}
 
 				<Div position='absolute' w='100%' h='100%'>
 					{POLYGONS.map(({ source, style }) => (
-						// @ts-ignore
-						<CustomImage key={source} source={source} style={style} />
+						<MotionBox key={source} delay={200}>
+							{/*  @ts-ignore */}
+							<CustomImage source={source} style={style} />
+						</MotionBox>
 					))}
 				</Div>
 
@@ -75,6 +96,19 @@ export const CardItem: FC<CardProps> = ({ item, viewDetails, SPACING }) => {
 							<Heading color='green500' fontSize='md'>
 								View
 							</Heading>
+						</TouchableOpacity>
+					</Div>
+				) : null}
+
+				{!cardNumber && item.title.includes('Present') ? (
+					<Div position='absolute' bottom={30} left={0}>
+						<TouchableOpacity onPress={() => showToast()}>
+							<HStack bg={COLORS.secondary_deep} px='lg' py='xs' roundedRight='lg'>
+								<Icon name='plus' color='textLight' mr='sm' />
+								<Paragraph color='textLight' fontSize='sm'>
+									Add Card
+								</Paragraph>
+							</HStack>
 						</TouchableOpacity>
 					</Div>
 				) : null}

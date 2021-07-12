@@ -6,6 +6,7 @@ import { ThemeProvider } from 'react-native-magnus'
 import { lightTheme } from '../../themes'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { userScreens } from '@navigation/navigators'
+import { OnboardingScreens } from '@screens'
 const MainStack = createStackNavigator()
 
 // const linking: LinkingOptions = {
@@ -40,9 +41,7 @@ const Root: React.FC = () => {
 							return <MainStack.Screen key={name} name={name as keyof ParamList} {...props} />
 						})} */}
 
-						{Object.entries({
-							...userScreens,
-						}).map(([name, props]) => (
+						{Object.entries({ ...OnboardingScreens, ...userScreens }).map(([name, props]) => (
 							<MainStack.Screen key={name} {...{ name, ...props }} />
 						))}
 					</MainStack.Navigator>

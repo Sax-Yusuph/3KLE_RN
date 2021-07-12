@@ -13,10 +13,12 @@ import { Button, Div, Image, Text } from 'react-native-magnus'
 import Data from './extra/data'
 import * as Animatable from 'react-native-animatable'
 import { useTransparentBar } from '../../../hooks/comps/useAndroidBarBg'
-import { Heading, HStack, VStack, FocusAwareStatusBar, Dot } from '@elements'
+import { Heading, HStack, VStack, FocusAwareStatusBar, Dot, Center, AppLogo } from '@elements'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Slide from '../../elements/comps/Slide'
 import { StackNavigationProp } from '@react-navigation/stack'
+import { useNavigation } from '@react-navigation/native'
+import routes from '@navigation/navigators/routes'
 
 // range added because of inconsistensies on Android
 const RANGE = 5
@@ -25,11 +27,13 @@ interface Props {
 	navigation: StackNavigationProp<any, any>
 }
 
-export default ({ navigation }: Props) => {
+export default () => {
 	const [slideNo, setSlideNo] = useState(0)
 	useTransparentBar()
 	const ref = useRef<ScrollView>(null)
 	const { width, height } = useWindowDimensions()
+
+	const navigation = useNavigation()
 
 	const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
 		const offset = Math.round(e.nativeEvent.contentOffset.x)
@@ -63,7 +67,7 @@ export default ({ navigation }: Props) => {
 	)
 
 	const handleLogin = () => {
-		navigation.navigate('Login')
+		navigation.navigate('Home', { screen: routes.HOME.DEFAULT_HOME })
 	}
 
 	const BOX_HEIGHT = height / 2.3
@@ -73,7 +77,7 @@ export default ({ navigation }: Props) => {
 			<Div flex={1} alignItems='center' bg='white' style={StyleSheet.absoluteFill}>
 				<FocusAwareStatusBar hidden />
 				<ImageBackground
-					source={require('@assets/png/splash.png')}
+					source={Data[slideNo].image}
 					style={[{ justifyContent: 'flex-end' }, StyleSheet.absoluteFill]}
 				>
 					<Div position='absolute' bottom={0}>
@@ -83,13 +87,12 @@ export default ({ navigation }: Props) => {
 					</Div>
 
 					<Animatable.View animation='fadeIn' delay={500}>
-						<Div h={BOX_HEIGHT} justifyContent='center' alignItems='center' zIndex={200}>
-							<HStack justifyContent='flex-end' mb='lg'>
-								<Heading color='card' fontSize='6xl' fontFamily='Montserrat-Bold'>
-									3kle
-								</Heading>
-								<Div w={10} h={10} bg='brand' ml='sm' bottom={-6} />
-							</HStack>
+						<Div
+							h={slideNo === 0 ? BOX_HEIGHT : height}
+							justifyContent='center'
+							alignItems='center'
+							zIndex={200}
+						>
 							<ScrollView
 								horizontal
 								snapToInterval={width}
@@ -100,11 +103,12 @@ export default ({ navigation }: Props) => {
 								{...{ onScroll, ref }}
 							>
 								{Data.map((slideItem, index) => (
-									<Slide
-										title={slideItem.title}
-										key={slideItem.title + index}
-										{...{ Indicator, index }}
-									/>
+									<Center key={slideItem.title + index}>
+										<HStack justifyContent='flex-end' mb='lg'>
+											<AppLogo />
+										</HStack>
+										<Slide title={slideItem.title} {...{ Indicator, index }} />
+									</Center>
 								))}
 							</ScrollView>
 

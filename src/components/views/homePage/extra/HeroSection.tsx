@@ -4,7 +4,7 @@ import React, { FC, forwardRef, useEffect, useRef, useState } from 'react'
 import { Animated, FlatList, TouchableOpacity, useWindowDimensions } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import { Div, Icon, Image } from 'react-native-magnus'
-import { DATA, Summary } from './data'
+import { DATA, DATA2, Summary } from './data'
 import * as Animatable from 'react-native-animatable'
 
 import { HomeRoutes } from 'screens/home'

@@ -167,3 +167,39 @@ export const DATA: Summary[] = [
 		},
 	},
 ]
+export const DATA2: Summary[] = [
+	{
+		title: 'Past',
+		route: 'PAST_SUMMARY',
+		type: 'past',
+		summary: {
+			title: 'Total Invested',
+			value: '0.00',
+			currency: '₦',
+			// cardNumber: 'xxxx xxxx xxxx 333',
+			// cardName: 'Okorie Uche Emmanuel',
+		},
+	},
+	{
+		title: 'Present',
+		route: 'DEFAULT_HOME',
+		type: 'present',
+		summary: {
+			title: 'current balance',
+			value: '0.00',
+			currency: '₦',
+		},
+	},
+	{
+		title: 'Future',
+		route: 'FUTURE_SUMMARY',
+		type: 'future',
+		summary: {
+			title: 'Hypothetical projection of',
+			value: '0.00',
+			extraData: 'in',
+			projectionSpan: 5,
+			currency: '₦',
+		},
+	},
+]

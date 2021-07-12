@@ -1,11 +1,15 @@
 import React, { FC } from 'react'
 import { FutureSummaryPage as ContentView } from '@views'
 import { CustomScreen, Header } from '@elements'
+import { StackNavigationProp } from '@react-navigation/stack'
 
-const FutureSummary: FC = () => {
+interface Props {
+	navigation: StackNavigationProp<any, any>
+}
+const FutureSummary: FC<Props> = ({ navigation }) => {
 	return (
 		<CustomScreen>
-			<Header title='Uche' profileImg='uche' />
+			<Header title='Uche' profileImg='uche' handleBackPress={navigation.goBack} />
 			<ContentView />
 		</CustomScreen>
 	)

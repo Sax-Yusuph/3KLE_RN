@@ -20,10 +20,11 @@ import {
 	VictoryContainer,
 } from 'victory-native'
 import { COLORS } from '@utils/colors'
-import React, { FC, Suspense, useState } from 'react'
+import React, { FC, Suspense, useCallback, useEffect, useState } from 'react'
 import { useWindowDimensions, Switch } from 'react-native'
 import { Div, Icon } from 'react-native-magnus'
 import { Summary } from './extra/data'
+import { Sleep } from '@utils/helpers'
 
 const SPACING = 12
 
@@ -44,6 +45,17 @@ const FutureSummary = () => {
 	const { width } = useWindowDimensions()
 	const [isEnabled, setIsEnabled] = useState(false)
 	const toggleSwitch = () => setIsEnabled(previousState => !previousState)
+
+	const [showChart, setShowChart] = useState(false)
+
+	const displayChart = useCallback(async () => {
+		await Sleep(1000)
+		setShowChart(true)
+	}, [])
+
+	useEffect(() => {
+		displayChart()
+	}, [])
 	return (
 		<Div flex={1} w={width} overflow='hidden' px='lg'>
 			<VirtualizedView>
@@ -71,113 +83,115 @@ const FutureSummary = () => {
 						</Heading>
 						<Center flex={1}>
 							<Suspense fallback={<Heading>Loading...</Heading>}>
-								<VictoryChart
-									containerComponent={<VictoryContainer responsive={false} />}
-									domainPadding={38}
-								>
-									<VictoryLegend
-										x={50}
-										y={4}
-										orientation='horizontal'
-										symbolSpacer={5}
-										gutter={60}
-										colorScale={[COLORS.secondary, COLORS.secondary]}
-										style={{
-											labels: { fontSize: 12 },
-										}}
-										data={[
-											{
-												name: 'Investment: $550',
-												labels: { fill: 'white' },
-												symbol: { type: 'square' },
-											},
-											{
-												name: 'Returns: $1200',
-												labels: { fill: 'white' },
-												symbol: { type: 'square' },
-											},
-										]}
-									/>
+								{showChart && (
+									<VictoryChart
+										containerComponent={<VictoryContainer responsive={false} />}
+										domainPadding={38}
+									>
+										<VictoryLegend
+											x={50}
+											y={4}
+											orientation='horizontal'
+											symbolSpacer={5}
+											gutter={60}
+											colorScale={[COLORS.secondary, COLORS.secondary]}
+											style={{
+												labels: { fontSize: 12 },
+											}}
+											data={[
+												{
+													name: 'Investment: $550',
+													labels: { fill: 'white' },
+													symbol: { type: 'square' },
+												},
+												{
+													name: 'Returns: $1200',
+													labels: { fill: 'white' },
+													symbol: { type: 'square' },
+												},
+											]}
+										/>
 
-									<VictoryLine
-										interpolation='natural'
-										style={{
-											data: { stroke: COLORS.secondary, strokeWidth: () => 3 },
+										<VictoryLine
+											interpolation='natural'
+											style={{
+												data: { stroke: COLORS.secondary, strokeWidth: () => 3 },
 
-											// parent: { border: '0px solid #ccc' },
-										}}
-										animate={{ duration: 2000, onLoad: { duration: 1000 } }}
-										data={[
-											// { x: 'Year 1', y: 2 },
-											// { x: 'Year 3', y: 3 },
-											// { x: 'Year 5', y: 5 },
-											// { x: 'Year 7', y: 4 },
-											// { x: 'Year 10', y: 7 },
-											{ x: 'Year 1', y: 2 },
-											{ x: 'Year 5', y: 3 },
-											{ x: 'Year 10', y: 5 },
-										]}
-										labels={['$550', '', '$1200']}
-										// labels={['$550', '', '', '', '$1200']}
-										labelComponent={
-											<VictoryTooltip
-												dy={0}
-												renderInPortal={false}
-												active={true}
-												style={{ fill: 'white' }}
-												flyoutStyle={{ fill: COLORS.secondary, stroke: COLORS.secondary }}
-											/>
-										}
-									/>
-									<VictoryAxis
-										axisLabelComponent={<VictoryLabel />}
-										fixLabelOverlap={true}
-										style={{
-											parent: {
-												fill: 'white',
-											},
-											axisLabel: {
-												fontFamily: 'Poppins-Regular',
-												letterSpacing: '1px',
-												stroke: 'white',
-												fontSize: 20,
-												padding: 60,
-											},
-											tickLabels: {
-												fontFamily: 'Poppins-Regular',
-												fontWeight: 100,
-												letterSpacing: '1px',
-												fill: 'white',
-												fontSize: 12,
-												marginBlock: '20px',
-											},
-											axis: { stroke: 'transparent' },
-											ticks: { stroke: 'transparent' },
-											// tickLabels: { fill: 'transparent' },
-											// grid: { stroke: 'lightgrey' },
-										}}
-									/>
+												// parent: { border: '0px solid #ccc' },
+											}}
+											animate={{ duration: 2000, onLoad: { duration: 1000 } }}
+											data={[
+												// { x: 'Year 1', y: 2 },
+												// { x: 'Year 3', y: 3 },
+												// { x: 'Year 5', y: 5 },
+												// { x: 'Year 7', y: 4 },
+												// { x: 'Year 10', y: 7 },
+												{ x: 'Year 1', y: 2 },
+												{ x: 'Year 5', y: 3 },
+												{ x: 'Year 10', y: 5 },
+											]}
+											labels={['$550', '', '$1200']}
+											// labels={['$550', '', '', '', '$1200']}
+											labelComponent={
+												<VictoryTooltip
+													dy={0}
+													renderInPortal={false}
+													active={true}
+													style={{ fill: 'white' }}
+													flyoutStyle={{ fill: COLORS.secondary, stroke: COLORS.secondary }}
+												/>
+											}
+										/>
+										<VictoryAxis
+											axisLabelComponent={<VictoryLabel />}
+											fixLabelOverlap={true}
+											style={{
+												parent: {
+													fill: 'white',
+												},
+												axisLabel: {
+													fontFamily: 'Poppins-Regular',
+													letterSpacing: '1px',
+													stroke: 'white',
+													fontSize: 20,
+													padding: 60,
+												},
+												tickLabels: {
+													fontFamily: 'Poppins-Regular',
+													fontWeight: 100,
+													letterSpacing: '1px',
+													fill: 'white',
+													fontSize: 12,
+													marginBlock: '20px',
+												},
+												axis: { stroke: 'transparent' },
+												ticks: { stroke: 'transparent' },
+												// tickLabels: { fill: 'transparent' },
+												// grid: { stroke: 'lightgrey' },
+											}}
+										/>
 
-									<VictoryAxis
-										dependentAxis={true}
-										axisLabelComponent={<VictoryLabel />}
-										label={'Number of Commits'}
-										fixLabelOverlap={true}
-										style={{
-											axisLabel: {
-												fontFamily: 'inherit',
-												fontWeight: 100,
-												letterSpacing: '1px',
-												stroke: 'white',
-												fontSize: 20,
-												padding: 60,
-											},
-											grid: { stroke: 'rgba(200,200,200,0.2)' },
-											tickLabels: { fill: 'transparent' },
-											axis: { stroke: 'transparent' },
-										}}
-									/>
-								</VictoryChart>
+										<VictoryAxis
+											dependentAxis={true}
+											axisLabelComponent={<VictoryLabel />}
+											label={'Number of Commits'}
+											fixLabelOverlap={true}
+											style={{
+												axisLabel: {
+													fontFamily: 'inherit',
+													fontWeight: 100,
+													letterSpacing: '1px',
+													stroke: 'white',
+													fontSize: 20,
+													padding: 60,
+												},
+												grid: { stroke: 'rgba(200,200,200,0.2)' },
+												tickLabels: { fill: 'transparent' },
+												axis: { stroke: 'transparent' },
+											}}
+										/>
+									</VictoryChart>
+								)}
 							</Suspense>
 						</Center>
 					</Div>

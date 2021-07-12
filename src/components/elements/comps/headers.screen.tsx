@@ -14,6 +14,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 interface Props extends DivProps {
 	title: string
 	profileImg: string | number
+	handleBackPress?: () => void
 }
 export const HomeScreenHeader: FC<Props> = ({ title, profileImg, ...props }) => {
 	const { width } = useWindowDimensions()
@@ -58,9 +59,13 @@ export const HomeScreenHeader: FC<Props> = ({ title, profileImg, ...props }) => 
 	)
 }
 
-export const Header: FC<Props> = ({ title, profileImg, ...props }) => {
+export const Header: FC<Props> = ({ title, profileImg, handleBackPress, ...props }) => {
 	const { width } = useWindowDimensions()
 	const darkMode = useColorScheme() === 'dark'
+
+	const goBack = () => {
+		handleBackPress && handleBackPress()
+	}
 	return (
 		<HStack
 			justifyContent='space-between'
@@ -72,25 +77,14 @@ export const Header: FC<Props> = ({ title, profileImg, ...props }) => {
 			{...props}
 		>
 			<HStack>
-				<IconButton onPress={showToast} rounded='circle'>
-					<AvatarImg width={32} height={32} />
+				<IconButton onPress={goBack} rounded='circle'>
+					<Icon name='left' fontSize={24} color='brandDark' />
 				</IconButton>
 				<HStack>
-					<Heading ml='md' fontSize='lg' fontWeight='normal' color='brandDark'>
+					<Heading ml='md' fontSize='xl' fontWeight='500' color='brandDark'>
 						Home
 					</Heading>
 				</HStack>
-			</HStack>
-
-			<HStack w={60} justifyContent='center'>
-				<IconButton onPress={() => showToast()} p='md' rounded='circle' pointerEvents='none'>
-					<Icon name='search1' color='brandDark' fontSize={24} />
-				</IconButton>
-
-				<IconButton onPress={() => showToast()} p='md' rounded='circle' pointerEvents='none'>
-					<BellIcon width={22} height={22} color={COLORS.brandDark} />
-					<Circle bg='#E44228' size={10} position='absolute' right={4} top={4} />
-				</IconButton>
 			</HStack>
 		</HStack>
 	)

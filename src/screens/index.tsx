@@ -6,3 +6,4 @@ export { default as CountrySelector } from './main/Signup'
 export { default as SplashScreen } from './main/SplashScreen'
 
 export { default as HomeScreens, HomeScreenRoutes } from './home'
+export { default as OnboardingScreens, OnboardingScreenRoutes } from './onboarding'
