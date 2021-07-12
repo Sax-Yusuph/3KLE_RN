@@ -1,7 +1,11 @@
 // import { createStackNavigator } from '@react-navigation/stack'
 // import React from 'react'
 // import { HomeScreen } from '@screens'
-import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack'
+import {
+	CardStyleInterpolators,
+	createStackNavigator,
+	StackNavigationOptions,
+} from '@react-navigation/stack'
 import React from 'react'
 import { HomeScreen, HomeScreens } from '@screens'
 import { Dummy } from '../../screens'
@@ -14,6 +18,7 @@ const SCREEN_OPTIONS: StackNavigationOptions = {
 		right: 0,
 		left: 0,
 	},
+	cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
 }
 
 const Stack = createStackNavigator()

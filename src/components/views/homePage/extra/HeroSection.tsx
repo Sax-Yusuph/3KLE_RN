@@ -1,4 +1,4 @@
-import { Center, CustomImage, Heading, HStack, Paragraph, VStack } from '@elements'
+import { CardItem, Center, CustomImage, Heading, HStack, Paragraph, VStack } from '@elements'
 import { useFocusEffect } from '@react-navigation/native'
 import React, { FC, forwardRef, useEffect, useRef, useState } from 'react'
 import { Animated, FlatList, TouchableOpacity, useWindowDimensions } from 'react-native'
@@ -7,23 +7,19 @@ import { Div, Icon, Image } from 'react-native-magnus'
 import { DATA, Summary } from './data'
 import * as Animatable from 'react-native-animatable'
 
+import { HomeRoutes } from 'screens/home'
+
 const SPACING = 12
 const TITLE_SPACING = 6
+interface Props {
+	viewDetails: (route: HomeRoutes) => void
+}
 
-const HeroSection = () => {
+const HeroSection: FC<Props> = ({ viewDetails }) => {
 	const [activeIndex, setActiveIndex] = useState(1)
 	const { width } = useWindowDimensions()
 	const cardRef = useRef<FlatList<Summary> | null>(null)
 	const titleRef = useRef<FlatList<Summary> | null>(null)
-
-	// Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
-	// 	useNativeDriver: true,
-	// })
-	// useFocusEffect(() => {
-	// 	const offset = activeIndex * width - SPACING / 2
-
-	// 	cardRef.current?.scrollToOffset({ offset })
-	// })
 
 	useEffect(() => {
 		const offset = activeIndex * width
@@ -44,13 +40,13 @@ const HeroSection = () => {
 		//scroll flatlist
 	}
 
-	// mx={45}
 	return (
 		<Div h={250}>
 			{/* title */}
 			<FlatList
 				ref={ref => (titleRef.current = ref)}
 				showsHorizontalScrollIndicator={false}
+				contentContainerStyle={{ alignItems: 'flex-end' }}
 				horizontal
 				data={DATA}
 				keyExtractor={i => i.title}
@@ -61,6 +57,7 @@ const HeroSection = () => {
 						<TouchableOpacity onPress={() => scrolltoActiveIndex(index)}>
 							<Div
 								w={width / 1.5}
+								justifyContent='flex-end'
 								alignItems={index === 0 ? 'flex-end' : index === 1 ? 'center' : 'flex-start'}
 							>
 								<Heading
@@ -90,7 +87,7 @@ const HeroSection = () => {
 				horizontal
 				pagingEnabled
 				keyExtractor={i => i.title}
-				renderItem={({ item }) => <CardItem {...{ item }} />}
+				renderItem={({ item }) => <CardItem {...{ item, viewDetails, SPACING }} />}
 			/>
 
 			<HStack alignSelf='center'>
@@ -107,91 +104,3 @@ const Indicator: FC<{ active: boolean }> = ({ active }) => {
 }
 
 export default HeroSection
-
-const CardItem: FC<{ item: Summary }> = ({ item }) => {
-	const { width } = useWindowDimensions()
-	const {
-		title,
-		currency,
-		cardName,
-		cardNumber,
-		cardType,
-		value,
-		extraData,
-		projectionSpan,
-	} = item.summary
-
-	const CARD_WIDTH = width * 0.95
-	const CARD_HEIGHT = CARD_WIDTH * 0.6
-	return (
-		<Div p={SPACING} h={CARD_HEIGHT} w={width}>
-			<Center w='100%' h='100%' rounded='2xl' bg='brandDark' justifyContent='flex-start'>
-				<Paragraph color='textLight' mt='2xl'>
-					{title}
-				</Paragraph>
-				<HStack>
-					<Heading color='textLight' fontSize='2xl' mr='md'>
-						{currency}
-					</Heading>
-					<Heading color='textLight' fontSize='5xl'>
-						{value}
-					</Heading>
-				</HStack>
-				{extraData ? <Paragraph color='textLight'>{extraData}</Paragraph> : null}
-				{projectionSpan ? <Heading color='textLight'>{projectionSpan} years time.</Heading> : null}
-
-				{cardNumber ? (
-					<VStack position='absolute' bottom={3} alignItems='flex-start' w={CARD_WIDTH} px='xl'>
-						<Paragraph color='textLight'>{cardNumber}</Paragraph>
-
-						<HStack w='100%' justifyContent='space-between'>
-							<Paragraph color='rgba(255,255,255,0.8)' mt='lg'>
-								{cardName}
-							</Paragraph>
-							<CustomImage
-								source={require('@assets/png/homePage/visa.png')}
-								style={{ width: 36, height: 16 }}
-								resizeMode={FastImage.resizeMode.contain}
-							/>
-						</HStack>
-					</VStack>
-				) : null}
-
-				<Div position='absolute' w='100%' h='100%'>
-					{POLYGONS.map(({ source, style }) => (
-						// @ts-ignore
-						<CustomImage key={source} source={source} style={style} />
-					))}
-				</Div>
-			</Center>
-		</Div>
-	)
-}
-
-const POLYGONS = [
-	{
-		source: require('@assets/png/homePage/Polygon1.png'),
-		style: {
-			width: 32,
-			height: 32,
-			top: 50,
-			left: 260,
-		},
-	},
-	{
-		source: require('@assets/png/homePage/Polygon2.png'),
-		style: { width: 18, height: 18, left: 150, top: 140, position: 'absolute' },
-	},
-	{
-		source: require('@assets/png/homePage/Polygon3.png'),
-		style: { width: 16, height: 16, left: 250, top: 140, position: 'absolute' },
-	},
-	{
-		source: require('@assets/png/homePage/Polygon4.png'),
-		style: { width: 16, height: 16, left: 310, top: 80, position: 'absolute' },
-	},
-	{
-		source: require('@assets/png/homePage/Polygon5.png'),
-		style: { width: 16, height: 16, left: 310, top: 110, position: 'absolute' },
-	},
-]

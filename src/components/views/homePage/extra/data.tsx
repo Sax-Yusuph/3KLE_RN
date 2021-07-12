@@ -17,6 +17,7 @@ import RotateIcon from '@assets/svgs/homepage/rotate.svg'
 
 import { Center } from '@elements'
 import { showToast } from '@utils/helpers'
+import { HomeRoutes } from 'screens/home'
 
 export type ProductListItem = {
 	title: string
@@ -110,6 +111,8 @@ export const ACTIVITIES: Activity[] = [
 
 export type Summary = {
 	title: string
+	route: HomeRoutes
+	type: 'present' | 'future' | 'past'
 	summary: {
 		title: string
 		value: string | number //must be a number
@@ -125,6 +128,8 @@ export type Summary = {
 export const DATA: Summary[] = [
 	{
 		title: 'Past',
+		route: 'PAST_SUMMARY',
+		type: 'past',
 		summary: {
 			title: 'Total Invested',
 			value: '750,000',
@@ -135,6 +140,8 @@ export const DATA: Summary[] = [
 	},
 	{
 		title: 'Present',
+		route: 'DEFAULT_HOME',
+		type: 'present',
 		summary: {
 			title: 'current balance',
 			value: '750,000',
@@ -146,6 +153,8 @@ export const DATA: Summary[] = [
 	},
 	{
 		title: 'Future',
+		route: 'FUTURE_SUMMARY',
+		type: 'future',
 		summary: {
 			title: 'Hypothetical projection of',
 			value: '8,050,000',

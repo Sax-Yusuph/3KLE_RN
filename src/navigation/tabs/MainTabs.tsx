@@ -1,26 +1,29 @@
 import React, { FC, useEffect } from 'react'
 import { BottomTabBarOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import HomeStack from '../navigators/HomeStack'
-import { Icon, Text, TextProps } from 'react-native-magnus'
+import { Text, TextProps } from 'react-native-magnus'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import HomeIcon from '@assets/svgs/home.svg'
-import MarketIcon from '@assets/svgs/market.svg'
-import ChartIcon from '@assets/svgs/chart.svg'
-import SettingsIcon from '@assets/svgs/setting.svg'
-import HomeIconBold from '@assets/svgs/home_bold.svg'
-import SettingsIconBold from '@assets/svgs/setting_bold.svg'
-import Dummy from '../../screens/main/dummy'
 
-const RouterMainTabs = createBottomTabNavigator()
+import ChartIcon from '@assets/svgs/bottomtab/chart.svg'
+
+import HomeIconBold from '@assets/svgs/bottomtab/home_bold.svg'
+import CardsIconBold from '@assets/svgs/bottomtab/cards_bold.svg'
+import ProductsIcon from '@assets/svgs/bottomtab/products.svg'
+import SettingsIconBold from '@assets/svgs/bottomtab/setting_bold.svg'
+import Dummy from '../../screens/main/dummy'
+import { COLORS } from '@utils/colors'
+import { useAndroidBarBg } from '@hooks'
+
+const BottomTabs = createBottomTabNavigator()
 
 const TAB_BAR_OPTIONS: BottomTabBarOptions = {
-	inactiveTintColor: '#243B80',
-	activeTintColor: '#243B80',
+	inactiveTintColor: COLORS.brandDark,
+	activeTintColor: COLORS.purple,
 	style: {
 		borderTopLeftRadius: 18,
 		borderTopRightRadius: 18,
 		height: 60,
-		backgroundColor: '#F4F7F9',
+		backgroundColor: COLORS.screen,
 		elevation: 0, // remove shadow on Android
 		shadowOpacity: 0, // remove shadow on iOS
 		position: 'absolute',
@@ -36,29 +39,38 @@ const TAB_BAR_OPTIONS: BottomTabBarOptions = {
 
 const MainTabs: React.FC = () => {
 	const { bottom } = useSafeAreaInsets()
+	useAndroidBarBg(COLORS.screen)
 
 	return (
-		<RouterMainTabs.Navigator initialRouteName='HomeStack' tabBarOptions={TAB_BAR_OPTIONS}>
-			<RouterMainTabs.Screen
+		<BottomTabs.Navigator initialRouteName='HomeStack' tabBarOptions={TAB_BAR_OPTIONS}>
+			<BottomTabs.Screen
 				name='HomeStack'
 				component={HomeStack}
 				options={{
-					tabBarIcon: ({ color, focused }) =>
-						focused ? <HomeIconBold /> : <HomeIcon {...{ color }} />,
+					tabBarIcon: ({ color }) => <HomeIconBold {...{ color }} />,
 
 					tabBarLabel: props => <TabBarText {...props}>Home</TabBarText>,
 				}}
 			/>
 
-			<RouterMainTabs.Screen
-				name='MarketStack'
+			<BottomTabs.Screen
+				name='Cards'
 				component={Dummy}
 				options={{
-					tabBarIcon: ({ color }) => <MarketIcon {...{ color }} />,
-					tabBarLabel: props => <TabBarText {...props}>Markets</TabBarText>,
+					tabBarIcon: ({ color, focused }) => <CardsIconBold {...{ color }} />,
+					tabBarLabel: props => <TabBarText {...props}>Cards</TabBarText>,
 				}}
 			/>
-			<RouterMainTabs.Screen
+			<BottomTabs.Screen
+				name='Products'
+				component={Dummy}
+				options={{
+					tabBarIcon: ({ color }) => <ProductsIcon {...{ color }} />,
+					tabBarLabel: props => <TabBarText {...props}>Products</TabBarText>,
+				}}
+			/>
+
+			<BottomTabs.Screen
 				name='Summary'
 				component={Dummy}
 				options={{
@@ -66,16 +78,15 @@ const MainTabs: React.FC = () => {
 					tabBarLabel: props => <TabBarText {...props}>Summary</TabBarText>,
 				}}
 			/>
-			<RouterMainTabs.Screen
+			<BottomTabs.Screen
 				name='ProfileStack'
 				component={Dummy}
 				options={{
-					tabBarIcon: ({ color, focused }) =>
-						focused ? <SettingsIconBold {...{ color }} /> : <SettingsIcon {...{ color }} />,
+					tabBarIcon: ({ color }) => <SettingsIconBold {...{ color }} />,
 					tabBarLabel: props => <TabBarText {...props}>Settings</TabBarText>,
 				}}
 			/>
-		</RouterMainTabs.Navigator>
+		</BottomTabs.Navigator>
 	)
 }
 

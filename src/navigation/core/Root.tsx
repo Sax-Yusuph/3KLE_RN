@@ -5,10 +5,6 @@ import RNBootSplash from 'react-native-bootsplash'
 import { ThemeProvider } from 'react-native-magnus'
 import { lightTheme } from '../../themes'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { View } from 'react-native'
-import MainTabs from '../tabs/MainTabs'
-import { SignIn, OnBoarding } from '@screens'
-import AuthNavigator from '@navigation/navigators/AuthNavigator'
 import { userScreens } from '@navigation/navigators'
 const MainStack = createStackNavigator()
 

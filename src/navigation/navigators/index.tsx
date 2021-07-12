@@ -1,20 +1,15 @@
+import MainTabs from '@navigation/tabs/MainTabs'
 import { StackNavigationOptions, TransitionPresets } from '@react-navigation/stack'
+import { COLORS } from '@utils/colors'
 import React, { FC } from 'react'
 import { StyleSheet, View } from 'react-native'
-import HomeStack from './HomeStack'
-
-const BRAND_COLOR = '#243B80'
-
-const styles = StyleSheet.create({
-	cardOverlay: { backgroundColor: BRAND_COLOR, flex: 1 },
-})
 
 const CardOverlay: FC = () => <View style={styles.cardOverlay} />
 
 //custom screen options
 const Options: StackNavigationOptions = {
 	headerShown: false,
-	cardOverlay: () => CardOverlay,
+	cardOverlay: () => <CardOverlay />,
 	...TransitionPresets.SlideFromRightIOS,
 }
 
@@ -22,7 +17,7 @@ const Options: StackNavigationOptions = {
 //it allows us to be able to group navigators properly
 
 export const userScreens = {
-	Home: { component: HomeStack, options: Options },
+	Home: { component: MainTabs, options: Options },
 }
 
 // export const commonScreens = {
@@ -39,3 +34,7 @@ export const userScreens = {
 // 	Signin: { component: SignIn, options },
 // 	WebView: { component: CustomWebView },
 // }
+
+const styles = StyleSheet.create({
+	cardOverlay: { backgroundColor: COLORS.brandDark, flex: 1 },
+})

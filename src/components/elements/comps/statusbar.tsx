@@ -25,7 +25,7 @@ export const CustomStatusBar = ({ backgroundColor, ...props }: StatusBarProps) =
 	const { top } = useSafeAreaInsets()
 
 	return (
-		<Div pt={top} bg={backgroundColor as string}>
+		<Div bg={backgroundColor as string}>
 			<StatusBar animated translucent backgroundColor={backgroundColor} {...props} />
 		</Div>
 	)

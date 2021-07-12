@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { StatusBarStyle, useColorScheme, StyleProp, StatusBar } from 'react-native'
 import { BLACK, WHITE } from '@utils/colors'
-import { DivProps } from 'react-native-magnus'
-import { Center } from './stacks'
+import { DivProps, Div } from 'react-native-magnus'
+import { Center, VStack } from './stacks'
 import { CustomStatusBar } from './statusbar'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -25,7 +25,8 @@ const CustomScreen: FC<Props> = ({ statusBarStyle, statusBarColor, ...props }) =
 				backgroundColor={statusBarColor || barColor}
 			/>
 			<SafeAreaView style={{ flex: 1, backgroundColor: WHITE }}>
-				<Center bg={isDarkMode ? BLACK : WHITE} flex={1} {...props} />
+				<Div bg={isDarkMode ? BLACK : WHITE} flex={1} {...props} />
+				<Div h={50} />
 			</SafeAreaView>
 		</>
 	)

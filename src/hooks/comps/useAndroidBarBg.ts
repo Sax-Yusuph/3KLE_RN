@@ -8,7 +8,7 @@ import changeNavigationBarColor, {
 import { Sleep } from '@utils/helpers'
 
 export const useAndroidBarBg = (color: string, delay?: number, lightMode?: boolean) => {
-	const testSetTranslucent = useCallback(async () => {
+	const changeColor = useCallback(async () => {
 		if (delay) {
 			await Sleep(delay)
 		}
@@ -17,7 +17,7 @@ export const useAndroidBarBg = (color: string, delay?: number, lightMode?: boole
 	}, [color])
 
 	useFocusEffect(() => {
-		testSetTranslucent()
+		changeColor()
 	})
 
 	return color

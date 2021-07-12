@@ -13,6 +13,7 @@ export default Object.freeze({
 		STEP_EIGHT: 'stepEight',
 		STEP_NINE: 'stepNine',
 	},
+	HOME: HomeScreenRoutes,
 })
 
 //i dont want us to rely on typescript for defining routes.. because
@@ -21,7 +22,3 @@ export default Object.freeze({
 // @usage
 // navigation.navigate(ROUTES.HOME.DEFAULT_HOMESCREEN)
 // navigation.navigate(ROUTES.INVESTMENTS.DEFAULT_HOMESCREEN) etc
-
-export const ROUTES = Object.freeze({
-	HOME: HomeScreenRoutes,
-})
