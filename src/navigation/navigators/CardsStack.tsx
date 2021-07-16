@@ -4,7 +4,7 @@ import {
 	StackNavigationOptions,
 } from '@react-navigation/stack'
 import React from 'react'
-import { HomeScreens } from '@screens'
+import { CardScreens } from '@screens'
 import { Dummy } from '../../screens'
 
 const SCREEN_OPTIONS: StackNavigationOptions = {
@@ -20,14 +20,14 @@ const SCREEN_OPTIONS: StackNavigationOptions = {
 
 const Stack = createStackNavigator()
 
-const HomeStack: React.FC = () => {
+const CardStack: React.FC = () => {
 	return (
 		<Stack.Navigator screenOptions={SCREEN_OPTIONS}>
-			{Object.entries(HomeScreens).map(([name, props]) => {
+			{Object.entries(CardScreens).map(([name, props]) => {
 				return <Stack.Screen key={name} name={name} {...props} />
 			})}
 		</Stack.Navigator>
 	)
 }
 
-export default HomeStack
+export default CardStack

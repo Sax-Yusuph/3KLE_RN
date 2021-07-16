@@ -31,3 +31,5 @@ export const Center: FC<DivProps> = ({ children, ...props }) => {
 		</Div>
 	)
 }
+
+export const Divider: FC<DivProps> = props => <Div h={2} w='100%' bg='divider' {...props} />

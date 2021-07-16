@@ -80,11 +80,13 @@ export default () => {
 					source={Data[slideNo].image}
 					style={[{ justifyContent: 'flex-end' }, StyleSheet.absoluteFill]}
 				>
-					<Div position='absolute' bottom={0}>
-						<Animatable.View animation='fadeIn' delay={200}>
-							<Image source={require('@assets/png/blur.png')} h={height / 1.5} w={width} />
-						</Animatable.View>
-					</Div>
+					{slideNo === 0 && (
+						<Div position='absolute' bottom={0}>
+							<Animatable.View animation='fadeIn' delay={200}>
+								<Image source={require('@assets/png/blur.png')} h={height / 1.5} w={width} />
+							</Animatable.View>
+						</Div>
+					)}
 
 					<Animatable.View animation='fadeIn' delay={500}>
 						<Div

@@ -1,5 +1,6 @@
 import MainTabs from '@navigation/tabs/MainTabs'
 import { StackNavigationOptions, TransitionPresets } from '@react-navigation/stack'
+import { CommonScreens } from '@screens'
 import { COLORS } from '@utils/colors'
 import React, { FC } from 'react'
 import { StyleSheet, View } from 'react-native'
@@ -18,6 +19,7 @@ const Options: StackNavigationOptions = {
 
 export const userScreens = {
 	Home: { component: MainTabs, options: Options },
+	...CommonScreens,
 }
 
 // export const commonScreens = {

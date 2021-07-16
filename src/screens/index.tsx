@@ -7,3 +7,6 @@ export { default as SplashScreen } from './main/SplashScreen'
 
 export { default as HomeScreens, HomeScreenRoutes } from './home'
 export { default as OnboardingScreens, OnboardingScreenRoutes } from './onboarding'
+export { default as CardScreens, CardScreenRoutes } from './cards'
+export { default as CommonScreens, CommonScreenRoutes } from './common'
+export { default as ProfileScreens, ProfileScreenRoutes } from './profile'

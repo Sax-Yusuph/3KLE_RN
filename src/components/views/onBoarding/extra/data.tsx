@@ -18,6 +18,9 @@ const Data = [
 				<Heading color='card' mx='lg'>
 					FAMILY
 				</Heading>
+				<Heading color='brandLight' fontSize='6xl'>
+					+
+				</Heading>
 				<Heading color='card'>PlAN</Heading>
 			</HStack>
 		),
@@ -54,10 +57,10 @@ const Data = [
 	{
 		Heading: (
 			<HStack justifyContent='flex-end' mb='lg'>
-				<AppLogo />
+				<Heading>PEER 2 PEER LOAN</Heading>
 			</HStack>
 		),
-		title: `Our Family plus account allow parents to save money and invest and maintain full control until their child is an adult.`,
+		title: `Borrowers apply online for fixed-rate, fixed-term loans, Flexible interest rate Low monthly repayment plan.`,
 		image: require('@assets/png/splash_screen_6.png'),
 	},
 ]

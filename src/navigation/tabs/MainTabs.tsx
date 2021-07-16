@@ -13,6 +13,8 @@ import SettingsIconBold from '@assets/svgs/bottomtab/setting_bold.svg'
 import Dummy from '../../screens/main/dummy'
 import { COLORS } from '@utils/colors'
 import { useAndroidBarBg } from '@hooks'
+import CardStack from '@navigation/navigators/CardsStack'
+import ProfileStack from '@navigation/navigators/ProfileStack'
 
 const BottomTabs = createBottomTabNavigator()
 
@@ -42,48 +44,48 @@ const MainTabs: React.FC = () => {
 	useAndroidBarBg(COLORS.screen)
 
 	return (
-		<BottomTabs.Navigator initialRouteName='HomeStack' tabBarOptions={TAB_BAR_OPTIONS}>
+		<BottomTabs.Navigator initialRouteName="HomeStack" tabBarOptions={TAB_BAR_OPTIONS}>
 			<BottomTabs.Screen
-				name='HomeStack'
+				name="HomeStack"
 				component={HomeStack}
 				options={{
 					tabBarIcon: ({ color }) => <HomeIconBold {...{ color }} />,
 
-					tabBarLabel: props => <TabBarText {...props}>Home</TabBarText>,
+					tabBarLabel: (props) => <TabBarText {...props}>Home</TabBarText>,
 				}}
 			/>
 
 			<BottomTabs.Screen
-				name='Cards'
-				component={Dummy}
+				name="Cards"
+				component={CardStack}
 				options={{
 					tabBarIcon: ({ color, focused }) => <CardsIconBold {...{ color }} />,
-					tabBarLabel: props => <TabBarText {...props}>Cards</TabBarText>,
+					tabBarLabel: (props) => <TabBarText {...props}>Cards</TabBarText>,
 				}}
 			/>
 			<BottomTabs.Screen
-				name='Products'
+				name="Products"
 				component={Dummy}
 				options={{
 					tabBarIcon: ({ color }) => <ProductsIcon {...{ color }} />,
-					tabBarLabel: props => <TabBarText {...props}>Products</TabBarText>,
+					tabBarLabel: (props) => <TabBarText {...props}>Products</TabBarText>,
 				}}
 			/>
 
 			<BottomTabs.Screen
-				name='Summary'
+				name="Summary"
 				component={Dummy}
 				options={{
 					tabBarIcon: ({ color }) => <ChartIcon {...{ color }} />,
-					tabBarLabel: props => <TabBarText {...props}>Summary</TabBarText>,
+					tabBarLabel: (props) => <TabBarText {...props}>Summary</TabBarText>,
 				}}
 			/>
 			<BottomTabs.Screen
-				name='ProfileStack'
-				component={Dummy}
+				name="ProfileStack"
+				component={ProfileStack}
 				options={{
 					tabBarIcon: ({ color }) => <SettingsIconBold {...{ color }} />,
-					tabBarLabel: props => <TabBarText {...props}>Settings</TabBarText>,
+					tabBarLabel: (props) => <TabBarText {...props}>Profile</TabBarText>,
 				}}
 			/>
 		</BottomTabs.Navigator>
@@ -92,6 +94,6 @@ const MainTabs: React.FC = () => {
 
 export default MainTabs
 
-const TabBarText: FC<TextProps> = props => {
-	return <Text fontSize='xs' mb={6} {...props} fontWeight='500' />
+const TabBarText: FC<TextProps> = (props) => {
+	return <Text fontSize="xs" mb={6} {...props} fontWeight="500" />
 }

@@ -13,6 +13,8 @@ export * from './comps/headers.screen'
 export * from './comps/homepageCardItem'
 export * from './comps/recentTransactionItem'
 export * from './comps/motionBox'
+export * from './comps/chatWithUs'
+
 export { default as CustomScreen } from './comps/AppScreen'
 export { default as CustomImage } from './comps/Image'
 export { default as VirtualizedView } from './comps/virtualizedView'

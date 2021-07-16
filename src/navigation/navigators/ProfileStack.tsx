@@ -1,11 +1,6 @@
-import {
-	CardStyleInterpolators,
-	createStackNavigator,
-	StackNavigationOptions,
-} from '@react-navigation/stack'
+import { CardStyleInterpolators, createStackNavigator, StackNavigationOptions } from '@react-navigation/stack'
 import React from 'react'
-import { HomeScreens } from '@screens'
-import { Dummy } from '../../screens'
+import { ProfileScreens } from '@screens'
 
 const SCREEN_OPTIONS: StackNavigationOptions = {
 	headerShown: false,
@@ -20,14 +15,14 @@ const SCREEN_OPTIONS: StackNavigationOptions = {
 
 const Stack = createStackNavigator()
 
-const HomeStack: React.FC = () => {
+const ProfileStack: React.FC = () => {
 	return (
 		<Stack.Navigator screenOptions={SCREEN_OPTIONS}>
-			{Object.entries(HomeScreens).map(([name, props]) => {
+			{Object.entries(ProfileScreens).map(([name, props]) => {
 				return <Stack.Screen key={name} name={name} {...props} />
 			})}
 		</Stack.Navigator>
 	)
 }
 
-export default HomeStack
+export default ProfileStack

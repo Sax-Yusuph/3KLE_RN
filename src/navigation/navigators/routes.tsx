@@ -1,4 +1,4 @@
-import { HomeScreenRoutes } from '@screens'
+import { CardScreenRoutes, HomeScreenRoutes, ProfileScreenRoutes } from '@screens'
 import { OnboardingScreenRoutes } from '@screens'
 
 export default Object.freeze({
@@ -16,6 +16,8 @@ export default Object.freeze({
 	},
 	HOME: HomeScreenRoutes,
 	ONBOARDING: OnboardingScreenRoutes,
+	CARDS: CardScreenRoutes,
+	MY_ACCOUNT: ProfileScreenRoutes,
 })
 
 //i dont want us to rely on typescript for defining routes.. because
