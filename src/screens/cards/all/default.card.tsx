@@ -6,7 +6,7 @@ import { Div } from 'react-native-magnus'
 const DefaultCardScreen = () => {
 	return (
 		<CustomScreen>
-			<Header title='' profileImg='' backIcon='arrowleft' />
+			<Header title="" profileImg="" backIcon="arrowleft" />
 
 			<DefaultCardPage />
 		</CustomScreen>

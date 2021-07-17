@@ -37,7 +37,8 @@ const SHORT_DETAILS: DetailType[] = [
 ]
 
 interface Props {}
-const DefaultHome: FC<Props> = () => {
+
+const DefaultProfilePage: FC<Props> = () => {
 	const { width } = useWindowDimensions()
 	const [enableFingerprint, setEnableFingerprint] = useState(false)
 	const [displayDashboardBalances, setDashbaordBalances] = useState(false)
@@ -81,18 +82,7 @@ const DefaultHome: FC<Props> = () => {
 	)
 }
 
-export default DefaultHome
-
-const styles = StyleSheet.create({
-	image__overlay: {
-		borderRadius: 16,
-		overflow: 'hidden',
-		marginVertical: 18,
-		justifyContent: 'center',
-		alignItems: 'center',
-		alignSelf: 'center',
-	},
-})
+export default DefaultProfilePage
 
 interface OptionProps {
 	title: string

@@ -191,6 +191,16 @@ android {
 
         }
     }
+
+    // Delete large build log files from ~/.gradle/daemon/X.X/daemon-XXX.out.log
+    // Source: https://discuss.gradle.org/t/gradle-daemon-produces-a-lot-of-logs/9905
+    def gradle = project.getGradle()
+    new File("${gradle.getGradleUserHomeDir().getAbsolutePath()}/daemon/${gradle.getGradleVersion()}").listFiles().each {
+        if (it.getName().endsWith('.out.log')) {
+            // println("Deleting gradle log file: $it") // Optional debug output
+            it.delete()
+        }
+    }
 }
 
 dependencies {

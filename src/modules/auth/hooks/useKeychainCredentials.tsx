@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+// import AsyncStorage from '@react-native-async-storage/async-storage'
 import * as Keychain from 'react-native-keychain'
 import useSupportedBiometry from './useSupportedBiometry'
 import { warn } from '@utils/console'
@@ -11,7 +11,7 @@ export default function useKeychainCredentials() {
 
 	useEffect(() => {
 		;(async () => {
-			const hasCredentials = await AsyncStorage.getItem('hasCredentials')
+			const hasCredentials = true //await AsyncStorage.getItem('hasCredentials')
 			if (!hasCredentials) return
 			try {
 				const credentials = await Keychain.getGenericPassword({

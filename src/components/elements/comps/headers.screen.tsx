@@ -14,9 +14,10 @@ import { useNavigation } from '@react-navigation/native'
 
 interface Props extends DivProps {
 	title: string
-	profileImg: string | number
+	profileImg?: string | number
 	handleBackPress?: () => void
 	backIcon?: string
+	isCentered?: boolean
 }
 export const HomeScreenHeader: FC<Props> = ({ title, profileImg, ...props }) => {
 	const { width } = useWindowDimensions()
@@ -61,7 +62,7 @@ export const HomeScreenHeader: FC<Props> = ({ title, profileImg, ...props }) => 
 	)
 }
 
-export const Header: FC<Props> = ({ title, profileImg, backIcon, handleBackPress, ...props }) => {
+export const Header: FC<Props> = ({ title, profileImg, backIcon, isCentered, handleBackPress, ...props }) => {
 	const { width } = useWindowDimensions()
 	const darkMode = useColorScheme() === 'dark'
 	const navigation = useNavigation()
@@ -84,8 +85,8 @@ export const Header: FC<Props> = ({ title, profileImg, backIcon, handleBackPress
 				<IconButton onPress={goBack} rounded="circle">
 					<Icon name={backIcon ?? 'left'} fontSize={24} color="brandDark" />
 				</IconButton>
-				<HStack>
-					<Heading ml="md" fontSize="xl" fontWeight="500" color="brandDark">
+				<HStack flex={1} justifyContent={isCentered ? 'center' : undefined}>
+					<Heading fontSize="xl" fontWeight="500" color="brandDark" ml={isCentered ? -14 : 'md'}>
 						{title}
 					</Heading>
 				</HStack>

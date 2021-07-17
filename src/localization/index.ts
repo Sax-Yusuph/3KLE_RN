@@ -1,9 +1,10 @@
 import i18n, { LanguageDetectorAsyncModule } from 'i18next'
 import { NativeModules, Platform } from 'react-native'
 import { initReactI18next } from 'react-i18next'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+// import AsyncStorage from '@react-native-async-storage/async-storage'
 import { warn } from '@utils/console'
 import resources from './resources'
+import { Sleep } from '@utils/helpers'
 
 const getDeviceLocale = (): string => {
 	let locale: string
@@ -25,24 +26,24 @@ const getDeviceLocale = (): string => {
 const languageDetector: LanguageDetectorAsyncModule = {
 	type: 'languageDetector' as 'languageDetector',
 	async: true, // flags below detection to be async
-	detect: (cb: Function): Promise<string> =>
-		AsyncStorage.getItem('user-language')
-			.then(language => {
-				if (!language) {
-					const locale = getDeviceLocale()
-					return cb(locale)
-				}
+	detect: (cb: Function): Promise<string> => Sleep(200).then(() => 'ahaha'),
+	// AsyncStorage.getItem('user-language')
+	// 	.then(language => {
+	// 		if (!language) {
+	// 			const locale = getDeviceLocale()
+	// 			return cb(locale)
+	// 		}
 
-				return cb(language)
-			})
-			.catch(e => {
-				warn('[Detect user language]', e)
-			}),
+	// 		return cb(language)
+	// 	})
+	// 	.catch(e => {
+	// 		warn('[Detect user language]', e)
+	// 	}),
 	init: () => {},
 	cacheUserLanguage: (language: string) => {
-		AsyncStorage.setItem('user-language', language).catch(e => {
-			warn('[Cache user language]', e)
-		})
+		// AsyncStorage.setItem('user-language', language).catch((e) => {
+		// 	warn('[Cache user language]', e)
+		// })
 	},
 }
 
