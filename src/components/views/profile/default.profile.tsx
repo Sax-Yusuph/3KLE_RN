@@ -18,7 +18,8 @@ type DetailType = {
 const SHORT_DETAILS: DetailType[] = [
 	{ title: '3KLE Account number', value: '23445261566' },
 	{ title: 'Referral Earnings', value: 7000, currency: '₦' },
-	{ title: '3KLE I.D', value: 'uche.okorie11#' },
+	{ title: '3KLE I.D', value: 'uche.okorie1#' },
+	{ title: '', value: '' },
 ]
 
 interface Props {}
@@ -34,6 +35,10 @@ const DefaultProfilePage: FC<Props> = () => {
 
 	const goToAccountSettings = () => {
 		navigation.navigate(routes.MY_ACCOUNT.SETTINS)
+	}
+
+	const goToBVNSettings = () => {
+		navigation.navigate(routes.MY_ACCOUNT.BVN_VALIDATION)
 	}
 
 	return (
@@ -57,7 +62,7 @@ const DefaultProfilePage: FC<Props> = () => {
 				<Div my="xl">
 					<Action title="Contact Information" action={gotToEditProfile} />
 					<Action title="Account Settings" action={goToAccountSettings} />
-					<Action title="KYC Update" action={showToast} />
+					<Action title="KYC Update" action={goToBVNSettings} />
 					<Action title="Refer & Earn N1000" action={showToast} />
 					<Action title="Contact Us" action={showToast} />
 					<Action title="Log Out" titleColor="red600" action={showToast} />
@@ -96,8 +101,16 @@ const Option: FC<OptionProps> = ({ title, active, onToggle }) => {
 }
 
 const DetailItem: FC<DetailType> = ({ title, value }) => {
+	const showBorder = title ? true : false
 	return (
-		<VStack flex={1} borderColor="gray400" rounded="xl" borderWidth={1} m="lg" p="lg">
+		<VStack
+			flex={1}
+			borderColor={showBorder ? 'gray400' : undefined}
+			rounded="xl"
+			borderWidth={showBorder ? 1 : undefined}
+			m="lg"
+			p="lg"
+		>
 			<FadedText>{title}</FadedText>
 			<Heading>{value}</Heading>
 		</VStack>
