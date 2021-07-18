@@ -8,7 +8,7 @@ import BillPaymentIcon from '@assets/svgs/homepage/Document.svg'
 import FingerprintIcon from '@assets/svgs/homepage/fingerprint.svg'
 import AddMoneyIcon from '@assets/svgs/homepage/money.svg'
 import BankIcon from '@assets/svgs/homepage/bank.svg'
-import Emoji from '@assets/svgs/homepage/Emoji.svg'
+// import Emoji from '@assets/svgs/homepage/Emoji.svg'
 import PeerIcon from '@assets/svgs/homepage/peer.svg'
 import GoalIcon from '@assets/svgs/homepage/goal.svg'
 import FamilyPlusIcon from '@assets/svgs/homepage/people.svg'
@@ -18,6 +18,7 @@ import RotateIcon from '@assets/svgs/homepage/rotate.svg'
 import { Center } from '@elements'
 import { showToast } from '@utils/helpers'
 import { HomeRoutes } from 'screens/home'
+import Routes from '@navigation/navigators/routes'
 
 export type ProductListItem = {
 	title: string
@@ -28,7 +29,7 @@ export type ProductListItem = {
 export const RenderIcon = (Icon: FC<SvgProps>, color: string) => {
 	const SIZE = 70
 	return (
-		<Center bg={color} w={SIZE} h={SIZE} rounded='2xl'>
+		<Center bg={color} w={SIZE} h={SIZE} rounded="2xl">
 			<Icon />
 		</Center>
 	)
@@ -42,8 +43,7 @@ export const PRODUCTS: ProductListItem[] = [
 	},
 	{
 		title: 'Goal Savings',
-		description:
-			'Easily save for specific personal goals with our Goal saving plan, without risks.',
+		description: 'Easily save for specific personal goals with our Goal saving plan, without risks.',
 		Icon: RenderIcon(GoalIcon, COLORS.goalSavings),
 	},
 	{
@@ -62,6 +62,7 @@ export type Activity = {
 	icon: ReactElement
 	title: string
 	action: unknown
+	navRoute?: string
 }
 
 const ICON_WIDTH = 24
@@ -71,6 +72,7 @@ export const ACTIVITIES: Activity[] = [
 		icon: <OpenAccountIcon width={ICON_WIDTH} height={ICON_WIDTH} />,
 		title: 'Open Account',
 		action: showToast,
+		// navRoute:Routes
 	},
 	{
 		icon: <SendMoneyIcon width={ICON_WIDTH} height={ICON_WIDTH} />,
@@ -91,6 +93,7 @@ export const ACTIVITIES: Activity[] = [
 		icon: <FingerprintIcon width={ICON_WIDTH} height={ICON_WIDTH} color={COLORS.brandDark} />,
 		title: 'Fingerprint',
 		action: showToast,
+		navRoute: Routes.COMMON_SCREENS.ACTIVATE_FINGERPRINT,
 	},
 	{
 		icon: <AddMoneyIcon width={ICON_WIDTH} height={ICON_WIDTH} />,

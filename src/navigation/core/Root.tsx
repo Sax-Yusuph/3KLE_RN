@@ -1,6 +1,6 @@
 import React from 'react'
-import { LinkingOptions, NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 import RNBootSplash from 'react-native-bootsplash'
 import { ThemeProvider } from 'react-native-magnus'
 import { lightTheme } from '../../themes'
@@ -22,8 +22,10 @@ const Root: React.FC = () => {
 			<SafeAreaProvider>
 				<ThemeProvider theme={lightTheme}>
 					<MainStack.Navigator
+						mode="modal"
 						screenOptions={{
 							cardStyle: { backgroundColor: '#243B80' },
+							headerShown: false,
 							safeAreaInsets: {
 								bottom: 0,
 								top: 0,

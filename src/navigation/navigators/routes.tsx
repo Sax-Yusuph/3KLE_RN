@@ -1,7 +1,7 @@
-import { CardScreenRoutes, HomeScreenRoutes, ProfileScreenRoutes } from '@screens'
+import { CardScreenRoutes, CommonScreenRoutes, HomeScreenRoutes, ProfileScreenRoutes } from '@screens'
 import { OnboardingScreenRoutes } from '@screens'
 
-export default Object.freeze({
+const Routes = Object.freeze({
 	LOGIN: 'login',
 	REGISTER: {
 		STEP_ONE: 'stepOne',
@@ -18,7 +18,11 @@ export default Object.freeze({
 	ONBOARDING: OnboardingScreenRoutes,
 	CARDS: CardScreenRoutes,
 	MY_ACCOUNT: ProfileScreenRoutes,
+	COMMON_SCREENS: CommonScreenRoutes,
 })
+
+export default Routes
+export type RoutesType = keyof typeof Routes
 
 //i dont want us to rely on typescript for defining routes.. because
 //its a tedious process when defining types for deeply nested routes.

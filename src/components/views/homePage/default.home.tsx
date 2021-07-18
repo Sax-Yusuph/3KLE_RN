@@ -1,14 +1,5 @@
-import React, { FC, ReactElement, SVGProps } from 'react'
-import {
-	CustomScreen,
-	HomeScreenHeader,
-	Center,
-	VStack,
-	Paragraph,
-	VirtualizedView,
-	ImageOverlay,
-	AppLogo,
-} from '@elements'
+import React, { FC } from 'react'
+import { Center, Paragraph, VirtualizedView, ImageOverlay, AppLogo } from '@elements'
 import HeroSection from './extra/HeroSection'
 
 import { FlatList, StyleSheet, useWindowDimensions } from 'react-native'
@@ -32,16 +23,16 @@ const DefaultHome: FC<Props> = ({ viewDetails }) => {
 	}
 
 	return (
-		<Center w='100%'>
+		<Center w="100%">
 			<VirtualizedView>
 				<HeroSection {...{ viewDetails }} />
 
-				<Center flex={1} w={width} my='xl'>
+				<Center flex={1} w={width} my="xl">
 					<FlatList
-						listKey='activitiesList'
+						listKey="activitiesList"
 						numColumns={4}
 						data={ACTIVITIES}
-						keyExtractor={i => i.title}
+						keyExtractor={(i) => i.title}
 						renderItem={({ item }) => <ActivityItem {...{ item }} />}
 					/>
 					<ImageOverlay
@@ -49,39 +40,39 @@ const DefaultHome: FC<Props> = ({ viewDetails }) => {
 						style={[styles.image__overlay, overlayImageLayout]}
 					>
 						<AppLogo />
-						<Paragraph color='textLight' maxW='80%' fontSize='md' textAlign='center'>
-							Our products were specifically designed to cater for all financial needs and risk
-							appetite. Start exploring now!.
+						<Paragraph color="textLight" maxW="80%" fontSize="md" textAlign="center">
+							Our products were specifically designed to cater for all financial needs and risk appetite.
+							Start exploring now!.
 						</Paragraph>
 
 						<Button
-							mt='md'
-							mx='xl'
-							px='xl'
-							py='lg'
-							bg='transparent'
+							mt="md"
+							mx="xl"
+							px="xl"
+							py="lg"
+							bg="transparent"
 							borderWidth={1}
-							borderColor='card'
-							color='textLight'
-							underlayColor='rgba(0,0,0,0.5)'
-							alignSelf='flex-end'
+							borderColor="card"
+							color="textLight"
+							underlayColor="rgba(0,0,0,0.5)"
+							alignSelf="flex-end"
 						>
-							<Icon name='arrowright' color='white' />
+							<Icon name="arrowright" color="white" />
 						</Button>
 					</ImageOverlay>
 
-					<ProductListSection title='Top Products this week' />
+					<ProductListSection title="Top Products this week" />
 					<Button
-						mt='md'
-						mx='xl'
-						px='xl'
-						py='lg'
-						bg='transparent'
+						mt="md"
+						mx="xl"
+						px="xl"
+						py="lg"
+						bg="transparent"
 						borderWidth={1}
-						borderColor='brandDark'
-						color='brandDark'
-						underlayColor='blue100'
-						alignSelf='center'
+						borderColor="brandDark"
+						color="brandDark"
+						underlayColor="blue100"
+						alignSelf="center"
 					>
 						Select your plan
 					</Button>

@@ -1,24 +1,9 @@
-import React, { FC, ReactElement, SVGProps, useState } from 'react'
-import {
-	CustomScreen,
-	HomeScreenHeader,
-	Center,
-	VStack,
-	Paragraph,
-	VirtualizedView,
-	ImageOverlay,
-	AppLogo,
-	Heading,
-	HStack,
-	FadedText,
-	IconButton,
-	ChatWithUs,
-} from '@elements'
+import React, { FC, useState } from 'react'
+import { VStack, VirtualizedView, Heading, HStack, FadedText, IconButton, ChatWithUs } from '@elements'
 
-import { FlatList, StyleSheet, Switch, useWindowDimensions } from 'react-native'
-import { Button, Div, Icon } from 'react-native-magnus'
+import { FlatList, StyleSheet, Switch } from 'react-native'
+import { Div, Icon } from 'react-native-magnus'
 
-import { HomeRoutes } from 'screens/home'
 import { COLORS } from '@utils/colors'
 import { showToast } from '@utils/helpers'
 import { useNavigation } from '@react-navigation/native'
@@ -39,13 +24,16 @@ const SHORT_DETAILS: DetailType[] = [
 interface Props {}
 
 const DefaultProfilePage: FC<Props> = () => {
-	const { width } = useWindowDimensions()
 	const [enableFingerprint, setEnableFingerprint] = useState(false)
 	const [displayDashboardBalances, setDashbaordBalances] = useState(false)
 	const navigation = useNavigation()
 
 	const gotToEditProfile = () => {
 		navigation.navigate(routes.MY_ACCOUNT.EDIT_PROFILE)
+	}
+
+	const goToAccountSettings = () => {
+		navigation.navigate(routes.MY_ACCOUNT.SETTINS)
 	}
 
 	return (
@@ -58,7 +46,7 @@ const DefaultProfilePage: FC<Props> = () => {
 					onToggle={setDashbaordBalances}
 				/>
 				<FlatList
-					style={{ justifyContent: 'center', marginVertical: 10 }}
+					style={styles.flatlist}
 					listKey="Short details"
 					key="Short detail"
 					numColumns={2}
@@ -68,7 +56,7 @@ const DefaultProfilePage: FC<Props> = () => {
 				/>
 				<Div my="xl">
 					<Action title="Contact Information" action={gotToEditProfile} />
-					<Action title="Account Settings" action={showToast} />
+					<Action title="Account Settings" action={goToAccountSettings} />
 					<Action title="KYC Update" action={showToast} />
 					<Action title="Refer & Earn N1000" action={showToast} />
 					<Action title="Contact Us" action={showToast} />
@@ -107,7 +95,7 @@ const Option: FC<OptionProps> = ({ title, active, onToggle }) => {
 	)
 }
 
-const DetailItem: FC<DetailType> = ({ title, value, currency }) => {
+const DetailItem: FC<DetailType> = ({ title, value }) => {
 	return (
 		<VStack flex={1} borderColor="gray400" rounded="xl" borderWidth={1} m="lg" p="lg">
 			<FadedText>{title}</FadedText>
@@ -132,3 +120,7 @@ const Action: FC<{ title: string; action(): void; titleColor?: string }> = ({
 		</HStack>
 	)
 }
+
+const styles = StyleSheet.create({
+	flatlist: { justifyContent: 'center', marginVertical: 10 },
+})

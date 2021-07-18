@@ -9,5 +9,6 @@ export { default as DefaultCardPage } from './cards/default.card'
 //My Accounts view
 export { default as DefaultProfilePage } from './profile/default.profile'
 export { default as EditProfilePage } from './profile/edit.profile'
+export { default as AccountSettingsPage } from './profile/settings.profile'
 
 export * from './SignUp'

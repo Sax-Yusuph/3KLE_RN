@@ -12,7 +12,7 @@ import {
 import React from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import { Button, Div } from 'react-native-magnus'
-
+import CardsGroupIcon from '@assets/svgs/addcardScreen/cards_group.svg'
 const QUICK_ACTIONS = [
 	{ label: 'Request a 3KLE card' },
 	{ label: 'Cardless withdrawal' },
@@ -43,34 +43,37 @@ const CARDS_DATA = [
 	},
 ]
 
-
 const AllCards = () => {
 	return (
 		<VirtualizedView>
-			<VStack alignItems='flex-start' w='100%' px='xl'>
-				<Heading fontSize='3xl'>All Cards</Heading>
-				<Paragraph textAlign='left' fontSize='md' mt={-5}>
+			<VStack alignItems="flex-start" w="100%" px="xl">
+				<Heading fontSize="3xl">All Cards</Heading>
+				<Paragraph textAlign="left" fontSize="md" mt={-5}>
 					{CARDS_DATA.length ? 'Cards added by you' : 'Add your debit/credit card'}
 				</Paragraph>
 			</VStack>
 
-			<Button alignSelf='center' bg='secondary' py='md' my='xl'>
+			<Div alignSelf="center" my="xl">
+				<CardsGroupIcon />
+			</Div>
+
+			<Button alignSelf="center" bg="secondary" py="md" my="xl">
 				Add card
 			</Button>
-			<Div m='lg' bg='screenBg' p='lg' rounded='lg' my='xl' borderColor='divider' borderWidth={1}>
+			<Div m="lg" bg="screenBg" p="lg" rounded="lg" my="xl" borderColor="divider" borderWidth={1}>
 				<FlatList
-					listKey='user_cards_data'
+					listKey="user_cards_data"
 					data={CARDS_DATA}
 					ItemSeparatorComponent={() => <Divider />}
 					keyExtractor={(_, i) => i.toString()}
 					ListEmptyComponent={<EmptyCardBox />}
 					renderItem={({ item }) => (
-						<HStack m='lg'>
-							<Center w={40} h={40} mr='lg' rounded='md' overflow='hidden'>
+						<HStack m="lg">
+							<Center w={40} h={40} mr="lg" rounded="md" overflow="hidden">
 								<CustomImage key={item.logo} source={item.logo} style={styles.logo__image} />
 							</Center>
-							<VStack alignItems='flex-start'>
-								<Heading fontSize='md'>
+							<VStack alignItems="flex-start">
+								<Heading fontSize="md">
 									{item.bankName} - {item.acctNumber}
 								</Heading>
 
@@ -81,18 +84,19 @@ const AllCards = () => {
 				/>
 			</Div>
 
-			<Center mb='xl'>
-				{QUICK_ACTIONS.map(item => (
+			<Center mb="xl">
+				{QUICK_ACTIONS.map((item) => (
 					<Button
-						alignSelf='center'
-						my='md'
-						bg='gray200'
-						borderColor='gray400'
+						key={item.label}
+						alignSelf="center"
+						my="md"
+						bg="gray200"
+						borderColor="gray400"
 						borderWidth={1}
-						color='brandDark'
-						fontSize='md'
-						shadow='xs'
-						fontWeight='500'
+						color="brandDark"
+						fontSize="md"
+						shadow="xs"
+						fontWeight="500"
 					>
 						{item.label}
 					</Button>
@@ -105,8 +109,8 @@ const AllCards = () => {
 export default AllCards
 
 const EmptyCardBox = () => (
-	<Center my='xl' h={150} bg='gray200' w='80%' rounded='lg' borderColor='gray400' borderWidth={1}>
-		<Heading fontSize='sm' color='textFade'>
+	<Center my="xl" h={150} bg="gray200" w="80%" rounded="lg" borderColor="gray400" borderWidth={1}>
+		<Heading fontSize="sm" color="textFade">
 			Your cards will show here
 		</Heading>
 	</Center>

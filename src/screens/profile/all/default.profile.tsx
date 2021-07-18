@@ -1,4 +1,4 @@
-import { Center, CustomScreen, Heading, ThreeColumnHeader } from '@elements'
+import { CustomScreen, ThreeColumnHeader } from '@elements'
 import { DefaultProfilePage as ContentView } from '@views'
 import React from 'react'
 

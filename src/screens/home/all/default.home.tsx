@@ -15,7 +15,7 @@ const DefaultHome: FC<Props> = ({ navigation }) => {
 
 	return (
 		<CustomScreen>
-			<HomeScreenHeader title='Uche' profileImg='uche' />
+			<HomeScreenHeader title="Uche" profileImg="uche" />
 			<ContentView {...{ viewDetails }} />
 		</CustomScreen>
 	)

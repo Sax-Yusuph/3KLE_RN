@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, ReactElement } from 'react'
 import { showToast } from '@utils/helpers'
 import { HStack, VStack } from './stacks'
 import { Circle } from './Dot'
@@ -6,10 +6,10 @@ import { IconButton } from './iconBtn'
 import { Heading, Paragraph } from './AppText'
 import AvatarImg from '@assets/svgs/header/avatar.svg'
 import BellIcon from '@assets/svgs/header/Notification.svg'
-import { StatusBar, useColorScheme, useWindowDimensions } from 'react-native'
+import { useColorScheme } from 'react-native'
 import { DivProps, Icon } from 'react-native-magnus'
 import { COLORS } from '@utils/colors'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
 import { useNavigation } from '@react-navigation/native'
 
 interface Props extends DivProps {
@@ -20,9 +20,8 @@ interface Props extends DivProps {
 	isCentered?: boolean
 }
 export const HomeScreenHeader: FC<Props> = ({ title, profileImg, ...props }) => {
-	const { width } = useWindowDimensions()
-	const { top } = useSafeAreaInsets()
 	const darkMode = useColorScheme() === 'dark'
+	console.log({ profileImg })
 	return (
 		<HStack
 			justifyContent="space-between"
@@ -62,11 +61,11 @@ export const HomeScreenHeader: FC<Props> = ({ title, profileImg, ...props }) => 
 	)
 }
 
-export const Header: FC<Props> = ({ title, profileImg, backIcon, isCentered, handleBackPress, ...props }) => {
-	const { width } = useWindowDimensions()
+export const Header: FC<Props> = ({ title, profileImg, backIcon, isCentered, ...props }) => {
 	const darkMode = useColorScheme() === 'dark'
 	const navigation = useNavigation()
 
+	console.log({ profileImg })
 	const goBack = () => {
 		navigation.canGoBack() && navigation.goBack()
 	}
@@ -96,21 +95,22 @@ export const Header: FC<Props> = ({ title, profileImg, backIcon, isCentered, han
 }
 
 interface ThreeColumnProps extends Props {
-	subtitle: string
+	subtitle?: string
+	rightIcon?: ReactElement
 }
 export const ThreeColumnHeader: FC<ThreeColumnProps> = ({
 	title,
 	profileImg,
 	backIcon,
-	handleBackPress,
 	subtitle,
+	rightIcon,
 	...props
 }) => {
-	const { width } = useWindowDimensions()
 	const darkMode = useColorScheme() === 'dark'
 	const navigation = useNavigation()
 
 	const goBack = () => {
+		console.log(profileImg)
 		navigation.canGoBack() && navigation.goBack()
 	}
 
@@ -132,14 +132,22 @@ export const ThreeColumnHeader: FC<ThreeColumnProps> = ({
 					<Heading ml="md" fontSize="xl" color="brandDark">
 						{title}
 					</Heading>
-					<Paragraph fontSize="sm" mt={-5} color="textDark">
-						{subtitle}
-					</Paragraph>
+					{subtitle ? (
+						<Paragraph fontSize="sm" mt={-5} color="textDark">
+							{subtitle}
+						</Paragraph>
+					) : null}
 				</VStack>
 
-				<IconButton onPress={showToast} rounded="circle">
-					<AvatarImg width={32} height={32} />
-				</IconButton>
+				{rightIcon ? (
+					<IconButton onPress={showToast} rounded="circle">
+						{rightIcon}
+					</IconButton>
+				) : (
+					<IconButton onPress={showToast} rounded="circle">
+						<AvatarImg width={32} height={32} />
+					</IconButton>
+				)}
 			</HStack>
 		</HStack>
 	)
