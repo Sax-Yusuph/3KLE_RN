@@ -10,5 +10,6 @@ export { default as DefaultCardPage } from './cards/default.card'
 export { default as DefaultProfilePage } from './profile/default.profile'
 export { default as EditProfilePage } from './profile/edit.profile'
 export { default as AccountSettingsPage } from './profile/settings.profile'
+export { default as BVNValidationPage } from './profile/bvn.verification'
 
 export * from './SignUp'

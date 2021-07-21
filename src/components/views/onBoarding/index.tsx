@@ -13,7 +13,7 @@ import { Button, Div, Image, Text } from 'react-native-magnus'
 import Data from './extra/data'
 import * as Animatable from 'react-native-animatable'
 import { useTransparentBar } from '../../../hooks/comps/useAndroidBarBg'
-import { Heading, HStack, VStack, FocusAwareStatusBar, Dot, Center, AppLogo } from '@elements'
+import { VStack, FocusAwareStatusBar, Dot, Center } from '@elements'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Slide from '../../elements/comps/Slide'
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -41,10 +41,7 @@ export default () => {
 		const index = Math.round(offset / roundedWidth)
 		const remainder = Math.round(offset % roundedWidth)
 
-		if (
-			remainder < roundedWidth * (index - 1) - RANGE &&
-			remainder > roundedWidth * index + RANGE
-		) {
+		if (remainder < roundedWidth * (index - 1) - RANGE && remainder > roundedWidth * index + RANGE) {
 			return
 		}
 		setSlideNo(offset < width ? 0 : index)
@@ -53,8 +50,8 @@ export default () => {
 	const Indicator = () => (
 		<Div
 			row
-			alignItems='center'
-			justifyContent='center'
+			alignItems="center"
+			justifyContent="center"
 			mb={Platform.select({
 				ios: 'xs',
 				android: 'lg',
@@ -74,31 +71,31 @@ export default () => {
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
-			<Div flex={1} alignItems='center' bg='white' style={StyleSheet.absoluteFill}>
+			<Div flex={1} alignItems="center" bg="white" style={StyleSheet.absoluteFill}>
 				<FocusAwareStatusBar hidden />
 				<ImageBackground
 					source={Data[slideNo].image}
 					style={[{ justifyContent: 'flex-end' }, StyleSheet.absoluteFill]}
 				>
 					{slideNo === 0 && (
-						<Div position='absolute' bottom={0}>
-							<Animatable.View animation='fadeIn' delay={200}>
+						<Div position="absolute" bottom={0}>
+							<Animatable.View animation="fadeIn" delay={200}>
 								<Image source={require('@assets/png/blur.png')} h={height / 1.5} w={width} />
 							</Animatable.View>
 						</Div>
 					)}
 
-					<Animatable.View animation='fadeIn' delay={500}>
+					<Animatable.View animation="fadeIn" delay={500}>
 						<Div
 							h={slideNo === 0 ? BOX_HEIGHT : height}
-							justifyContent='center'
-							alignItems='center'
+							justifyContent="center"
+							alignItems="center"
 							zIndex={200}
 						>
 							<ScrollView
 								horizontal
 								snapToInterval={width}
-								decelerationRate='fast'
+								decelerationRate="fast"
 								showsHorizontalScrollIndicator={false}
 								scrollEventThrottle={0}
 								onScrollAnimationEnd={() => setSlideNo(1)}
@@ -107,7 +104,7 @@ export default () => {
 								{Data.map((slideItem, index) => (
 									<Center key={slideItem.title + index}>
 										{slideItem.Heading}
-										<Slide title={slideItem.title} {...{ Indicator, index }} />
+										<Slide title={slideItem.title} />
 									</Center>
 								))}
 							</ScrollView>
@@ -116,19 +113,19 @@ export default () => {
 							<VStack mb={59}>
 								<Button
 									block
-									my='lg'
-									mx='xl'
+									my="lg"
+									mx="xl"
 									py={16}
-									rounded='2xl'
+									rounded="2xl"
 									onPress={handleLogin}
-									color='textLight'
-									bg='brand'
+									color="textLight"
+									bg="brand"
 								>
 									Get Started
 								</Button>
 
 								<TouchableOpacity onPress={handleLogin}>
-									<Text color='textLight'>Login</Text>
+									<Text color="textLight">Login</Text>
 								</TouchableOpacity>
 							</VStack>
 						</Div>

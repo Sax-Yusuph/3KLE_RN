@@ -61,8 +61,9 @@ export const PRODUCTS: ProductListItem[] = [
 export type Activity = {
 	icon: ReactElement
 	title: string
-	action: unknown
+	action?: unknown
 	navRoute?: string
+	parentRoute?: string
 }
 
 const ICON_WIDTH = 24
@@ -104,6 +105,8 @@ export const ACTIVITIES: Activity[] = [
 		icon: <BankIcon width={ICON_WIDTH} height={ICON_WIDTH} />,
 		title: 'Link bank Account',
 		action: showToast,
+		navRoute: Routes.LINK_BANK.DEFAULT_SCREEN,
+		parentRoute: Routes.LINK_BANK.PARENT_SCREEN,
 	},
 	{
 		icon: <RotateIcon width={ICON_WIDTH} height={ICON_WIDTH} />,

@@ -1,4 +1,10 @@
-import { CardScreenRoutes, CommonScreenRoutes, HomeScreenRoutes, ProfileScreenRoutes } from '@screens'
+import {
+	CardScreenRoutes,
+	CommonScreenRoutes,
+	HomeScreenRoutes,
+	LinkBankScreenRoutes,
+	ProfileScreenRoutes,
+} from '@screens'
 import { OnboardingScreenRoutes } from '@screens'
 
 const Routes = Object.freeze({
@@ -19,6 +25,7 @@ const Routes = Object.freeze({
 	CARDS: CardScreenRoutes,
 	MY_ACCOUNT: ProfileScreenRoutes,
 	COMMON_SCREENS: CommonScreenRoutes,
+	LINK_BANK: LinkBankScreenRoutes,
 })
 
 export default Routes

@@ -61,11 +61,10 @@ export const HomeScreenHeader: FC<Props> = ({ title, profileImg, ...props }) => 
 	)
 }
 
-export const Header: FC<Props> = ({ title, profileImg, backIcon, isCentered, ...props }) => {
+export const Header: FC<Props> = ({ title, backIcon, isCentered, ...props }) => {
 	const darkMode = useColorScheme() === 'dark'
 	const navigation = useNavigation()
 
-	console.log({ profileImg })
 	const goBack = () => {
 		navigation.canGoBack() && navigation.goBack()
 	}

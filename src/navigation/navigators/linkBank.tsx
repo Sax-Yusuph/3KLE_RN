@@ -1,6 +1,6 @@
 import { CardStyleInterpolators, createStackNavigator, StackNavigationOptions } from '@react-navigation/stack'
 import React from 'react'
-import { CardScreens } from '@screens'
+import { LinkBankScreens } from '@screens'
 
 const SCREEN_OPTIONS: StackNavigationOptions = {
 	headerShown: false,
@@ -15,14 +15,16 @@ const SCREEN_OPTIONS: StackNavigationOptions = {
 
 const Stack = createStackNavigator()
 
-const CardStack: React.FC = () => {
+const LinkBankStack: React.FC = () => {
 	return (
 		<Stack.Navigator screenOptions={SCREEN_OPTIONS}>
-			{Object.entries(CardScreens).map(([name, props]) => {
+			{Object.entries(LinkBankScreens).map(([name, props]) => {
 				return <Stack.Screen key={name} name={name} {...props} />
 			})}
 		</Stack.Navigator>
 	)
 }
 
-export default CardStack
+export default Object.freeze({
+	linkBankAccount: { component: LinkBankStack },
+})

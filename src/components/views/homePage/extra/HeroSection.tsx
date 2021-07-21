@@ -41,15 +41,15 @@ const HeroSection: FC<Props> = ({ viewDetails }) => {
 	}
 
 	return (
-		<Div h={250}>
+		<Div>
 			{/* title */}
 			<FlatList
-				ref={ref => (titleRef.current = ref)}
+				ref={(ref) => (titleRef.current = ref)}
 				showsHorizontalScrollIndicator={false}
 				contentContainerStyle={{ alignItems: 'flex-end' }}
 				horizontal
 				data={DATA}
-				keyExtractor={i => i.title}
+				keyExtractor={(i) => i.title}
 				renderItem={({ item, index }) => {
 					const showLeftIcon = activeIndex === 1 && index === 0
 					const showRightIcon = activeIndex === 1 && index === 2
@@ -57,7 +57,7 @@ const HeroSection: FC<Props> = ({ viewDetails }) => {
 						<TouchableOpacity onPress={() => scrolltoActiveIndex(index)}>
 							<Div
 								w={width / 1.5}
-								justifyContent='flex-end'
+								justifyContent="flex-end"
 								alignItems={index === 0 ? 'flex-end' : index === 1 ? 'center' : 'flex-start'}
 							>
 								<Heading
@@ -65,9 +65,9 @@ const HeroSection: FC<Props> = ({ viewDetails }) => {
 									fontWeight={index === activeIndex ? 'bold' : 'normal'}
 									fontSize={index === activeIndex ? 'xl' : 'md'}
 								>
-									{showLeftIcon && <Icon name='left' color='brandDark' mb={-5} />}
+									{showLeftIcon && <Icon name="left" color="brandDark" mb={-5} />}
 									{item.title}
-									{showRightIcon && <Icon name='right' color='brandDark' mb={-5} />}
+									{showRightIcon && <Icon name="right" color="brandDark" mb={-5} />}
 								</Heading>
 							</Div>
 						</TouchableOpacity>
@@ -77,20 +77,20 @@ const HeroSection: FC<Props> = ({ viewDetails }) => {
 
 			{/* card */}
 			<FlatList
-				ref={ref => (cardRef.current = ref)}
+				ref={(ref) => (cardRef.current = ref)}
 				showsHorizontalScrollIndicator={false}
 				data={DATA}
-				onMomentumScrollEnd={ev => {
+				onMomentumScrollEnd={(ev) => {
 					const offset = ev.nativeEvent.contentOffset.x
 					scrolltoActiveIndex(Math.floor(offset / width), offset)
 				}}
 				horizontal
 				pagingEnabled
-				keyExtractor={i => i.title}
+				keyExtractor={(i) => i.title}
 				renderItem={({ item }) => <CardItem {...{ item, viewDetails, SPACING }} />}
 			/>
 
-			<HStack alignSelf='center'>
+			<HStack alignSelf="center">
 				<Indicator active={activeIndex === 0} />
 				<Indicator active={activeIndex === 1} />
 				<Indicator active={activeIndex === 2} />
@@ -100,7 +100,7 @@ const HeroSection: FC<Props> = ({ viewDetails }) => {
 }
 
 const Indicator: FC<{ active: boolean }> = ({ active }) => {
-	return <Div h={3} w={40} rounded='lg' bg={active ? 'blue600' : 'gray300'} m='sm' />
+	return <Div h={3} w={40} rounded="lg" bg={active ? 'blue600' : 'gray300'} m="sm" />
 }
 
 export default HeroSection

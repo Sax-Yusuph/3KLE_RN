@@ -1,24 +1,13 @@
 import MainTabs from '@navigation/tabs/MainTabs'
-import { StackNavigationOptions, TransitionPresets } from '@react-navigation/stack'
+import LinkBankAccountScreens from './linkBank'
 import { CommonScreens } from '@screens'
-import { COLORS } from '@utils/colors'
-import React, { FC } from 'react'
-import { StyleSheet, View } from 'react-native'
-
-const CardOverlay: FC = () => <View style={styles.cardOverlay} />
-
-//custom screen options
-const Options: StackNavigationOptions = {
-	headerShown: false,
-	cardOverlay: () => <CardOverlay />,
-	...TransitionPresets.SlideFromRightIOS,
-}
-
+import { Options } from './screenOptions'
 //we would nest navigators in their respective objects
 //it allows us to be able to group navigators properly
 
 export const userScreens = {
 	Home: { component: MainTabs, options: Options },
+	...LinkBankAccountScreens, //navigation.navigate('linkBankAccount',{screen, params})
 	...CommonScreens,
 }
 
@@ -36,7 +25,3 @@ export const userScreens = {
 // 	Signin: { component: SignIn, options },
 // 	WebView: { component: CustomWebView },
 // }
-
-const styles = StyleSheet.create({
-	cardOverlay: { backgroundColor: COLORS.brandDark, flex: 1 },
-})

@@ -10,9 +10,18 @@ export const ActivityItem: FC<{ item: Activity }> = memo(({ item }) => {
 
 	const navigation = useNavigation()
 	const handleNavigation = () => {
-		item.navRoute && navigation.navigate(item.navRoute)
+		if (!item.navRoute) return
+
+		if (item.parentRoute) {
+			navigation.navigate(item.parentRoute, { screen: item.navRoute })
+		} else {
+			navigation.navigate(item.navRoute)
+		}
 	}
 
+	if (item.title.includes('bank')) {
+		console.log(item)
+	}
 	return (
 		<VStack m="xs" w={ICON_SIZE + 10}>
 			<Pressable onPress={handleNavigation}>

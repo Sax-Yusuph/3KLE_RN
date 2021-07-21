@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import RNBootSplash from 'react-native-bootsplash'
 import { ThemeProvider } from 'react-native-magnus'
 import { lightTheme } from '../../themes'
@@ -32,6 +32,7 @@ const Root: React.FC = () => {
 								right: 0,
 								left: 0,
 							},
+							...TransitionPresets.ModalSlideFromBottomIOS,
 						}}
 					>
 						{/* {Object.entries({

@@ -13,7 +13,7 @@ export const useAndroidBarBg = (color: string, delay?: number, lightMode?: boole
 			await Sleep(delay)
 		}
 		showNavigationBar()
-		changeNavigationBarColor(color || '#F4F7F9', lightMode ?? false, true)
+		changeNavigationBarColor(color || '#F4F7F9', lightMode ?? true, true)
 	}, [color])
 
 	useFocusEffect(() => {
