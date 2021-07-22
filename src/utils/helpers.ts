@@ -1,4 +1,3 @@
-import React from 'react'
 import { ToastAndroid } from 'react-native'
 
 export function toProperCase(str: string) {
@@ -14,4 +13,4 @@ export const showToast = (message?: string) => {
 	ToastAndroid.showWithGravityAndOffset(_message, ToastAndroid.LONG, ToastAndroid.BOTTOM, 25, 50)
 }
 
-export const Sleep = (time: number) => new Promise(resolve => setTimeout(resolve, time))
+export const Sleep = (time: number) => new Promise((resolve) => setTimeout(resolve, time))

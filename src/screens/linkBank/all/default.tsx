@@ -1,5 +1,6 @@
 import { Center, CustomImage, CustomScreen, Dot, Header, Heading, MotionBox, Paragraph } from '@elements'
 import { useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
 import React, { FC, useRef, useState } from 'react'
 import {
 	NativeScrollEvent,
@@ -11,7 +12,7 @@ import {
 import FastImage from 'react-native-fast-image'
 import { ScrollView } from 'react-native-gesture-handler'
 import { Button, Div } from 'react-native-magnus'
-import BankRoutes from './routes'
+import { LinkBankStackParams } from '..'
 
 const DATA = [
 	{
@@ -31,7 +32,7 @@ const DATA = [
 // range added because of inconsistensies on Android
 const RANGE = 2
 
-const OnboardingScreen = () => {
+const AddBankOnboardingScreen: FC = () => {
 	const [slideNo, setSlideNo] = useState(0)
 
 	const { width, height } = useWindowDimensions()
@@ -50,10 +51,10 @@ const OnboardingScreen = () => {
 		setSlideNo(Math.abs(index))
 	}
 
-	const navigation = useNavigation()
+	const navigation = useNavigation<StackNavigationProp<LinkBankStackParams>>()
 
 	const handleNavigation = () => {
-		navigation.navigate(BankRoutes.LINK_BANK.AVAILABLE_BANKS_LIST_SCREEN)
+		navigation.navigate('availableBankListScreen')
 	}
 
 	const Indicator = () => (
@@ -112,7 +113,7 @@ const OnboardingScreen = () => {
 	)
 }
 
-export default OnboardingScreen
+export default AddBankOnboardingScreen
 
 interface OnboardingProps {
 	image: number

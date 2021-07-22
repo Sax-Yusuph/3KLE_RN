@@ -105,8 +105,8 @@ export const ACTIVITIES: Activity[] = [
 		icon: <BankIcon width={ICON_WIDTH} height={ICON_WIDTH} />,
 		title: 'Link bank Account',
 		action: showToast,
-		navRoute: Routes.LINK_BANK.DEFAULT_SCREEN,
-		parentRoute: Routes.LINK_BANK.PARENT_SCREEN,
+		navRoute: 'defaultAddBankScreen',
+		parentRoute: 'linkBankAccount',
 	},
 	{
 		icon: <RotateIcon width={ICON_WIDTH} height={ICON_WIDTH} />,
