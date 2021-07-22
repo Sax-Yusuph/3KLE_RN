@@ -8,13 +8,25 @@ import {
 	SearchInput,
 	Center,
 } from '@elements'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Div } from 'react-native-magnus'
 import BankIcon from '@assets/svgs/linkBank/bankIcon.svg'
 import { FlatList, TouchableOpacity } from 'react-native'
 import { BANK_LIST } from './bankList'
+import { useNavigation } from '@react-navigation/native'
+import { LinkBankStackParams } from '..'
+import { StackNavigationProp } from '@react-navigation/stack'
 
 const AvailableBanks = () => {
+	const navigation = useNavigation<StackNavigationProp<LinkBankStackParams>>()
+
+	const handleNavigation = useCallback(
+		(bankName: string) => {
+			navigation.navigate('agreementPolicyScreen', { bankName })
+		},
+		[navigation],
+	)
+
 	return (
 		<CustomScreen noGutter>
 			<VirtualizedView>
@@ -43,7 +55,7 @@ const AvailableBanks = () => {
 							showsVerticalScrollIndicator={false}
 							keyExtractor={(_, i) => i.toString()}
 							renderItem={({ item }) => (
-								<TouchableOpacity>
+								<TouchableOpacity onPress={() => handleNavigation(item.name)}>
 									<HStack my="lg">
 										<Center borderWidth={1} w={40} h={40} rounded="lg" borderColor="divider" p="sm">
 											{item.image}

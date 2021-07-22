@@ -19,7 +19,7 @@ import { useCustomBackBehaviour } from '@hooks'
  * @returns 
  */
 const SuccessScreen = ({ route }: any) => {
-	const { headingText, descriptionText, callbackRoute } = route.params
+	const { headingText, descriptionText, callbackRoute, callbackText } = route.params
 	const navigation = useNavigation()
 
 	const handleCallback = () => {
@@ -31,17 +31,17 @@ const SuccessScreen = ({ route }: any) => {
 	console.log(route.params)
 	return (
 		<CustomScreen>
-			<Center flex={1}>
-				<Heading>{headingText}</Heading>
-				<Paragraph>{descriptionText}</Paragraph>
+			<Center flex={1} px="xl">
 				<Div my="2xl">
 					<MotionBox animation="bounceIn" delay={1000}>
 						<SuccessIcon />
 					</MotionBox>
 				</Div>
+				<Heading>{headingText}</Heading>
+				<Paragraph textAlign="center">{descriptionText}</Paragraph>
 				<Div h={200} />
-				<Button onPress={handleCallback} alignSelf="center" px={100} bg="brandDark" rounded="xl" py={20}>
-					Proceed
+				<Button onPress={handleCallback} alignSelf="center" px={100} bg="brandDark" rounded={30} py={20}>
+					{callbackText ?? 'Proceed'}
 				</Button>
 			</Center>
 		</CustomScreen>

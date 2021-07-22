@@ -13,11 +13,12 @@ import { COLORS } from '@utils/colors'
 import { useNavigation } from '@react-navigation/native'
 
 interface Props extends DivProps {
-	title: string
+	title?: string
 	profileImg?: string | number
 	handleBackPress?: () => void
 	backIcon?: string
 	isCentered?: boolean
+	TitleComponent?: ReactElement
 }
 export const HomeScreenHeader: FC<Props> = ({ title, profileImg, ...props }) => {
 	const darkMode = useColorScheme() === 'dark'
@@ -96,6 +97,7 @@ export const Header: FC<Props> = ({ title, backIcon, isCentered, ...props }) => 
 interface ThreeColumnProps extends Props {
 	subtitle?: string
 	rightIcon?: ReactElement
+	closeIcon?: string
 }
 export const ThreeColumnHeader: FC<ThreeColumnProps> = ({
 	title,
@@ -103,6 +105,8 @@ export const ThreeColumnHeader: FC<ThreeColumnProps> = ({
 	backIcon,
 	subtitle,
 	rightIcon,
+	closeIcon,
+	TitleComponent,
 	...props
 }) => {
 	const darkMode = useColorScheme() === 'dark'
@@ -128,9 +132,14 @@ export const ThreeColumnHeader: FC<ThreeColumnProps> = ({
 					<Icon name={backIcon ?? 'left'} fontSize={24} color="brandDark" />
 				</IconButton>
 				<VStack>
-					<Heading ml="md" fontSize="xl" color="brandDark">
-						{title}
-					</Heading>
+					{TitleComponent ? (
+						TitleComponent
+					) : (
+						<Heading ml="md" fontSize="xl" color="brandDark">
+							{title}
+						</Heading>
+					)}
+
 					{subtitle ? (
 						<Paragraph fontSize="sm" mt={-5} color="textDark">
 							{subtitle}
@@ -141,6 +150,10 @@ export const ThreeColumnHeader: FC<ThreeColumnProps> = ({
 				{rightIcon ? (
 					<IconButton onPress={showToast} rounded="circle">
 						{rightIcon}
+					</IconButton>
+				) : closeIcon ? (
+					<IconButton onPress={showToast} rounded="circle">
+						<Icon name={closeIcon} color="brandDark" fontSize="3xl" />
 					</IconButton>
 				) : (
 					<IconButton onPress={showToast} rounded="circle">

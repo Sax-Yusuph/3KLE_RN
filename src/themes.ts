@@ -49,8 +49,9 @@ const commonComponents: ThemeType['components'] = {
 	Button: {
 		fontSize: 'lg',
 		textTransform: 'capitalize',
-		rounded: 'lg',
+		rounded: 'xl',
 		px: 'xl',
+		bg: 'brandDark',
 
 		variants: {
 			warning: {
