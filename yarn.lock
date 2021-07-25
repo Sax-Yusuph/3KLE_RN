@@ -7884,6 +7884,11 @@ react-native-animatable@1.3.3, react-native-animatable@^1.3.3:
   dependencies:
     prop-types "^15.7.2"
 
+react-native-animated-progress@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-animated-progress/-/react-native-animated-progress-1.0.1.tgz#3126ff9f5d3be1e1149643987ca3a1b9e4576f8e"
+  integrity sha512-cDnEF4QF8I9StpdayJxhWshggS1PkG4jJ6CsnAARQhhLo1V+gY/tby6MkxUa46zxw27slSC29SX9AjG4ll4JQw==
+
 react-native-bootsplash@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/react-native-bootsplash/-/react-native-bootsplash-3.2.1.tgz#5250f615ecb8cc17e9480cbf40a5d787a81f2a71"

@@ -15,7 +15,7 @@ interface Props {
 const DefaultHome: FC<Props> = ({ viewDetails }) => {
 	const { width } = useWindowDimensions()
 	const CARD_WIDTH = width * 0.95
-	const CARD_HEIGHT = CARD_WIDTH * 0.6
+	const CARD_HEIGHT = CARD_WIDTH * 0.5
 
 	const overlayImageLayout = {
 		width: CARD_WIDTH,

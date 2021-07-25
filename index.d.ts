@@ -5,3 +5,5 @@ declare module '*.svg' {
 	export default content
 }
 declare module '*.png'
+
+declare module '@types/react-native-animated-progress'

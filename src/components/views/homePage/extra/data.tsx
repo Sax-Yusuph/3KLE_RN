@@ -89,6 +89,8 @@ export const ACTIVITIES: Activity[] = [
 		icon: <BillPaymentIcon width={ICON_WIDTH} height={ICON_WIDTH} />,
 		title: 'Bill Payment',
 		action: showToast,
+		navRoute: 'BillingCategory',
+		parentRoute: 'billPayment',
 	},
 	{
 		icon: <FingerprintIcon width={ICON_WIDTH} height={ICON_WIDTH} color={COLORS.brandDark} />,
@@ -111,7 +113,8 @@ export const ACTIVITIES: Activity[] = [
 	{
 		icon: <RotateIcon width={ICON_WIDTH} height={ICON_WIDTH} />,
 		title: 'Round-Up Settings',
-		action: showToast,
+		navRoute: 'defaultRoundupScreen',
+		parentRoute: 'roundUp',
 	},
 ]
 

@@ -9,7 +9,7 @@ interface Props {
 const FutureSummary: FC<Props> = ({ navigation }) => {
 	return (
 		<CustomScreen>
-			<Header title='Home' profileImg='uche' handleBackPress={navigation.goBack} />
+			<Header title="Home" profileImg="uche" handleBackPress={navigation.goBack} />
 			<ContentView />
 		</CustomScreen>
 	)

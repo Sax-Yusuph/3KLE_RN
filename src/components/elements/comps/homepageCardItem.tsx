@@ -16,35 +16,26 @@ interface CardProps {
 
 export const CardItem: FC<CardProps> = ({ item, viewDetails, SPACING }) => {
 	const { width } = useWindowDimensions()
-	const {
-		title,
-		currency,
-		cardName,
-		cardNumber,
-		cardType,
-		value,
-		extraData,
-		projectionSpan,
-	} = item.summary
+	const { title, currency, cardName, cardNumber, cardType, value, extraData, projectionSpan } = item.summary
 
 	const CARD_WIDTH = width * 0.95
-	const CARD_HEIGHT = CARD_WIDTH * 0.6
+	const CARD_HEIGHT = CARD_WIDTH * 0.5
 
 	return (
 		<Div p={SPACING} h={CARD_HEIGHT} w={width}>
-			<Center h='100%' rounded='2xl' bg='brandDark' justifyContent='flex-start'>
+			<Center h="100%" rounded="2xl" bg="brandDark" justifyContent="flex-start">
 				<MotionBox>
-					<Paragraph color='textLight' mt='2xl'>
+					<Paragraph color="textLight" mt="2xl">
 						{title}
 					</Paragraph>
 				</MotionBox>
 
 				<MotionBox delay={600}>
 					<HStack>
-						<Heading color='textLight' fontSize='2xl' mr='md'>
+						<Heading color="textLight" fontSize="2xl" mr="md">
 							{currency}
 						</Heading>
-						<Heading color='textLight' fontSize='5xl'>
+						<Heading color="textLight" fontSize="5xl">
 							{value}
 						</Heading>
 					</HStack>
@@ -52,23 +43,23 @@ export const CardItem: FC<CardProps> = ({ item, viewDetails, SPACING }) => {
 
 				<MotionBox>
 					{extraData ? (
-						<Paragraph color='textLight' textAlign='center'>
+						<Paragraph color="textLight" textAlign="center">
 							{extraData}
 						</Paragraph>
 					) : null}
 					{projectionSpan ? (
-						<Heading color='textLight' textAlign='center'>
+						<Heading color="textLight" textAlign="center">
 							{projectionSpan} years time.
 						</Heading>
 					) : null}
 				</MotionBox>
 				{cardNumber ? (
-					<VStack position='absolute' bottom={3} alignItems='flex-start' w={CARD_WIDTH} px='xl'>
+					<VStack position="absolute" bottom={3} alignItems="flex-start" w={CARD_WIDTH} px="xl">
 						<MotionBox>
-							<Paragraph color='textLight'>{cardNumber}</Paragraph>
+							<Paragraph color="textLight">{cardNumber}</Paragraph>
 
-							<HStack w='100%' justifyContent='space-between'>
-								<Paragraph color='rgba(255,255,255,0.8)' mt='lg'>
+							<HStack w="100%" justifyContent="space-between">
+								<Paragraph color="rgba(255,255,255,0.8)" mt="lg">
 									{cardName}
 								</Paragraph>
 								<CustomImage
@@ -81,7 +72,7 @@ export const CardItem: FC<CardProps> = ({ item, viewDetails, SPACING }) => {
 					</VStack>
 				) : null}
 
-				<Div position='absolute' w='100%' h='100%'>
+				<Div position="absolute" w="100%" h="100%">
 					{POLYGONS.map(({ source, style }) => (
 						<MotionBox key={source} delay={200}>
 							{/*  @ts-ignore */}
@@ -91,9 +82,9 @@ export const CardItem: FC<CardProps> = ({ item, viewDetails, SPACING }) => {
 				</Div>
 
 				{!item.title.includes('Present') ? (
-					<Div position='absolute' bottom={10} right={20}>
+					<Div position="absolute" bottom={10} right={20}>
 						<TouchableOpacity onPress={() => viewDetails(item.route)}>
-							<Heading color='green500' fontSize='md'>
+							<Heading color="green500" fontSize="md">
 								View
 							</Heading>
 						</TouchableOpacity>
@@ -101,11 +92,11 @@ export const CardItem: FC<CardProps> = ({ item, viewDetails, SPACING }) => {
 				) : null}
 
 				{!cardNumber && item.title.includes('Present') ? (
-					<Div position='absolute' bottom={30} left={0}>
+					<Div position="absolute" bottom={30} left={0}>
 						<TouchableOpacity onPress={() => showToast()}>
-							<HStack bg={COLORS.secondary_deep} px='lg' py='xs' roundedRight='lg'>
-								<Icon name='plus' color='textLight' mr='sm' />
-								<Paragraph color='textLight' fontSize='sm'>
+							<HStack bg={COLORS.secondary_deep} px="lg" py="xs" roundedRight="lg">
+								<Icon name="plus" color="textLight" mr="sm" />
+								<Paragraph color="textLight" fontSize="sm">
 									Add Card
 								</Paragraph>
 							</HStack>

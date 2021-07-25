@@ -2,14 +2,14 @@ import {
 	CustomScreen,
 	Heading,
 	VirtualizedView,
-	Header,
 	HStack,
 	Paragraph,
 	SearchInput,
 	Center,
+	ThreeColumnHeader,
 } from '@elements'
 import React, { useCallback } from 'react'
-import { Div } from 'react-native-magnus'
+import { Div, Icon } from 'react-native-magnus'
 import BankIcon from '@assets/svgs/linkBank/bankIcon.svg'
 import { FlatList, TouchableOpacity } from 'react-native'
 import { BANK_LIST } from './bankList'
@@ -30,7 +30,10 @@ const AvailableBanks = () => {
 	return (
 		<CustomScreen noGutter>
 			<VirtualizedView>
-				<Header title="" backIcon="arrowleft" />
+				<ThreeColumnHeader
+					backIcon="arrowleft"
+					RightIconComponent={<Icon name="questioncircleo" fontSize="3xl" color="brandDark" />}
+				/>
 				<Div px="xl">
 					<Heading fontSize="3xl" mb="xl">
 						Link Your Bank Account

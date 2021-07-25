@@ -1,11 +1,11 @@
 import {
 	Center,
 	CustomScreen,
-	Header,
 	Heading,
 	HStack,
 	MotionBox,
 	Paragraph,
+	ThreeColumnHeader,
 	VirtualizedView,
 } from '@elements'
 import { Sleep } from '@utils/helpers'
@@ -16,6 +16,7 @@ import RedirectingIcon from '@assets/svgs/linkBank/redirecting.svg'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { LinkBankStackParams } from '..'
+
 const OPTIONS = [
 	{
 		title: 'Account Name',
@@ -49,7 +50,11 @@ const AgreementPolicyScreen = () => {
 	return (
 		<CustomScreen>
 			<VirtualizedView>
-				<Header title="" backIcon="arrowleft" />
+				<ThreeColumnHeader
+					backIcon="arrowleft"
+					RightIconComponent={<Icon name="questioncircleo" color="brandDark" fontSize="3xl" />}
+				/>
+				{/* <Header title="" backIcon="arrowleft" /> */}
 				<Div px="xl">
 					<Heading fontSize="3xl">Add Bank account</Heading>
 					<Paragraph mb="xl" fontSize="md">

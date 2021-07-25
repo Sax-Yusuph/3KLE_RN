@@ -8,7 +8,7 @@ import { DivProps, Div } from 'react-native-magnus'
 //Hstack --> horizontally place items with align center
 export const HStack: FC<DivProps> = ({ children, ...props }) => {
 	return (
-		<Div flexDir='row' alignItems='center' {...props}>
+		<Div flexDir="row" alignItems="center" {...props}>
 			{children}
 		</Div>
 	)
@@ -17,7 +17,7 @@ export const HStack: FC<DivProps> = ({ children, ...props }) => {
 //Vstack --> vertically place items with align center
 export const VStack: FC<DivProps> = ({ children, ...props }) => {
 	return (
-		<Div alignItems='center' {...props}>
+		<Div alignItems="center" {...props}>
 			{children}
 		</Div>
 	)
@@ -26,10 +26,14 @@ export const VStack: FC<DivProps> = ({ children, ...props }) => {
 // Center --> a  container with centered contents
 export const Center: FC<DivProps> = ({ children, ...props }) => {
 	return (
-		<Div alignItems='center' justifyContent='center' {...props}>
+		<Div alignItems="center" justifyContent="center" {...props}>
 			{children}
 		</Div>
 	)
 }
+// Center --> a  container with centered contents
+export const Spacer: FC<DivProps> = ({ ...props }) => {
+	return <Div flex={1} {...props} />
+}
 
-export const Divider: FC<DivProps> = props => <Div h={2} w='100%' bg='divider' {...props} />
+export const Divider: FC<DivProps> = (props) => <Div h={2} w="100%" bg="divider" {...props} />

@@ -19,6 +19,7 @@ interface Props extends DivProps {
 	backIcon?: string
 	isCentered?: boolean
 	TitleComponent?: ReactElement
+	RightIconComponent?: ReactElement
 }
 export const HomeScreenHeader: FC<Props> = ({ title, profileImg, ...props }) => {
 	const darkMode = useColorScheme() === 'dark'
@@ -98,6 +99,7 @@ interface ThreeColumnProps extends Props {
 	subtitle?: string
 	rightIcon?: ReactElement
 	closeIcon?: string
+	iconFamily?: string
 }
 export const ThreeColumnHeader: FC<ThreeColumnProps> = ({
 	title,
@@ -107,6 +109,8 @@ export const ThreeColumnHeader: FC<ThreeColumnProps> = ({
 	rightIcon,
 	closeIcon,
 	TitleComponent,
+	RightIconComponent,
+	iconFamily,
 	...props
 }) => {
 	const darkMode = useColorScheme() === 'dark'
@@ -129,7 +133,13 @@ export const ThreeColumnHeader: FC<ThreeColumnProps> = ({
 		>
 			<HStack w="100%" justifyContent="space-between">
 				<IconButton onPress={goBack} rounded="circle">
-					<Icon name={backIcon ?? 'left'} fontSize={24} color="brandDark" />
+					<Icon
+						name={backIcon ?? 'left'}
+						fontSize={24}
+						color="brandDark"
+						//@ts-ignore
+						fontFamily={iconFamily ?? 'AntDesign'}
+					/>
 				</IconButton>
 				<VStack>
 					{TitleComponent ? (
@@ -147,8 +157,13 @@ export const ThreeColumnHeader: FC<ThreeColumnProps> = ({
 					) : null}
 				</VStack>
 
-				{rightIcon ? (
+				{RightIconComponent ? (
 					<IconButton onPress={showToast} rounded="circle">
+						{RightIconComponent}
+					</IconButton>
+				) : rightIcon ? (
+					<IconButton onPress={showToast} rounded="circle">
+						{/* for svg icons */}
 						{rightIcon}
 					</IconButton>
 				) : closeIcon ? (
