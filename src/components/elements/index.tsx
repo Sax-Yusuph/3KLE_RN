@@ -15,6 +15,7 @@ export * from './comps/recentTransactionItem'
 export * from './comps/motionBox'
 export * from './comps/chatWithUs'
 export * from './comps/commonIcons'
+export * from './comps/animatedButton'
 
 export { default as CustomScreen } from './comps/AppScreen'
 export { default as CustomImage } from './comps/Image'

@@ -23,14 +23,14 @@ const AuthNavigator = () => (
 		}}
 	>
 		<Stack.Screen
-			name='splashScreen'
+			name="splashScreen"
 			component={SplashScreen}
 			options={{
 				headerShown: false,
 			}}
 		/>
 		<Stack.Screen
-			name='stepOne'
+			name="stepOne"
 			component={CountrySelector}
 			options={{
 				title: '',
@@ -41,7 +41,7 @@ const AuthNavigator = () => (
 			}}
 		/>
 		<Stack.Screen
-			name='stepTwo'
+			name="stepTwo"
 			component={OTP}
 			options={{
 				title: '',
@@ -52,7 +52,7 @@ const AuthNavigator = () => (
 			}}
 		/>
 		<Stack.Screen
-			name='stepThree'
+			name="stepThree"
 			component={CreateAccont}
 			options={{
 				title: '',
@@ -63,7 +63,7 @@ const AuthNavigator = () => (
 			}}
 		/>
 		<Stack.Screen
-			name='stepFour'
+			name="stepFour"
 			component={SecurityQuestions}
 			options={{
 				title: '',
@@ -74,7 +74,7 @@ const AuthNavigator = () => (
 			}}
 		/>
 		<Stack.Screen
-			name='stepFive'
+			name="stepFive"
 			component={SecretPin}
 			options={{
 				title: '',
@@ -85,7 +85,7 @@ const AuthNavigator = () => (
 			}}
 		/>
 		<Stack.Screen
-			name='stepSix'
+			name="stepSix"
 			component={ConfirmPin}
 			options={{
 				title: '',
@@ -96,7 +96,7 @@ const AuthNavigator = () => (
 			}}
 		/>
 		<Stack.Screen
-			name='stepSeven'
+			name="stepSeven"
 			component={TakeSelfie}
 			options={{
 				title: '',
@@ -107,7 +107,7 @@ const AuthNavigator = () => (
 			}}
 		/>
 		<Stack.Screen
-			name='stepEight'
+			name="stepEight"
 			component={ProofOfidentity}
 			options={{
 				title: '',
@@ -118,7 +118,7 @@ const AuthNavigator = () => (
 			}}
 		/>
 		<Stack.Screen
-			name='stepNine'
+			name="stepNine"
 			component={ProgressPage}
 			options={{
 				title: '',

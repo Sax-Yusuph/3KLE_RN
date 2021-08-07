@@ -1,5 +1,6 @@
 import ActivateFingerPrint from './all/fingerPrint.setting'
 import SuccessScreen from './all/success.screen'
+import SuccessScreenTwo from './all/sucess2.screen'
 
 export const CommonScreenRoutes = {
 	ACTIVATE_FINGERPRINT: 'activateFingerprint',
@@ -10,4 +11,5 @@ export type CommonRoutes = keyof typeof CommonScreenRoutes
 export default Object.freeze({
 	activateFingerprint: { component: ActivateFingerPrint },
 	successScreen: { component: SuccessScreen },
+	successScreenTwo: { component: SuccessScreenTwo },
 })

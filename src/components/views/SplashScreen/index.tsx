@@ -81,8 +81,7 @@ export default function SplashScreen(props: any) {
 					{index === 4 && (
 						<View style={styles.splashTop}>
 							<AppCustomText style={styles.smallFont}>
-								PAY BILLS{' '}
-								<AppCustomText style={[styles.threeKleBlue, { fontSize: 20 }]}>AND</AppCustomText>{' '}
+								PAY BILLS <AppCustomText style={[styles.threeKleBlue, { fontSize: 20 }]}>AND</AppCustomText>{' '}
 								MERCHANTS
 							</AppCustomText>
 							<AppCustomText style={styles.textDesc}>{slideText[index]}</AppCustomText>
@@ -92,11 +91,7 @@ export default function SplashScreen(props: any) {
 						<View style={styles.splashTop}>
 							<AppCustomText style={styles.smallFont}>
 								PEER
-								<AppCustomText style={[styles.threeKleBlue, { fontSize: 20 }]}>
-									{' '}
-									2{' '}
-								</AppCustomText>{' '}
-								PEER PLAN
+								<AppCustomText style={[styles.threeKleBlue, { fontSize: 20 }]}> 2 </AppCustomText> PEER PLAN
 							</AppCustomText>
 							<AppCustomText style={styles.textDesc}>{slideText[index]}</AppCustomText>
 						</View>
@@ -107,7 +102,7 @@ export default function SplashScreen(props: any) {
 						data={slideText}
 						numColumns={6}
 						extraData={index}
-						keyExtractor={item => item}
+						keyExtractor={(item) => item}
 						renderItem={renderRowItem}
 					/>
 					<AppButton

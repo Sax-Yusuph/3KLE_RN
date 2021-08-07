@@ -20,7 +20,7 @@ const CustomScreen: FC<Props> = ({ statusBarStyle, statusBarColor, noGutter, ...
 
 	return (
 		<>
-			<CustomStatusBar barStyle={statusBarStyle || barStyle} backgroundColor={statusBarColor || barColor} />
+			<CustomStatusBar barStyle="dark-content" backgroundColor={statusBarColor || barColor} />
 			<SafeAreaView style={{ flex: 1, backgroundColor: WHITE }}>
 				<Div bg={isDarkMode ? BLACK : WHITE} flex={1} {...props} />
 				{!noGutter && <Div h={50} />}

@@ -72,7 +72,6 @@ export default () => {
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			<Div flex={1} alignItems="center" bg="white" style={StyleSheet.absoluteFill}>
-				<FocusAwareStatusBar hidden />
 				<ImageBackground
 					source={Data[slideNo].image}
 					style={[{ justifyContent: 'flex-end' }, StyleSheet.absoluteFill]}

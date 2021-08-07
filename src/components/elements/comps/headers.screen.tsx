@@ -23,7 +23,7 @@ interface Props extends DivProps {
 }
 export const HomeScreenHeader: FC<Props> = ({ title, profileImg, ...props }) => {
 	const darkMode = useColorScheme() === 'dark'
-	console.log({ profileImg })
+	// console.log({ profileImg })
 	return (
 		<HStack
 			justifyContent="space-between"
@@ -117,7 +117,7 @@ export const ThreeColumnHeader: FC<ThreeColumnProps> = ({
 	const navigation = useNavigation()
 
 	const goBack = () => {
-		console.log(profileImg)
+		// console.log(profileImg)
 		navigation.canGoBack() && navigation.goBack()
 	}
 

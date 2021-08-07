@@ -10,6 +10,7 @@ export { default as OnboardingScreens, OnboardingScreenRoutes } from './onboardi
 export { default as CardScreens, CardScreenRoutes } from './cards'
 export { default as CommonScreens, CommonScreenRoutes } from './common'
 export { default as ProfileScreens, ProfileScreenRoutes } from './profile'
+export { default as WithdrawalScreens } from './withdraw'
 export { default as LinkBankScreens } from './linkBank'
 export { default as RoundUpScreens } from './roundup'
 export { default as BillPaymentScreens } from './billpayment'

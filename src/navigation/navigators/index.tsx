@@ -1,7 +1,7 @@
 import MainTabs from '@navigation/tabs/MainTabs'
 import LinkBankAccountScreens from './linkBank'
 import RoundupScreens from './RoundupStack'
-import { CommonScreens } from '@screens'
+import { CommonScreens, WithdrawalScreens } from '@screens'
 import { Options } from './screenOptions'
 import BillPaymentStack from './BillPaymentStack'
 //we would nest navigators in their respective objects
@@ -13,6 +13,7 @@ export const userScreens = {
 	...CommonScreens,
 	...RoundupScreens,
 	...BillPaymentStack,
+	...WithdrawalScreens,
 }
 
 // export const commonScreens = {

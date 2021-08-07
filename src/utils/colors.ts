@@ -15,4 +15,5 @@ export const COLORS = {
 	goalSavings: 'rgba(1, 173, 239, 0.65)',
 	familyPlus: 'rgba(116, 201, 71, 0.37)',
 	investNow: 'rgba(218, 235, 255, 1)',
+	black: '#000',
 }

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { FlatList } from 'react-native'
 
-const VirtualizedView = React.memo(props => {
+const VirtualizedView = React.memo((props) => {
 	return (
 		<FlatList
 			{...props}
@@ -15,7 +15,7 @@ const VirtualizedView = React.memo(props => {
 				() => (
 					<React.Fragment>{props.children}</React.Fragment>
 				),
-				[props]
+				[props],
 			)}
 		/>
 	)

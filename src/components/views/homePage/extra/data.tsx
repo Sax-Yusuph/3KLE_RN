@@ -26,11 +26,11 @@ export type ProductListItem = {
 	Icon: JSX.Element
 }
 
-export const RenderIcon = (Icon: FC<SvgProps>, color: string) => {
+export const RenderIcon = (Icon: FC<SvgProps>, color: string, iconColor?: string) => {
 	const SIZE = 70
 	return (
 		<Center bg={color} w={SIZE} h={SIZE} rounded="2xl">
-			<Icon />
+			<Icon color={iconColor} />
 		</Center>
 	)
 }
@@ -39,7 +39,7 @@ export const PRODUCTS: ProductListItem[] = [
 	{
 		title: 'Peer 2 Peer Loans',
 		description: 'Have access to a pool of available lenders and trustworthy borrowers.',
-		Icon: RenderIcon(PeerIcon, COLORS.peer2Peer),
+		Icon: RenderIcon(PeerIcon, COLORS.peer2Peer, 'black'),
 	},
 	{
 		title: 'Goal Savings',
@@ -84,6 +84,7 @@ export const ACTIVITIES: Activity[] = [
 		icon: <WidthdrawIcon width={ICON_WIDTH} height={ICON_WIDTH} />,
 		title: 'Withdraw',
 		action: showToast,
+		navRoute: 'defaultWithdrawalScreen',
 	},
 	{
 		icon: <BillPaymentIcon width={ICON_WIDTH} height={ICON_WIDTH} />,
