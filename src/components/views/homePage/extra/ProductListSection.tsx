@@ -1,9 +1,10 @@
-import { Center, Heading, HStack, Paragraph, VStack } from '@elements'
-import React, { FC, memo } from 'react'
-import { FlatList, TouchableOpacity } from 'react-native'
+import { AnimatedPress, Center, Heading, HStack, Paragraph, VStack } from '@elements'
+import React, { FC, memo, useCallback } from 'react'
+import { FlatList } from 'react-native'
 import { Div } from 'react-native-magnus'
 import Emoji from '@assets/svgs/homepage/Emoji.svg'
 import { ProductListItem, PRODUCTS } from './data'
+import { useNavigation } from '@react-navigation/native'
 
 export const ProductListSection: FC<{ title: string }> = ({ title }) => {
 	return (
@@ -24,8 +25,16 @@ export const ProductListSection: FC<{ title: string }> = ({ title }) => {
 }
 
 const ProductItem: FC<{ item: ProductListItem }> = memo(({ item }) => {
+	const navigation = useNavigation()
+
+	const handlePress = useCallback(() => {
+		if (item.parentRoute && item.screenRoute) {
+			navigation.navigate(item.parentRoute, { screen: item.screenRoute })
+		}
+	}, [item.parentRoute, item.screenRoute, navigation])
+
 	return (
-		<TouchableOpacity>
+		<AnimatedPress onPress={handlePress}>
 			<HStack borderColor="divider" borderWidth={1} p="lg" rounded="lg" my="md">
 				{item.Icon}
 
@@ -36,6 +45,6 @@ const ProductItem: FC<{ item: ProductListItem }> = memo(({ item }) => {
 					</Div>
 				</VStack>
 			</HStack>
-		</TouchableOpacity>
+		</AnimatedPress>
 	)
 })

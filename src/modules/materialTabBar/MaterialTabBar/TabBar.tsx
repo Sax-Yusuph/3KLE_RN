@@ -47,7 +47,7 @@ const MaterialTabBar = <T extends TabName = any>({
 	indicatorStyle,
 	index,
 	TabItemComponent = MaterialTabItem,
-	getLabelText = name => String(name).toUpperCase(),
+	getLabelText = (name) => String(name).toUpperCase(),
 	onTabPress,
 	style,
 	tabProps,
@@ -73,7 +73,7 @@ const MaterialTabBar = <T extends TabName = any>({
 			: tabNames.map((_, i) => {
 					const tabWidth = windowWidth / nTabs + 20
 					return { width: tabWidth, x: i * tabWidth }
-			  })
+			  }),
 	)
 
 	React.useEffect(() => {
@@ -85,7 +85,7 @@ const MaterialTabBar = <T extends TabName = any>({
 			setItemsLayout(
 				tabNames.map((_, i) => {
 					return { width: tabWidth, x: i * tabWidth }
-				})
+				}),
 			)
 		}
 	}, [scrollEnabled, nTabs, tabNames, windowWidth])
@@ -112,14 +112,14 @@ const MaterialTabBar = <T extends TabName = any>({
 				}
 			}
 		},
-		[scrollEnabled, tabNames]
+		[scrollEnabled, tabNames],
 	)
 
 	const cancelNextScrollSync = useSharedValue(index.value)
 
 	const onScroll = useAnimatedScrollHandler(
 		{
-			onScroll: event => {
+			onScroll: (event) => {
 				tabsOffset.value = event.contentOffset.x
 			},
 			onBeginDrag: () => {
@@ -130,7 +130,7 @@ const MaterialTabBar = <T extends TabName = any>({
 				isScrolling.value = false
 			},
 		},
-		[]
+		[],
 	)
 
 	const currentIndexToSync = useSharedValue(index.value)
@@ -140,21 +140,21 @@ const MaterialTabBar = <T extends TabName = any>({
 		() => {
 			return index.value
 		},
-		nextIndex => {
+		(nextIndex) => {
 			if (scrollEnabled) {
 				cancelAnimation(currentIndexToSync)
 				targetIndexToSync.value = nextIndex
 				currentIndexToSync.value = withTiming(nextIndex)
 			}
 		},
-		[scrollEnabled]
+		[scrollEnabled],
 	)
 
 	useAnimatedReaction(
 		() => {
 			return currentIndexToSync.value === targetIndexToSync.value
 		},
-		canSync => {
+		(canSync) => {
 			if (canSync && scrollEnabled && itemsLayout.length === nTabs && itemsLayout[index.value]) {
 				const halfTab = itemsLayout[index.value].width / 2
 				const offset = itemsLayout[index.value].x
@@ -163,7 +163,7 @@ const MaterialTabBar = <T extends TabName = any>({
 				}
 			}
 		},
-		[scrollEnabled, itemsLayout, nTabs]
+		[scrollEnabled, itemsLayout, nTabs],
 	)
 	return (
 		<Animated.ScrollView
@@ -175,19 +175,19 @@ const MaterialTabBar = <T extends TabName = any>({
 				!scrollEnabled && { width: windowWidth },
 				contentContainerStyle,
 			]}
-			keyboardShouldPersistTaps='handled'
+			keyboardShouldPersistTaps="handled"
 			bounces={false}
 			alwaysBounceHorizontal={false}
 			scrollsToTop={false}
 			showsHorizontalScrollIndicator={false}
 			automaticallyAdjustContentInsets={false}
-			overScrollMode='never'
+			overScrollMode="never"
 			scrollEnabled={scrollEnabled}
 			onScroll={scrollEnabled ? onScroll : undefined}
 			scrollEventThrottle={16}
 		>
-			<IconButton onPress={showToast} rounded='circle' ml='lg'>
-				<Icon name='search1' fontSize={16} color='black' />
+			<IconButton onPress={showToast} rounded="circle" ml="lg">
+				<Icon name="search1" fontSize={16} color="black" />
 			</IconButton>
 
 			{tabNames.map((name, i) => {
@@ -198,7 +198,7 @@ const MaterialTabBar = <T extends TabName = any>({
 						name={name}
 						label={tabProps.get(name)?.label || getLabelText(name)}
 						onPress={onTabPress}
-						onLayout={scrollEnabled ? event => onTabItemLayout(event, name) : undefined}
+						onLayout={scrollEnabled ? (event) => onTabItemLayout(event, name) : undefined}
 						scrollEnabled={scrollEnabled}
 						indexDecimal={indexDecimal}
 						labelStyle={labelStyle}

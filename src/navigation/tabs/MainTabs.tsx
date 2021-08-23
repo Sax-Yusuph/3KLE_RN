@@ -1,15 +1,15 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import { BottomTabBarOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import HomeStack from '../navigators/HomeStack'
 import { Text, TextProps } from 'react-native-magnus'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
-
 import ChartIcon from '@assets/svgs/bottomtab/chart.svg'
-
 import HomeIconBold from '@assets/svgs/bottomtab/home_bold.svg'
+import HomeIcon from '@assets/svgs/bottomtab/home.svg'
 import CardsIconBold from '@assets/svgs/bottomtab/cards_bold.svg'
+import CardsIcon from '@assets/svgs/bottomtab/cards.svg'
 import ProductsIcon from '@assets/svgs/bottomtab/products.svg'
 import SettingsIconBold from '@assets/svgs/bottomtab/setting_bold.svg'
+import SettingsIcon from '@assets/svgs/bottomtab/setting.svg'
 import Dummy from '../../screens/main/dummy'
 import { COLORS } from '@utils/colors'
 import { useAndroidBarBg } from '@hooks'
@@ -20,27 +20,20 @@ const BottomTabs = createBottomTabNavigator()
 
 const TAB_BAR_OPTIONS: BottomTabBarOptions = {
 	inactiveTintColor: COLORS.brandDark,
-	activeTintColor: COLORS.purple,
+	activeTintColor: COLORS.brandDark,
 	style: {
 		borderTopLeftRadius: 18,
 		borderTopRightRadius: 18,
-		height: 60,
+		// height: 60,
 		backgroundColor: COLORS.screen,
 		elevation: 0, // remove shadow on Android
 		shadowOpacity: 0, // remove shadow on iOS
 		position: 'absolute',
 		borderTopWidth: 0,
 	},
-	safeAreaInsets: {
-		bottom: 0,
-		top: 0,
-		right: 0,
-		left: 0,
-	},
 }
 
 const MainTabs: React.FC = () => {
-	const { bottom } = useSafeAreaInsets()
 	useAndroidBarBg(COLORS.screen)
 
 	return (
@@ -49,7 +42,8 @@ const MainTabs: React.FC = () => {
 				name="HomeStack"
 				component={HomeStack}
 				options={{
-					tabBarIcon: ({ color }) => <HomeIconBold {...{ color }} />,
+					tabBarIcon: ({ color, focused }) =>
+						focused ? <HomeIconBold {...{ color }} /> : <HomeIcon {...{ color }} />,
 
 					tabBarLabel: (props) => <TabBarText {...props}>Home</TabBarText>,
 				}}
@@ -59,7 +53,8 @@ const MainTabs: React.FC = () => {
 				name="Cards"
 				component={CardStack}
 				options={{
-					tabBarIcon: ({ color, focused }) => <CardsIconBold {...{ color }} />,
+					tabBarIcon: ({ color, focused }) =>
+						focused ? <CardsIconBold {...{ color }} /> : <CardsIcon {...{ color }} />,
 					tabBarLabel: (props) => <TabBarText {...props}>Cards</TabBarText>,
 				}}
 			/>
@@ -84,7 +79,8 @@ const MainTabs: React.FC = () => {
 				name="ProfileStack"
 				component={ProfileStack}
 				options={{
-					tabBarIcon: ({ color }) => <SettingsIconBold {...{ color }} />,
+					tabBarIcon: ({ color, focused }) =>
+						focused ? <SettingsIconBold {...{ color }} /> : <SettingsIcon {...{ color }} />,
 					tabBarLabel: (props) => <TabBarText {...props}>Profile</TabBarText>,
 				}}
 			/>
@@ -95,5 +91,5 @@ const MainTabs: React.FC = () => {
 export default MainTabs
 
 const TabBarText: FC<TextProps> = (props) => {
-	return <Text fontSize="xs" mb={6} {...props} fontWeight="500" />
+	return <Text fontSize="xs" {...props} fontWeight="500" />
 }

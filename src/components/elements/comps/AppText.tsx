@@ -2,6 +2,9 @@ import { HStack } from '@elements'
 import React, { FC } from 'react'
 import { Div, Text, TextProps } from 'react-native-magnus'
 
+export type TextSizes = 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
+export type TextSizeProps = Record<TextSizes, boolean>
+
 export const AppCustomFont: FC<TextProps> = (props) => {
 	// so here i used the Text from magnus Ui..
 	//by default, it has all the props out of the box..
@@ -23,6 +26,12 @@ export const Heading: FC<TextProps> = ({ children, ...props }) => (
 	</Text>
 )
 
+export const BigText: FC<TextProps> = ({ children, ...props }) => (
+	<Text fontWeight="bold" color="brandDark" fontSize="3xl" {...props}>
+		{children}
+	</Text>
+)
+
 //heading --> Modification of the TextProp to have a fontweight bold for headings..
 //font sizes could be customized as need.
 // the props could easily override any of the settings
@@ -40,7 +49,45 @@ export const FadedText: FC<TextProps> = ({ children, ...props }) => (
 )
 
 export const Paragraph: FC<TextProps> = ({ children, ...props }) => (
-	<Text fontSize="lg" color="brandDark" {...props}>
+	<Text fontSize="md" color="brandDark" {...props}>
+		{children}
+	</Text>
+)
+
+export const SemiBoldtext: FC<TextProps & Partial<TextSizeProps>> = ({
+	children,
+	h1,
+	h2,
+	h3,
+	h4,
+	...props
+}) => {
+	const size = h1 ? '4xl' : h2 ? '3xl' : h3 ? '2xl' : h4 ? 'xl' : 'lg'
+	return (
+		<Text fontSize={size} color="brandDark" {...props} fontFamily="Poppins-SemiBold">
+			{children}
+		</Text>
+	)
+}
+
+export const MediumText: FC<TextProps & Partial<TextSizeProps>> = ({
+	children,
+	h1,
+	h2,
+	h3,
+	h4,
+	...props
+}) => {
+	const size = h1 ? '4xl' : h2 ? '3xl' : h3 ? '2xl' : h4 ? 'xl' : 'lg'
+	return (
+		<Text fontSize={size} color="brandDark" {...props} fontFamily="Poppins-Medium">
+			{children}
+		</Text>
+	)
+}
+
+export const RegularText: FC<TextProps> = ({ children, ...props }) => (
+	<Text fontSize="md" color="brandDark" {...props} fontFamily="Poppins-Regular">
 		{children}
 	</Text>
 )

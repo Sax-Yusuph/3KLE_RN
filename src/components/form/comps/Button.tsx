@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, TouchableHighlight } from 'react-native'
+import { StyleSheet, TouchableHighlight } from 'react-native'
 import { AppCustomFont as AppCustomText } from '@elements'
 import colors from '../../themes/colors'
 
@@ -10,10 +10,7 @@ export function AppButton({
 	color = colors.THREEKLE_BLUE_COLOR,
 }) {
 	return (
-		<TouchableHighlight
-			style={[styles.button, { backgroundColor: color, width }]}
-			onPress={onPress}
-		>
+		<TouchableHighlight style={[styles.button, { backgroundColor: color, width }]} onPress={onPress}>
 			<AppCustomText style={styles.text}>{title}</AppCustomText>
 		</TouchableHighlight>
 	)

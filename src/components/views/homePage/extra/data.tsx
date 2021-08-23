@@ -19,11 +19,14 @@ import { Center } from '@elements'
 import { showToast } from '@utils/helpers'
 import { HomeRoutes } from 'screens/home'
 import Routes from '@navigation/navigators/routes'
+import { __NAVIGATORS, __SCREENS } from '@navigation/types/routes'
 
 export type ProductListItem = {
 	title: string
 	description: string
 	Icon: JSX.Element
+	parentRoute?: string
+	screenRoute?: string
 }
 
 export const RenderIcon = (Icon: FC<SvgProps>, color: string, iconColor?: string) => {
@@ -45,6 +48,8 @@ export const PRODUCTS: ProductListItem[] = [
 		title: 'Goal Savings',
 		description: 'Easily save for specific personal goals with our Goal saving plan, without risks.',
 		Icon: RenderIcon(GoalIcon, COLORS.goalSavings),
+		parentRoute: __NAVIGATORS.GROUP_SAVINGS,
+		screenRoute: __SCREENS.GROUP_SAVINGS_INTRO,
 	},
 	{
 		title: 'Family Plus',
@@ -55,6 +60,8 @@ export const PRODUCTS: ProductListItem[] = [
 		title: 'Invest Now (Auto Manage)',
 		description: 'Investments are chosen and managed automatically with huge returns.',
 		Icon: RenderIcon(InvestNowIcon, COLORS.investNow),
+		parentRoute: __NAVIGATORS.SELF_TRADE,
+		screenRoute: __SCREENS.SELF_TRADE_INTRO,
 	},
 ]
 

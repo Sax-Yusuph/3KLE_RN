@@ -1,22 +1,18 @@
 import { StackNavigationProp, useHeaderHeight } from '@react-navigation/stack'
 import React, { FC, forwardRef, useCallback, useEffect, useRef, useState } from 'react'
-import {
-	ActivityIndicator,
-	KeyboardAvoidingView,
-	Platform,
-	TouchableOpacity,
-	TextInput,
-} from 'react-native'
+import { ActivityIndicator, KeyboardAvoidingView, Platform, TouchableOpacity, TextInput } from 'react-native'
 import { Button, Div, Icon, Input, InputProps } from 'react-native-magnus'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { FocusAwareStatusBar } from '@elements'
 import { useTransparentBar } from '../../hooks/useAndroidBarBg'
 import { Heading, HStack, SmallText, VStack } from '@elements'
 import EyeIcon from '@assets/svgs/eye.svg'
 import FingerPrintIcon from '@assets/svgs/fingerprint.svg'
 import { IconButton } from '@elements'
-import { showToast, Sleep } from '../../helpers'
+
 import * as Animatable from 'react-native-animatable'
+
+import { showToast } from '@helpers/show-toast'
+import { Sleep } from '@helpers/sleep'
 
 const FADE_TEXT_ALT = 'rgba(255, 255, 255, 0.85)'
 
@@ -56,7 +52,7 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
 
 		setLoading(false)
 		navigation.navigate('MainTabs')
-	}, [isLoading])
+	}, [navigation])
 
 	const handlePress = () => {
 		showToast()
@@ -64,8 +60,7 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
-			<Div flex={1} bg='rgba(36, 59, 128, 1)'>
-				<FocusAwareStatusBar hidden />
+			<Div flex={1} bg="rgba(36, 59, 128, 1)">
 				<KeyboardAvoidingView
 					style={{ flex: 1, justifyContent: 'center' }}
 					behavior={Platform.select({
@@ -74,48 +69,48 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
 					})}
 					keyboardVerticalOffset={headerHeight}
 				>
-					<Animatable.View animation='fadeInUp' delay={200} useNativeDriver>
-						<VStack mb='3xl'>
-							<Heading color='textLight' fontSize='5xl'>
+					<Animatable.View animation="fadeInUp" delay={200} useNativeDriver>
+						<VStack mb="3xl">
+							<Heading color="textLight" fontSize="5xl">
 								Welcome back!
 							</Heading>
-							<SmallText color={FADE_TEXT_ALT} fontSize='md'>
+							<SmallText color={FADE_TEXT_ALT} fontSize="md">
 								Please login to your account
 							</SmallText>
 						</VStack>
 					</Animatable.View>
 
-					<Animatable.View animation='fadeIn' delay={500} useNativeDriver>
-						<HStack m='lg'>
+					<Animatable.View animation="fadeIn" delay={500} useNativeDriver>
+						<HStack m="lg">
 							<StyledInput
-								placeholder='Username or email'
-								placeholderTextColor='rgba(7, 72, 110, 0.38)'
+								placeholder="Username or email"
+								placeholderTextColor="rgba(7, 72, 110, 0.38)"
 								// @ts-ignore
 								ref={inputRef}
 							/>
 						</HStack>
-						<HStack m='lg'>
-							<StyledInput placeholder='Password' flex={1} />
-							<Div position='absolute' right={20}>
-								<IconButton onPress={handlePress} rounded='circle'>
+						<HStack m="lg">
+							<StyledInput placeholder="Password" flex={1} />
+							<Div position="absolute" right={20}>
+								<IconButton onPress={handlePress} rounded="circle">
 									<EyeIcon />
 								</IconButton>
 							</Div>
 						</HStack>
 						<TouchableOpacity>
-							<SmallText textAlign='right' mr='xl' color={FADE_TEXT_ALT}>
+							<SmallText textAlign="right" mr="xl" color={FADE_TEXT_ALT}>
 								Forgot password?
 							</SmallText>
 						</TouchableOpacity>
 						<VStack mb={'md'} mx={'lg'}>
 							<Button
 								block
-								my='3xl'
+								my="3xl"
 								py={16}
-								rounded='2xl'
+								rounded="2xl"
 								onPress={handleLogin}
-								color='rgba(7, 72, 110, 1)'
-								bg='rgba(246, 245, 245, 1)'
+								color="rgba(7, 72, 110, 1)"
+								bg="rgba(246, 245, 245, 1)"
 							>
 								Log in
 							</Button>
@@ -123,19 +118,19 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
 							<TouchableOpacity onPress={handlePress}>
 								<HStack>
 									<FingerPrintIcon />
-									<SmallText ml='md' textAlign='right' mr='xl' color={FADE_TEXT_ALT}>
+									<SmallText ml="md" textAlign="right" mr="xl" color={FADE_TEXT_ALT}>
 										Fingerprint
 									</SmallText>
 								</HStack>
 							</TouchableOpacity>
 
-							<HStack mt='xl'>
-								<SmallText ml='md' textAlign='right' color={FADE_TEXT_ALT}>
+							<HStack mt="xl">
+								<SmallText ml="md" textAlign="right" color={FADE_TEXT_ALT}>
 									Don't have any account?
 								</SmallText>
 
 								<TouchableOpacity onPress={handlePress}>
-									<SmallText ml='md' textAlign='right' color={FADE_TEXT_ALT} fontWeight='500'>
+									<SmallText ml="md" textAlign="right" color={FADE_TEXT_ALT} fontWeight="500">
 										Sign Up
 									</SmallText>
 								</TouchableOpacity>
@@ -144,13 +139,13 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
 					</Animatable.View>
 				</KeyboardAvoidingView>
 
-				<Div position='absolute' top={15} right={15}>
+				<Div position="absolute" top={15} right={15}>
 					{isLoading ? (
-						<ActivityIndicator animating={isLoading} size='large' color='rgba(255,255,255,0.5)' />
+						<ActivityIndicator animating={isLoading} size="large" color="rgba(255,255,255,0.5)" />
 					) : (
-						<Animatable.View animation='fadeIn' delay={700} useNativeDriver>
-							<IconButton onPress={handlePress} activeBg='rgba(0,0,0,0.1)' rounded='circle' p='md'>
-								<Icon name='questioncircle' color='textLight' fontSize='3xl' />
+						<Animatable.View animation="fadeIn" delay={700} useNativeDriver>
+							<IconButton onPress={handlePress} activeBg="rgba(0,0,0,0.1)" rounded="circle" p="md">
+								<Icon name="questioncircle" color="textLight" fontSize="3xl" />
 							</IconButton>
 						</Animatable.View>
 					)}
@@ -168,12 +163,12 @@ type Ref = TextInput
 const StyledInput = forwardRef<Ref, InputProps>((props, ref) => (
 	<Input
 		ref={ref}
-		color='rgba(7, 72, 110, 1)' //<-- these colors should actually be defined in the themse.. i was lazy about it
-		bg='rgba(246, 245, 245, 1)'
-		rounded='2xl'
+		color="rgba(7, 72, 110, 1)" //<-- these colors should actually be defined in the themse.. i was lazy about it
+		bg="rgba(246, 245, 245, 1)"
+		rounded="2xl"
 		py={16}
-		placeholderTextColor='rgba(7, 72, 110, 0.38)'
-		fontSize='md'
+		placeholderTextColor="rgba(7, 72, 110, 0.38)"
+		fontSize="md"
 		{...props}
 	/>
 ))

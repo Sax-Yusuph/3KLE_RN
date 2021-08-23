@@ -1,3 +1,4 @@
+import { Sleep } from '@helpers/sleep'
 import { useFocusEffect } from '@react-navigation/native'
 import { useCallback } from 'react'
 import { StatusBar } from 'react-native'
@@ -5,7 +6,6 @@ import changeNavigationBarColor, {
 	hideNavigationBar,
 	showNavigationBar,
 } from 'react-native-navigation-bar-color'
-import { Sleep } from '../helpers'
 
 export const useAndroidBarBg = (color: string, delay?: number, lightMode?: boolean) => {
 	const testSetTranslucent = useCallback(async () => {
@@ -14,7 +14,7 @@ export const useAndroidBarBg = (color: string, delay?: number, lightMode?: boole
 		}
 		showNavigationBar()
 		changeNavigationBarColor(color || '#F4F7F9', lightMode ?? false, true)
-	}, [color])
+	}, [delay, lightMode, color])
 
 	useFocusEffect(() => {
 		testSetTranslucent()

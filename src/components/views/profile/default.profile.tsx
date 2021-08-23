@@ -1,10 +1,17 @@
 import React, { FC, useState } from 'react'
-import { VStack, VirtualizedView, Heading, HStack, FadedText, IconButton, ChatWithUs } from '@elements'
+import {
+	VStack,
+	VirtualizedView,
+	Heading,
+	HStack,
+	FadedText,
+	IconButton,
+	ChatWithUs,
+	CustomSwitch,
+} from '@elements'
 
-import { FlatList, StyleSheet, Switch } from 'react-native'
+import { FlatList, StyleSheet } from 'react-native'
 import { Div, Icon } from 'react-native-magnus'
-
-import { COLORS } from '@utils/colors'
 import { showToast } from '@utils/helpers'
 import { useNavigation } from '@react-navigation/native'
 import routes from '@navigation/navigators/routes'
@@ -89,13 +96,8 @@ const Option: FC<OptionProps> = ({ title, active, onToggle }) => {
 			<Heading fontSize="lg" fontWeight="500">
 				{title}
 			</Heading>
-			<Switch
-				trackColor={{ false: '#767577', true: COLORS.secondary_light }}
-				thumbColor={active ? COLORS.secondary : '#f4f3f4'}
-				ios_backgroundColor="#3e3e3e"
-				onValueChange={onToggle}
-				value={active}
-			/>
+
+			<CustomSwitch {...{ active, onToggle }} />
 		</HStack>
 	)
 }

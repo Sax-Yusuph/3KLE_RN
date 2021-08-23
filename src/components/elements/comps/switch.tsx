@@ -9,9 +9,9 @@ interface Props {
 const CustomSwitch: FC<Props> = ({ active, onToggle }) => {
 	return (
 		<Switch
-			trackColor={{ false: '#767577', true: COLORS.secondary_light }}
+			trackColor={{ false: COLORS.screen, true: COLORS.secondary_light }}
 			thumbColor={active ? COLORS.secondary : '#f4f3f4'}
-			ios_backgroundColor="#3e3e3e"
+			ios_backgroundColor={COLORS.screen}
 			onValueChange={onToggle}
 			value={active}
 		/>

@@ -1,5 +1,3 @@
-export const BLACK = '#000000'
-export const WHITE = '#FFFFFF'
 export const COLORS = {
 	brand: '#1AA0DA', // '#0077B6',
 	brandLight: '#00B4D8',
@@ -16,4 +14,40 @@ export const COLORS = {
 	familyPlus: 'rgba(116, 201, 71, 0.37)',
 	investNow: 'rgba(218, 235, 255, 1)',
 	black: '#000',
+}
+
+export enum __COLORS {
+	BLACK = '#000',
+	WHITE = '#FFFFFF',
+	PRIMARY = '#243B80',
+	PRIMARY_ALT = '#03CFFB',
+	SECONDARY = '#74C947',
+	LEFT_GRADIENT = '#00CCFF',
+	RIGHT_GRADIENT = '#33FF99',
+	POSITIVE = '#1fd588',
+	NEGATIVE = '#FD0707',
+	NEGATIVE_LIGHT = 'rgba(255, 68, 68, 0.79)',
+	Background = '#F9F9FF',
+	LIGHT_BLUE = '#42b7ec',
+	DARK_BLUE = '#09223F',
+	DARK_PURPLE = '#422ab2',
+	LIGHT_PURPLE = 'rgba(66,42,178,0.3)',
+	GREY = 'gray',
+	DARK_RED = '#943030',
+	LIGHT_GREY = '#c7c7c7',
+	LIGHTER_GREY = '#e7e7e7',
+	GOLD = '#FFC107',
+	GREEN = '#3f9143',
+	MESSAGE_BLUE = '#0a81f6',
+	YELLOW = '#FFAF36',
+	BRAND = '#5A4EEF',
+	BUTTON_BRAND = '#243B80', //'#2D43DC',
+}
+
+export enum __ALERT_COLORS {
+	SUCCESS = '#1e2b30',
+	ERROR = '#f84848',
+	WARNING = '#ea9d4d',
+	INFO = '#5a83d7',
+	NEUTRAL = '#1c1c1c',
 }

@@ -5,7 +5,7 @@ import { StackNavigationProp } from '@react-navigation/stack'
 interface Props {
 	navigation: StackNavigationProp<any, any>
 }
-const OnboardScreen: FC<Props> = ({ navigation }) => {
+const OnboardScreen: FC<Props> = () => {
 	return <ContentView />
 }
 

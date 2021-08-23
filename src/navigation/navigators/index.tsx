@@ -4,6 +4,9 @@ import RoundupScreens from './RoundupStack'
 import { CommonScreens, WithdrawalScreens } from '@screens'
 import { Options } from './screenOptions'
 import BillPaymentStack from './BillPaymentStack'
+import selfTradeStack from './selfTrade'
+import GroupSavingStack from './groupSavings'
+
 //we would nest navigators in their respective objects
 //it allows us to be able to group navigators properly
 
@@ -14,6 +17,8 @@ export const userScreens = {
 	...RoundupScreens,
 	...BillPaymentStack,
 	...WithdrawalScreens,
+	...selfTradeStack,
+	...GroupSavingStack,
 }
 
 // export const commonScreens = {

@@ -18,26 +18,26 @@ import { Section2 } from './transactions'
 
 export const Header = () => {
 	return (
-		<View pointerEvents='box-none'>
-			<HStack justifyContent='space-between' p='lg'>
+		<View pointerEvents="box-none">
+			<HStack justifyContent="space-between" p="lg">
 				<HStack>
-					<IconButton onPress={showToast} rounded='circle'>
+					<IconButton onPress={showToast} rounded="circle">
 						<AvatarImg width={32} height={32} />
 					</IconButton>
-					<Text ml='md' fontSize='md' fontWeight='bold'>
+					<Text ml="md" fontSize="md" fontWeight="bold">
 						My Profile
 					</Text>
 				</HStack>
 
-				<IconButton onPress={showToast} p='md' rounded='circle' mx='lg' pointerEvents='none'>
+				<IconButton onPress={showToast} p="md" rounded="circle" mx="lg" pointerEvents="none">
 					<BellIcon width={22} height={22} />
-					<Circle bg='#E44228' size={10} position='absolute' right={4} top={4} />
+					<Circle bg="#E44228" size={10} position="absolute" right={4} top={4} />
 				</IconButton>
 			</HStack>
 			<Banner />
 
-			<Animatable.View animation='fadeIn' delay={400} useNativeDriver pointerEvents='box-none'>
-				<ScrollDiv horizontal mx='lg' mt='xl'>
+			<Animatable.View animation="fadeIn" delay={400} useNativeDriver pointerEvents="box-none">
+				<ScrollDiv horizontal mx="lg" mt="xl">
 					{CARDS_DATA?.map((cardItem, i) => (
 						<Card key={i.toString()} {...cardItem} />
 					))}
@@ -56,48 +56,48 @@ const Banner = () => {
 		<Div
 			// bg=''
 			h={200}
-			rounded='xl'
-			m='lg'
-			justifyContent='center'
-			alignItems='center'
-			pointerEvents='none'
-			overflow='hidden'
+			rounded="xl"
+			m="lg"
+			justifyContent="center"
+			alignItems="center"
+			pointerEvents="none"
+			overflow="hidden"
 		>
 			<LinearGradient
 				colors={['rgba(38, 57, 116, 1)', 'rgba(36, 59, 128, 0.87)']}
 				style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}
 			>
-				<Animatable.View animation='fadeIn' useNativeDriver delay={100} pointerEvents='box-none'>
-					<VStack alignItems='flex-start'>
+				<Animatable.View animation="fadeIn" useNativeDriver delay={100} pointerEvents="box-none">
+					<VStack alignItems="flex-start">
 						<HStack>
-							<Text color='textLight' mr='sm' fontSize='xl'>
+							<Text color="textLight" mr="sm" fontSize="xl">
 								$
 							</Text>
 
-							<Text color='textLight' fontSize={36} fontWeight='bold'>
+							<Text color="textLight" fontSize={36} fontWeight="bold">
 								1290.00
 							</Text>
 						</HStack>
 
 						<HStack mt={-6}>
-							<Text color='rgba(255,255,255,0.9)' fontSize='lg'>
+							<Text color="rgba(255,255,255,0.9)" fontSize="lg">
 								Portfolio Value
 							</Text>
-							<HStack ml='md'>
+							<HStack ml="md">
 								<UpIcon width={26} height={26} />
-								<Text color='secondary'>up</Text>
+								<Text color="secondary">up</Text>
 							</HStack>
 						</HStack>
 					</VStack>
 				</Animatable.View>
 
-				<Animatable.View animation='fadeIn' delay={300} useNativeDriver pointerEvents='box-none'>
-					<HStack mt='2xl'>
-						<Depositboxes text='Deposit' />
-						<Depositboxes text='WithDraw' up />
+				<Animatable.View animation="fadeIn" delay={300} useNativeDriver pointerEvents="box-none">
+					<HStack mt="2xl">
+						<Depositboxes text="Deposit" />
+						<Depositboxes text="WithDraw" up />
 					</HStack>
 				</Animatable.View>
-				<Div position='absolute' bottom={-20}>
+				<Div position="absolute" bottom={-20}>
 					<Effects />
 				</Div>
 			</LinearGradient>
@@ -107,9 +107,9 @@ const Banner = () => {
 
 const Depositboxes: FC<{ up?: true; text: string }> = ({ up, text }) => {
 	return (
-		<VStack px='lg'>
+		<VStack px="lg">
 			{up ? <DepositUpIcon /> : <DepositIcon />}
-			<Text fontSize='xs' color='textLight' mt='sm'>
+			<Text fontSize="xs" color="textLight" mt="sm">
 				{text}
 			</Text>
 		</VStack>
@@ -121,21 +121,14 @@ const Card: FC<{ title: string; image: number }> = ({ title, image }) => {
 	const CARD_WIDTH = width / 2.3
 	return (
 		<TouchableOpacity activeOpacity={0.89}>
-			<Div
-				rounded='xl'
-				w={CARD_WIDTH}
-				h={CARD_WIDTH / 2}
-				mr='xl'
-				overflow='hidden'
-				pointerEvents='box-none'
-			>
+			<Div rounded="xl" w={CARD_WIDTH} h={CARD_WIDTH / 2} mr="xl" overflow="hidden" pointerEvents="box-none">
 				<ImageBackground source={image} style={styles.image}>
-					<Text color='textLight' fontSize='md'>
+					<Text color="textLight" fontSize="md">
 						{title}
 					</Text>
-					<Div position='absolute' top={5} right={5}>
-						<IconButton activeBg='rgba(0,0,0,0.3)' rounded='circle' onPress={showToast}>
-							<Icon name='close' fontFamily='Ionicons' color='white' />
+					<Div position="absolute" top={5} right={5}>
+						<IconButton activeBg="rgba(0,0,0,0.3)" rounded="circle" onPress={showToast}>
+							<Icon name="close" fontFamily="Ionicons" color="white" />
 						</IconButton>
 					</Div>
 				</ImageBackground>

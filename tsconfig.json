@@ -23,7 +23,7 @@
 		"baseUrl": "./src",
 		"paths": {
 			"tests": ["./tests/"],
-			"@helpers": ["helper"], //remove later
+			"@helpers/*": ["helpers/*"],
 			"@lib": ["lib"], //remove later
 			"@auth/*": ["modules/auth/*"],
 			"@assets/*": ["../assets/*"],

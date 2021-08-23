@@ -31,9 +31,5 @@ export const Center: FC<DivProps> = ({ children, ...props }) => {
 		</Div>
 	)
 }
-// Center --> a  container with centered contents
-export const Spacer: FC<DivProps> = ({ ...props }) => {
-	return <Div flex={1} {...props} />
-}
 
 export const Divider: FC<DivProps> = (props) => <Div h={2} w="100%" bg="divider" {...props} />

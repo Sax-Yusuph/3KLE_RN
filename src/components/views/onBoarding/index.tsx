@@ -13,7 +13,7 @@ import { Button, Div, Image, Text } from 'react-native-magnus'
 import Data from './extra/data'
 import * as Animatable from 'react-native-animatable'
 import { useTransparentBar } from '../../../hooks/comps/useAndroidBarBg'
-import { VStack, FocusAwareStatusBar, Dot, Center } from '@elements'
+import { VStack, Dot, Center } from '@elements'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Slide from '../../elements/comps/Slide'
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -85,12 +85,7 @@ export default () => {
 					)}
 
 					<Animatable.View animation="fadeIn" delay={500}>
-						<Div
-							h={slideNo === 0 ? BOX_HEIGHT : height}
-							justifyContent="center"
-							alignItems="center"
-							zIndex={200}
-						>
+						<Div h={BOX_HEIGHT} justifyContent="center" alignItems="center" zIndex={200}>
 							<ScrollView
 								horizontal
 								snapToInterval={width}

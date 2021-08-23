@@ -78,7 +78,7 @@ export const Header: FC<Props> = ({ title, backIcon, isCentered, ...props }) => 
 			pb="xs"
 			mb="xs"
 			// mt={top}
-			bg={darkMode ? 'gray900' : 'card'}
+			// bg={darkMode ? 'gray900' : 'card'}
 			{...props}
 		>
 			<HStack>

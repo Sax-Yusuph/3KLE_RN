@@ -23,7 +23,7 @@ module.exports = {
 					'@navigation': './src/navigation',
 					'@types': './src/@types',
 					'@screens': './src/screens',
-					'@helpers': './src/helper',
+					'@helpers': './src/helpers',
 					'@hooks': './src/hooks',
 					'@modules': './src/modules',
 				},

@@ -23,10 +23,3 @@ const Routes = Object.freeze({
 
 export default Routes
 export type RoutesType = keyof typeof Routes
-
-//i dont want us to rely on typescript for defining routes.. because
-//its a tedious process when defining types for deeply nested routes.
-// so we would just create a constant like this... and use it like
-// @usage
-// navigation.navigate(ROUTES.HOME.DEFAULT_HOMESCREEN)
-// navigation.navigate(ROUTES.INVESTMENTS.DEFAULT_HOMESCREEN) etc

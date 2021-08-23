@@ -7,7 +7,6 @@ const VirtualizedView = React.memo((props) => {
 			{...props}
 			data={[]}
 			showsVerticalScrollIndicator={false}
-			contentContainerStyle={{ backgroundColor: 'white' }}
 			ListEmptyComponent={null}
 			keyExtractor={() => 'dummy'}
 			renderItem={null}
