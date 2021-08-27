@@ -1,7 +1,10 @@
-import { HStack, SmallText, Circle, IconButton } from '@elements'
 import { __COLORS } from '@utils/colors'
 import React from 'react'
 import { Icon } from 'react-native-magnus'
+import { SmallText } from './AppText'
+import { Circle } from './Dot'
+import { IconButton } from './iconBtn'
+import { HStack } from './stacks'
 
 export const CreateGroupIcon = (
 	<HStack>

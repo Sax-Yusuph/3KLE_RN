@@ -1,6 +1,5 @@
 import React, { Dispatch, FC, SetStateAction, useCallback } from 'react'
 import { ImageLibraryOptions, launchImageLibrary } from 'react-native-image-picker'
-import { Image } from 'react-native'
 import { StyleSheet } from 'react-native'
 import { TouchablePress } from './Pressable'
 import { PressableLabel } from './PressableLabel'
@@ -8,6 +7,7 @@ import { Center, HStack } from './stacks'
 import { Div } from 'react-native-magnus'
 import { Circle } from './Dot'
 import { __COLORS } from '@utils/colors'
+import FastImage from 'react-native-fast-image'
 
 interface Props {
 	userImage?: string
@@ -49,7 +49,11 @@ const UserAvatar: FC<Props> = ({
 						<Div mb={5} rounded={80} overflow="hidden">
 							<TouchablePress disabled={disableEditing} {...{ onPress }}>
 								<Circle size={size ?? 50} bg={__COLORS.LIGHTER_GREY} overflow="hidden">
-									<Image source={{ uri: image ?? 'https://i.pravatar.cc/500' }} style={styles.userImage} />
+									<FastImage
+										key={i}
+										source={{ uri: image ?? 'https://i.pravatar.cc/500' }}
+										style={styles.userImage}
+									/>
 								</Circle>
 							</TouchablePress>
 						</Div>
@@ -64,7 +68,7 @@ const UserAvatar: FC<Props> = ({
 			<Div mb={5} rounded={80} overflow="hidden">
 				<TouchablePress disabled={disableEditing} {...{ onPress }}>
 					<Circle size={size ?? 50} bg={__COLORS.LIGHTER_GREY} overflow="hidden">
-						<Image source={{ uri: userImage ?? 'https://i.pravatar.cc/500' }} style={styles.userImage} />
+						<FastImage source={{ uri: userImage ?? 'https://i.pravatar.cc/400' }} style={styles.userImage} />
 					</Circle>
 				</TouchablePress>
 			</Div>

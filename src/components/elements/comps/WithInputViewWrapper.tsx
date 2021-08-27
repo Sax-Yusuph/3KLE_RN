@@ -17,7 +17,6 @@ const WithInputViewWrapper = ({ children, isFlatlist }: Props) => {
 		return (
 			<KeyboardAwareFlatList
 				data={[]}
-				style={styles.main}
 				ListEmptyComponent={null}
 				keyExtractor={() => 'dummy'}
 				renderItem={null}

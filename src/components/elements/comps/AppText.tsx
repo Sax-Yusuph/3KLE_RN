@@ -1,4 +1,5 @@
 import { HStack } from '@elements'
+import { __COLORS } from '@utils/colors'
 import React, { FC } from 'react'
 import { Div, Text, TextProps } from 'react-native-magnus'
 
@@ -21,13 +22,13 @@ export const AppCustomFont: FC<TextProps> = (props) => {
 //font sizes could be customized as need.
 // the props could easily override any of the settings
 export const Heading: FC<TextProps> = ({ children, ...props }) => (
-	<Text fontWeight="bold" color="brandDark" fontSize="xl" {...props}>
+	<Text fontWeight="bold" color={__COLORS.BUTTON_BRAND} fontSize="xl" {...props}>
 		{children}
 	</Text>
 )
 
 export const BigText: FC<TextProps> = ({ children, ...props }) => (
-	<Text fontWeight="bold" color="brandDark" fontSize="3xl" {...props}>
+	<Text fontWeight="bold" color={__COLORS.BUTTON_BRAND} fontSize="3xl" {...props}>
 		{children}
 	</Text>
 )
@@ -49,7 +50,7 @@ export const FadedText: FC<TextProps> = ({ children, ...props }) => (
 )
 
 export const Paragraph: FC<TextProps> = ({ children, ...props }) => (
-	<Text fontSize="md" color="brandDark" {...props}>
+	<Text fontSize="md" color={__COLORS.BUTTON_BRAND} {...props}>
 		{children}
 	</Text>
 )
@@ -64,7 +65,7 @@ export const SemiBoldtext: FC<TextProps & Partial<TextSizeProps>> = ({
 }) => {
 	const size = h1 ? '4xl' : h2 ? '3xl' : h3 ? '2xl' : h4 ? 'xl' : 'lg'
 	return (
-		<Text fontSize={size} color="brandDark" {...props} fontFamily="Poppins-SemiBold">
+		<Text fontSize={size} color={__COLORS.BUTTON_BRAND} {...props} fontFamily="Poppins-SemiBold">
 			{children}
 		</Text>
 	)
@@ -80,14 +81,14 @@ export const MediumText: FC<TextProps & Partial<TextSizeProps>> = ({
 }) => {
 	const size = h1 ? '4xl' : h2 ? '3xl' : h3 ? '2xl' : h4 ? 'xl' : 'lg'
 	return (
-		<Text fontSize={size} color="brandDark" {...props} fontFamily="Poppins-Medium">
+		<Text fontSize={size} color={__COLORS.BUTTON_BRAND} {...props} fontFamily="Poppins-Medium">
 			{children}
 		</Text>
 	)
 }
 
 export const RegularText: FC<TextProps> = ({ children, ...props }) => (
-	<Text fontSize="md" color="brandDark" {...props} fontFamily="Poppins-Regular">
+	<Text fontSize="md" color={__COLORS.BUTTON_BRAND} {...props} fontFamily="Poppins-Regular">
 		{children}
 	</Text>
 )

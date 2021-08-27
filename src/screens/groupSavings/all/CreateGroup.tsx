@@ -27,7 +27,12 @@ import { Div } from 'react-native-magnus'
 import { useGroupSavingsNavigator } from '@navigation/types/use-navigation'
 import { __SCREENS } from '@navigation/types/routes'
 
-const __SAVINGS_CHART = [
+export interface SavingsPlan {
+	members: number
+	months: string
+}
+
+export const __SAVINGS_CHART = [
 	{ members: 2, months: '2, 4, 6, 8, 10, 12 months' },
 	{ members: 3, months: '3, 6, 9, 12 months' },
 	{ members: 4, months: '4, 8, 12 months' },

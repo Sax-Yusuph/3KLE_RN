@@ -1,48 +1,39 @@
 import { CustomScreen, Padding, AppButton, Spacer, MediumText, Header } from '@elements'
-import { showToast } from '@helpers/show-toast'
-import { __SCREENS } from '@navigation/types/routes'
-import { useGroupSavingsNavigator } from '@navigation/types/use-navigation'
 import { __COLORS } from '@utils/colors'
 import AppInput, { AppInputProps } from 'components/elements/comps/AppInput'
 import WithInputViewWrapper from 'components/elements/comps/WithInputViewWrapper'
+import DateTimePickerModal from 'react-native-modal-datetime-picker'
+import Dayjs from 'dayjs'
 
 import React, { FC, useRef, useState } from 'react'
 import { TextInput } from 'react-native'
 import { Div } from 'react-native-magnus'
+import { Portal } from 'react-native-portalize'
+import { openFrequencyModal, PaymentFrequecy } from 'components/modals/payment-frequency'
+import { PickerWithLabel } from 'components/elements/comps/PickerWithLabel'
 
-const InfoCollector2 = () => {
-	const navigation = useGroupSavingsNavigator<__SCREENS.GROUP_SAVINGS_COLLECT_INFO_1>()
+interface GroupState {
+	startDate: Date
+	paymentFrequency: string
+	NumberOfMembers: string
+	reasonForSaving: string
+}
 
-	const [groupInfo, setInfo] = useState({
-		goalAmount: 0,
-		amountToSave: 0,
+const InfoCollector2 = ({ onSubmit }: any) => {
+	const [showDate, setShowDate] = useState(false)
+	const [groupInfo, setInfo] = useState<GroupState>({
+		startDate: new Date(),
+		paymentFrequency: '',
 		NumberOfMembers: '',
 		reasonForSaving: '',
 	})
 
-	const setGroupInfo = (info: keyof typeof groupInfo, value: string) => {
+	const setGroupInfo = (info: keyof typeof groupInfo, value: string | Date) => {
 		setInfo((p) => ({
 			...p,
 			[info]: value,
 		}))
 	}
-
-	const onSubmit = () => {
-		for (const item in groupInfo) {
-			//@ts-ignore
-			if (groupInfo[item] === '') {
-				return showToast('All fields must not be blank')
-			}
-		}
-
-		navigation.navigate(__SCREENS.GROUP_SAVINGS_COLLECT_INFO_2)
-	}
-
-	// GOAL AMOUNT REF
-	const goalAmountRef = useRef<TextInput | null>(null)
-
-	// AMOUNT TO SAVE REF
-	const amountToSaveRef = useRef<TextInput | null>(null)
 
 	// NUMBER OF MEMBERS
 	const numberOfMembersRef = useRef<TextInput | null>(null)
@@ -56,35 +47,24 @@ const InfoCollector2 = () => {
 			<WithInputViewWrapper>
 				<Padding>
 					{/* START DATE */}
-					<InputWithLabel
-						setRef={(ref) => {
-							goalAmountRef.current = ref
-						}}
-						autoFocus
+
+					<PickerWithLabel
 						label="Start Date"
-						placeholder="Enter the amount"
-						handleChange={(val: string) => setGroupInfo('goalAmount', val)}
-						value={groupInfo.goalAmount?.toString()}
-						isPriceInput
-						onSubmitEditing={() => {
-							amountToSaveRef.current?.focus()
-						}}
+						placeholder="Start Date"
+						icon="calendar"
+						onPress={() => setShowDate(true)}
+						value={Dayjs(groupInfo.startDate).format('DD/MM/YYYY')}
 					/>
+
 					<Spacer />
 
 					{/* PAYMENT FREQUENCY */}
-					<InputWithLabel
-						setRef={(ref) => {
-							amountToSaveRef.current = ref
-						}}
+
+					<PickerWithLabel
 						label="Payment Frequency"
-						isPriceInput
-						placeholder="Enter the amount"
-						handleChange={(val: string) => setGroupInfo('amountToSave', val)}
-						value={groupInfo.amountToSave?.toString()}
-						onSubmitEditing={() => {
-							numberOfMembersRef.current?.focus()
-						}}
+						placeholder="Monthly"
+						onPress={openFrequencyModal}
+						value={groupInfo.paymentFrequency}
 					/>
 
 					<Spacer />
@@ -127,6 +107,24 @@ const InfoCollector2 = () => {
 					/>
 				</Padding>
 			</WithInputViewWrapper>
+
+			<DateTimePickerModal
+				isVisible={showDate}
+				mode="date"
+				minimumDate={new Date()}
+				onConfirm={(date) => {
+					setGroupInfo('startDate', date)
+					setShowDate(false)
+				}}
+				onCancel={() => setShowDate(false)}
+			/>
+
+			<Portal>
+				<PaymentFrequecy
+					onSelect={(val) => setGroupInfo('paymentFrequency', val)}
+					selected={groupInfo.paymentFrequency}
+				/>
+			</Portal>
 		</CustomScreen>
 	)
 }

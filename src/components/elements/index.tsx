@@ -20,6 +20,8 @@ export * from './comps/Pressable'
 export * from './comps/UI'
 export * from './comps/NavHeader'
 export * from './comps/AppIcons'
+export * from './comps/Picker'
+export * from './comps/PickerWithLabel'
 
 export { default as CustomScreen } from './comps/AppScreen'
 export { default as CustomImage } from './comps/Image'

@@ -1,26 +1,35 @@
-import { CustomScreen, Padding, AppButton, Spacer, MediumText, Header } from '@elements'
+import { CustomScreen, Padding, AppButton, Spacer, MediumText, Header, MotionBox, Picker } from '@elements'
 import { showToast } from '@helpers/show-toast'
-import { __SCREENS } from '@navigation/types/routes'
+import { __NAVIGATORS, __SCREENS } from '@navigation/types/routes'
 import { useGroupSavingsNavigator } from '@navigation/types/use-navigation'
 import { __COLORS } from '@utils/colors'
 import AppInput, { AppInputProps } from 'components/elements/comps/AppInput'
 import WithInputViewWrapper from 'components/elements/comps/WithInputViewWrapper'
-
+import NumberOfMembersModal, { openNumOfMembersModal } from 'components/modals/num-of-members'
+import WhatareYouSavingFor, {
+	openReasonsForSavingModal,
+	TReason,
+} from 'components/modals/what-are-you-saving-for'
 import React, { FC, useRef, useState } from 'react'
 import { TextInput } from 'react-native'
 import { Div } from 'react-native-magnus'
+import { Portal } from 'react-native-portalize'
+import { AddMembers } from './AddMembers'
+import { SavingsPlan } from './CreateGroup'
+import InfoCollector2 from './InfoCollector2'
+import TermsAndConditions from './TermsAndConditions'
 
 const GroupInfoCollector = () => {
 	const navigation = useGroupSavingsNavigator<__SCREENS.GROUP_SAVINGS_COLLECT_INFO_1>()
-
+	const [currentIndex, setCurrentIndex] = useState(0)
 	const [groupInfo, setInfo] = useState({
 		goalAmount: 0,
 		amountToSave: 0,
-		NumberOfMembers: '',
+		NumberOfMembers: 2,
 		reasonForSaving: '',
 	})
 
-	const setGroupInfo = (info: keyof typeof groupInfo, value: string) => {
+	const setGroupInfo = (info: keyof typeof groupInfo, value: string | number) => {
 		setInfo((p) => ({
 			...p,
 			[info]: value,
@@ -35,7 +44,32 @@ const GroupInfoCollector = () => {
 			}
 		}
 
-		navigation.navigate(__SCREENS.GROUP_SAVINGS_COLLECT_INFO_2)
+		if (currentIndex !== 3) {
+			return setCurrentIndex((P) => P + 1)
+		}
+
+		const data = {
+			headingText: 'Success',
+			descriptionText:
+				'You have successfully created a group “Young investor” with a pending status. If  you have completed group membership, you can start saving.',
+			callbackRoute: __NAVIGATORS.GROUP_SAVINGS,
+			callbackScreen: __SCREENS.GROUP_SAVINGS_DASHBOARD,
+			callbackText: 'Dashboard',
+		}
+		// @ts-ignore
+		navigation.navigate(__SCREENS.SUCCESS, data)
+	}
+
+	const selectReasonForInvestment = () => {
+		openReasonsForSavingModal()
+	}
+
+	const onSelectReason = (reason: TReason) => {
+		setGroupInfo('reasonForSaving', reason.title)
+	}
+
+	const onSelectMembers = (member: SavingsPlan) => {
+		setGroupInfo('NumberOfMembers', member.members)
 	}
 
 	// GOAL AMOUNT REF
@@ -44,11 +78,28 @@ const GroupInfoCollector = () => {
 	// AMOUNT TO SAVE REF
 	const amountToSaveRef = useRef<TextInput | null>(null)
 
-	// NUMBER OF MEMBERS
-	const numberOfMembersRef = useRef<TextInput | null>(null)
+	if (currentIndex === 3) {
+		return (
+			<MotionBox style={{ flex: 1 }} animation="fadeInRight">
+				<TermsAndConditions onSubmit={onSubmit} />
+			</MotionBox>
+		)
+	}
 
-	// REASON FOR SAVING
-	const reasonRef = useRef<TextInput | null>(null)
+	if (currentIndex === 2) {
+		return (
+			<MotionBox style={{ flex: 1 }} animation="fadeInRight">
+				<AddMembers onSubmit={onSubmit} />
+			</MotionBox>
+		)
+	}
+	if (currentIndex === 1) {
+		return (
+			<MotionBox style={{ flex: 1 }} animation="fadeInRight">
+				<InfoCollector2 onSubmit={onSubmit} />
+			</MotionBox>
+		)
+	}
 
 	return (
 		<CustomScreen>
@@ -82,39 +133,24 @@ const GroupInfoCollector = () => {
 						placeholder="Enter the amount"
 						handleChange={(val: string) => setGroupInfo('amountToSave', val)}
 						value={groupInfo.amountToSave?.toString()}
-						onSubmitEditing={() => {
-							numberOfMembersRef.current?.focus()
-						}}
 					/>
 
 					<Spacer />
 
 					{/* NUMBER OF MEMBERS */}
-					<InputWithLabel
-						setRef={(ref) => {
-							numberOfMembersRef.current = ref
-						}}
-						label="Number of Members"
-						placeholder="Enter here"
-						handleChange={(val: string) => setGroupInfo('reasonForSaving', val)}
-						value={groupInfo.reasonForSaving}
-						onSubmitEditing={() => {
-							reasonRef.current?.focus()
-						}}
+					<Picker
+						placeholder="Select Reason"
+						value={'' + groupInfo.NumberOfMembers}
+						onPress={openNumOfMembersModal}
 					/>
 
 					<Spacer />
 
 					{/* WHAT ARE YOU SAVING FOR */}
-					<InputWithLabel
-						setRef={(ref) => {
-							reasonRef.current = ref
-						}}
-						label="What are you saving for?"
+					<Picker
 						placeholder="Investment"
-						handleChange={(val: string) => setGroupInfo('NumberOfMembers', val)}
-						value={groupInfo.NumberOfMembers}
-						isFinal
+						value={groupInfo.reasonForSaving}
+						onPress={selectReasonForInvestment}
 					/>
 
 					<Spacer />
@@ -127,6 +163,11 @@ const GroupInfoCollector = () => {
 					/>
 				</Padding>
 			</WithInputViewWrapper>
+
+			<Portal>
+				<WhatareYouSavingFor selected={groupInfo.reasonForSaving} onSelect={onSelectReason} />
+				<NumberOfMembersModal selected={groupInfo.NumberOfMembers} onSelect={onSelectMembers} />
+			</Portal>
 		</CustomScreen>
 	)
 }

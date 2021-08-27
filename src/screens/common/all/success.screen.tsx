@@ -19,11 +19,13 @@ import { useCustomBackBehaviour } from '@hooks'
  * @returns 
  */
 const SuccessScreen = ({ route }: any) => {
-	const { headingText, descriptionText, callbackRoute, callbackText } = route.params
+	const { headingText, descriptionText, callbackRoute, callbackScreen, callbackText } = route.params
 	const navigation = useNavigation()
 
 	const handleCallback = () => {
-		callbackRoute ? navigation.navigate(callbackRoute) : showToast('callback route is not provided')
+		callbackRoute
+			? navigation.navigate(callbackRoute, { screen: callbackScreen })
+			: showToast('callback route is not provided')
 	}
 
 	useCustomBackBehaviour(handleCallback)
